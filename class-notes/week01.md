@@ -1,3 +1,8 @@
+### jump links ###
+
+* [day one](#day-one)
+* [day two][#day-two]
+
 
 ### day one ###
 
@@ -55,9 +60,12 @@ then we went over:
       * ps aux | grep rubyls
       * history | grep irb
          * ctrl + r
+* [installfest][if]
+   * installed ruby 2.2.1, not 2.1.2
 
 [unix]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/nix.md
 
+[if]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/installfest.md
 
 assigned homework:
 * look up bash profile / setting aliases
