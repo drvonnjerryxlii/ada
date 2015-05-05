@@ -2,6 +2,8 @@
 
 # globals
 
+puts "Btw, this is unfinished!"
+
 $name = "Shaun" # default friend name
 $prompt = ">> " # user prompt
 $pronoun_they = "she" # he they

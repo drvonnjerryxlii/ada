@@ -2,6 +2,23 @@
 
 This game is dedicated to Shaun Wallace. He knows what he did.
 
+Jump links:
+* [Items Masterlist](#items-masterlist)
+* [Map](#map)
+* [Endings](#)
+   * [You found your friend.](#)
+   * [You told a bad knock-knock joke.](#)
+   * [You didn't find your friend.](#)
+   * [You found a murder weapon instead of your friend.](#)
+   * [You went to prison for double homicide.](#)
+   * [You died.](#)
+   * [You fell into a wormhole.](#)
+
+> ### Map ###
+
+![A map of the house.][map]
+
+[map]: http://drvonnjerryxlii.github.io/img/ex36_map.jpg
 
 > ### Items Masterlist ###
 
@@ -10,7 +27,7 @@ Downstairs items:
 * d20 (dining room) - unlocks wormhole machine
 * games case (living room) - unlocks game room
 * knife (kitchen) - implicates you in murder if you touch it, can be used to open some locks
-* red-stained carpet (living room) - 
+* red-stained carpet (living room) - unlocks certain items, hints at something more going on than finding friend
 
 Upstairs items:
 * key (guest bedroom) - unlocks locked doors
@@ -55,42 +72,3 @@ You trade a few knock knock jokes back and forth. The door finally opens up, rev
    
 
 
-> ### Actions ###
-
-key | action
-A | 
-B | go back?
-C | 
-D | 
-E | 
-F | go forward?
-G | 
-H | help
-I | inventory? vs investigate?
-J | jiggle? 
-K | knock knock
-L | go left?
-M | 
-N | 
-O | open?
-P | pick up?
-Q | 
-R | restore? vs. go right?
-S | save? vs. search the room?
-T | 
-U | use tool?
-V | vocalize?
-W | 
-X | exit?
-Y | 
-Z | 
-1 | 
-2 | 
-3 | 
-4 | 
-5 | 
-6 | 
-7 | 
-8 | 
-9 | 
-0 |
