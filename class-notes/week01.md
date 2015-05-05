@@ -21,7 +21,7 @@ also discussed:
    * without too much syntactic sugar, you can then focus more on the
      abstractions and what's really going on under the hood.
 * off topic
-   * new homestarrunner video: fish eye lens
+   * new homestarrunner video: fish eye lens.
 
 [tree]: http://postimg.org/image/b3ob6w8oh
 [ss]: http://en.wikipedia.org/wiki/Syntactic_sugar
