@@ -28,3 +28,38 @@ also discussed:
 
 assigned homework:
 * read preface & chapter 1 of learn to program (second edition)
+
+
+### day two ###
+
+the first half of the morning was a discussion about prominent women in
+programming and computer science.
+
+then we went over:
+* [intro to UNIX][unix]
+   * cmd + k - clears buffer in terminal
+   * open [filename] - opens filename w/ default program
+      * open -a [prog name / path] [filename]
+   * ctrl + l - clears all (same as typing clear)
+   * pwd - print working directory
+   * ~ - home directory
+   * .. - next one up
+      * ../.. - two up!
+   * . - current directory
+   * ls -lh
+   * ls -l
+   * ls -lah
+   * piping
+      * ps
+      * ps aux
+      * ps aux | grep rubyls
+      * history | grep irb
+         * ctrl + r
+
+[unix]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/nix.md
+
+
+assigned homework:
+* look up bash profile / setting aliases
+   * prompt setup: customize ps1
+* read chapter 2 - 4 of learn to program (second edition)
