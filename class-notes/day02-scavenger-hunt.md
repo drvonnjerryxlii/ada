@@ -2,57 +2,96 @@
 
 __(You must have at least one team member in each picture)__
 
-- [ ] A "beach"
-- [ ] A book store
-- [ ] A book about Seattle
-- [ ] A burlesque flyer
-- [ ] A celebrity
-- [ ] A climbing wall
-- [ ] A craft fair
-- [ ] A farmer's market
-- [ ] A fresh donut from The Daily Dozen
-- [ ] A fresh donut from Top Pot
-- [ ] A fruit or vegetable that no one in your group has tried before
-- [ ] A geocache
-- [ ] A group of 4+ bikers
-- [ ] A group of people sporting Seahawks apparel
-- [ ] A handlebar (or otherwise fancy) mustache
-- [ ] A non-compact car in a "compact only" space
-- [ ] A photo of an out-of-state license plate
+## Jump Links ##
+
+(ordered by proposed route)
+- [close to school](#close-to-class)
+- [downhill from school](#downhill)
+- [north of school](#north)
+- [south of school](#south)
+- [uphill from school](#uphill)
+- [anywhere](#anywhere)
+
+## close to class ##
+
+- [ ] Benaroya Hall
+- [ ] Fran's Chocolates
+- [ ] SAM
+- [ ] The view from the [highest altitude Starbucks][sbux]
+
+[sbux]: http://www.starbucks.com/store/9950/us/columbia-tower-40th-floor-seattle/701-5th-avenue-4020-seattle-wa-981047097/bank-of
+
+## downhill ##
+
+AKA Waterfront & near Pike Place Market:
+
 - [ ] A picture from the top of the ferris wheel
-- [ ] A promotional pen from a software company (other than Moz)
-- [ ] A rainbow
 - [ ] A ferry
+- [ ] A "beach"
+- [ ] Olympic Sculpture Park
+- [ ] A farmer's market
+   - [ ] A fresh donut from The Daily Dozen
+   - [ ] Air-born fish at pike's place
+   - [ ] As many Seattle pigs as you can find
+   - [ ] The original Starbucks
+   - [ ] Someone eating seafood
+   - [ ] A craft fair
+   - [ ] A fruit or vegetable that no one in your group has tried before
+   - [ ] Put some gum on the gum wall
+- [ ] A book store
+   - [ ] A book about Seattle
+
+
+## south ##
+
+AKA Stadium / ID
+
+- [ ] A group of people sporting Seahawks apparel
+- [ ] A stadium
+
+
+## north ##
+
+AKA Belltown / Seattle Center / on the way there
+
+- [ ] REI
+- [ ] A fresh donut from Top Pot
+- [ ] The EMP
+- [ ] Your entire group in a picture with the Space Needle
+
+
+## uphill ##
+
+AKA Capitol Hill / First Hill / on the way up the hill
+
+- [ ] Freeway park - union/8th? seneca/8th? 8th??
+- [ ] Molly Moons ice cream - pike/pine corridor
+- [ ] Bike polo - cal anderson park
+- [ ] People waiting in line at Dick's - broadway & harrison?
+
+
+
+## anywhere ##
+
+AKA I don't know where this is
+
 - [ ] A Henry mural
+- [ ] A geocache
+- [ ] An antiques store
+- [ ] Baby swings (the ones you can't fall out of)
+- [ ] A working pinball or arcade machine
+- [ ] Ostentatious recycling
+- [ ] A Seattle-centric tattoo
+- [ ] Someone waving at the Duck Boat
+- [ ] A handlebar (or otherwise fancy) mustache
+- [ ] A rainbow
+- [ ] Food served from a cart or a truck
 - [ ] A receipt for gas
 - [ ] A runner without headphones in
 - [ ] A segway
-- [ ] The EMP
-- [ ] A stadium
 - [ ] A telephone booth
 - [ ] A theatre (movie or stage)
 - [ ] A very small coffee
-- [ ] Air-born fish at pike's place
-- [ ] An antiques store
-- [ ] As many Seattle pigs as you can find
-- [ ] Baby swings (the ones you can't fall out of)
-- [ ] Benaroya Hall
-- [ ] Food served from a cart or a truck
-- [ ] Fran's Chocolates
-- [ ] Olympic Sculpture Park
-- [ ] Freeway park
-- [ ] A working pinball or arcade machine
-- [ ] Molly Moons ice cream
-- [ ] Ostentatious recycling
-- [ ] People waiting in line at Dick's
-- [ ] Put some gum on the gum wall
-- [ ] REI
-- [ ] A Seattle-centric tattoo
-- [ ] SAM
-- [ ] Someone eating seafood
-- [ ] Someone using a selfie stick
-- [ ] Someone using a Microsoft & an Apple device at the same time
-- [ ] Someone waving at the Duck Boat
 - [ ] Something magical
 - [ ] Something old
 - [ ] Something stacked
@@ -60,10 +99,15 @@ __(You must have at least one team member in each picture)__
 - [ ] Something wet
 - [ ] Something with a tail
 - [ ] Something with batteries
+- [ ] Someone using a selfie stick
+- [ ] Someone using a Microsoft & an Apple device at the same time
 - [ ] Teatro ZinZanni
-- [ ] The original Starbucks
-- [ ] The view from the highest altitude Starbucks
+- [ ] A group of 4+ bikers
+- [ ] A non-compact car in a "compact only" space
+- [ ] A photo of an out-of-state license plate
+- [ ] A promotional pen from a software company (other than Moz)
+- [ ] A burlesque flyer
+- [ ] A celebrity
+- [ ] A climbing wall
 - [ ] The giant gummi bear
 - [ ] Yoga pants and a briefcase
-- [ ] Your entire group in a picture with the Space Needle
-- [ ] Bike polo
