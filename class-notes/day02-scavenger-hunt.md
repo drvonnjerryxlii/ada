@@ -78,6 +78,7 @@ AKA Capitol Hill / First Hill / on the way up the hill
 - [ ] Molly Moons ice cream - pike/pine corridor
 - [ ] Bike polo - cal anderson park
 - [ ] People waiting in line at Dick's - broadway & harrison?
+- [ ] A theatre (movie or stage) - 6th, 7th, 8th & pine
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
@@ -86,7 +87,10 @@ AKA Capitol Hill / First Hill / on the way up the hill
 
 AKA I don't know where this is
 
-- [ ] A Henry mural
+- [ ] A Henry mural - ballard?
+- [ ] Food served from a cart or a truck - everywhere
+- [ ] A receipt for gas - on the hill, denny
+- [ ] A very small coffee - any coffee shop
 - [ ] A geocache
 - [ ] An antiques store
 - [ ] Baby swings (the ones you can't fall out of)
@@ -96,13 +100,9 @@ AKA I don't know where this is
 - [ ] Someone waving at the Duck Boat
 - [ ] A handlebar (or otherwise fancy) mustache
 - [ ] A rainbow
-- [ ] Food served from a cart or a truck
-- [ ] A receipt for gas
 - [ ] A runner without headphones in
 - [ ] A segway
 - [ ] A telephone booth
-- [ ] A theatre (movie or stage)
-- [ ] A very small coffee
 - [ ] Something magical
 - [ ] Something old
 - [ ] Something stacked
@@ -122,3 +122,5 @@ AKA I don't know where this is
 - [ ] A climbing wall
 - [ ] The giant gummi bear
 - [ ] Yoga pants and a briefcase
+
+<div align="right">^<a href="#jump-links">top</a></div>
