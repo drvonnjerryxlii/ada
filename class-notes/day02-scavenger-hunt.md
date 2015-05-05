@@ -5,14 +5,15 @@ __(You must have at least one team member in each picture)__
 ## Jump Links ##
 
 (ordered by proposed route)
-- [close to school](#close-to-class)
+- [close to school](#nearby)
 - [downhill from school](#downhill)
 - [north of school](#north)
 - [south of school](#south)
 - [uphill from school](#uphill)
 - [anywhere](#anywhere)
 
-## close to class ##
+
+## nearby ##
 
 - [ ] Benaroya Hall
 - [ ] Fran's Chocolates
@@ -20,6 +21,9 @@ __(You must have at least one team member in each picture)__
 - [ ] The view from the [highest altitude Starbucks][sbux]
 
 [sbux]: http://www.starbucks.com/store/9950/us/columbia-tower-40th-floor-seattle/701-5th-avenue-4020-seattle-wa-981047097/bank-of
+
+<div align="right">^<a href="#jump-links">top</a></div>
+
 
 ## downhill ##
 
@@ -41,6 +45,8 @@ AKA Waterfront & near Pike Place Market:
 - [ ] A book store
    - [ ] A book about Seattle
 
+   <div align="right">^<a href="#jump-links">top</a></div>
+
 
 ## south ##
 
@@ -48,6 +54,8 @@ AKA Stadium / ID
 
 - [ ] A group of people sporting Seahawks apparel
 - [ ] A stadium
+
+<div align="right">^<a href="#jump-links">top</a></div>
 
 
 ## north ##
@@ -59,6 +67,8 @@ AKA Belltown / Seattle Center / on the way there
 - [ ] The EMP
 - [ ] Your entire group in a picture with the Space Needle
 
+<div align="right">^<a href="#jump-links">top</a></div>
+
 
 ## uphill ##
 
@@ -69,6 +79,7 @@ AKA Capitol Hill / First Hill / on the way up the hill
 - [ ] Bike polo - cal anderson park
 - [ ] People waiting in line at Dick's - broadway & harrison?
 
+<div align="right">^<a href="#jump-links">top</a></div>
 
 
 ## anywhere ##
