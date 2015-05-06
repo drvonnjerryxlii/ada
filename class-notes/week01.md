@@ -1,7 +1,10 @@
 ### jump links ###
 
 * [day one](#day-one)
-* [day two][#day-two]
+* [day two](#day-two) <!--
+* [day three](#day-three)
+* [day four](#day-four)
+* [day five](#day-five) -->
 
 
 ### day one ###
@@ -34,11 +37,15 @@ also discussed:
 assigned homework:
 * read preface & chapter 1 of learn to program (second edition)
 
+<div align="right">^<a href="#jump-links">top</a></div>
+
 
 ### day two ###
 
-the first half of the morning was a discussion about prominent women in
-programming and computer science.
+the first half of the morning was a discussion about [prominent women][pw]
+in programming and computer science.
+
+[pw]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/empowered_women.md
 
 then we went over:
 * [intro to UNIX][unix]
@@ -63,11 +70,33 @@ then we went over:
 * [installfest][if]
    * installed ruby 2.2.1, not 2.1.2
 
+watched this video:
+   * [cascadia ruby, jason clark, teaching my 5-year-old ruby][crjc]
+
 [unix]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/nix.md
 
 [if]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/installfest.md
+
+[crjc]: http://confreaks.tv/videos/cascadiaruby2014-programming-in-the-small-teaching-my-5-year-old-ruby
 
 assigned homework:
 * look up bash profile / setting aliases
    * prompt setup: customize ps1
 * read chapter 2 - 4 of learn to program (second edition)
+
+<div align="right">^<a href="#jump-links">top</a></div>
+
+
+### day three ###
+
+<div align="right">^<a href="#jump-links">top</a></div>
+
+
+### day four ###
+
+<div align="right">^<a href="#jump-links">top</a></div>
+
+
+### day five ###
+
+<div align="right">^<a href="#jump-links">top</a></div>
