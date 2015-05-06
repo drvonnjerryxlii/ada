@@ -32,7 +32,7 @@ hoursPerDay = 24
 minutesPerHour = 60
 secondsPerMinute = 60
 myAgeInYears = 2015 - 1986 # roughly true story! (months, shmonths.)
-dearAuthorsAgeInSeconds = 1160 * 1000000 # as given
+$dearAuthorsAgeInSeconds = 1160 * 1000000 # as given
 
 # extending seconds b/c age questions
 secondsPerHour = secondsPerMinute * minutesPerHour
@@ -44,12 +44,29 @@ secondsPerYearFloat = 1.0 * secondsPerYear
 hoursPerYear = daysPerYear * hoursPerDay
 minutesPerDecade = yearsPerDecade * hoursPerYear * minutesPerHour
 myAgeInSeconds = myAgeInYears * secondsPerYear
-dearAuthorsAgeInYears = dearAuthorsAgeInSeconds / secondsPerYear
-dearAuthorsAgeInYearsFloat = dearAuthorsAgeInSeconds / secondsPerYearFloat
+dearAuthorsAgeInYears = $dearAuthorsAgeInSeconds / secondsPerYear
+dearAuthorsAgeInYearsFloat = $dearAuthorsAgeInSeconds / secondsPerYearFloat
 
 # now print answers to screen
 puts "There are #{hoursPerYear} hours per year."
 puts "There are #{minutesPerDecade} minutes per decade."
 puts "My age (#{myAgeInYears} years) in seconds: #{myAgeInSeconds}."
-puts "Our dear author's age (#{dearAuthorsAgeInSeconds} seconds) in years: #{dearAuthorsAgeInYears}."
+puts "Our dear author's age (#{$dearAuthorsAgeInSeconds} seconds) in years: #{dearAuthorsAgeInYears}."
 puts "Okay, let's be a little more precise about our dear author: #{dearAuthorsAgeInYearsFloat} years."
+
+def remainingAge(whatRemainsAfter, originalAge = $dearAuthorsAgeInSeconds)
+  return originalAge % whatRemainsAfter
+end
+
+# calculate days
+dearAuthorsRemainingDays = remainingAge(secondsPerYear) / secondsPerDay
+# calculate hours
+dearAuthorsRemainingHours = remainingAge(secondsPerDay) / secondsPerHour
+# calculate minutes
+dearAuthorsRemainingMinutes = remainingAge(secondsPerHour) / secondsPerMinute
+# calculate seconds
+dearAuthorsRemainingSeconds = remainingAge(secondsPerMinute)
+
+# Alice calculated out hours, days, etc! implmenting that now!
+puts "Let's be even more precise about our dear author. (Thanks, Alice!)"
+puts "Our dear author is #{dearAuthorsAgeInYears} years, #{dearAuthorsRemainingDays} days, #{dearAuthorsRemainingHours} hours, #{dearAuthorsRemainingMinutes} minutes, and #{dearAuthorsRemainingSeconds} seconds."
