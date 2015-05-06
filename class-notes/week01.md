@@ -1,7 +1,8 @@
 ### jump links ###
 
 * [day one](#day-one)
-* [day two](#day-two) <!--
+* [day two](#day-two)
+<!--
 * [day three](#day-three)
 * [day four](#day-four)
 * [day five](#day-five) -->
@@ -49,10 +50,10 @@ in programming and computer science.
 
 then we went over:
 * [intro to UNIX][unix]
-   * cmd + k - clears buffer in terminal
+   * ⌘k - clears buffer in terminal
    * open [filename] - opens filename w/ default program
       * open -a [prog name / path] [filename]
-   * ctrl + l - clears all (same as typing clear)
+   * ⌃l - clears all (same as typing clear)
    * pwd - print working directory
    * ~ - home directory
    * .. - next one up
@@ -66,7 +67,7 @@ then we went over:
       * ps aux
       * ps aux | grep rubyls
       * history | grep irb
-         * ctrl + r
+         * ⌃r
 * [installfest][if]
    * installed ruby 2.2.1, not 2.1.2
 
