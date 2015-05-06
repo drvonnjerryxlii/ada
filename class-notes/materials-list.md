@@ -8,7 +8,7 @@
 
 AKA stuff that you need before the first class
 
-* late model MacBook
+* late model MacBook (my cost: ~$1300)
    * recommended: solid state hard drive (2014 or later)
    * recommended: upgrade RAM to 8GB
    * I also upgraded my processor, because why not

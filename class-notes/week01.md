@@ -1,14 +1,18 @@
-### jump links ###
+- - -
+> ### jump links ###
+- - -
 
 * [day one](#day-one)
 * [day two](#day-two)
-<!--
 * [day three](#day-three)
+
+<!--
 * [day four](#day-four)
 * [day five](#day-five) -->
 
-
-### day one ###
+- - -
+> ### day one ###
+- - -
 
 the morning was mostly get-to-know you games. in the afternoon, we started
 digging into some basics of the program, like the student handbook.
@@ -36,12 +40,14 @@ also discussed:
 [ss]: http://en.wikipedia.org/wiki/Syntactic_sugar
 
 assigned homework:
-* read preface & chapter 1 of learn to program (second edition)
+* read preface & chapter 1 of learn to program
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
 
-### day two ###
+- - -
+> ### day two ###
+- - -
 
 the first half of the morning was a discussion about [prominent women][pw]
 in programming and computer science.
@@ -83,21 +89,75 @@ watched this video:
 assigned homework:
 * look up bash profile / setting aliases
    * prompt setup: customize ps1
-* read chapter 2 - 4 of learn to program (second edition)
+* read chapter 2 - 4 of learn to program
+   * [exercise 2.5][2.5]
+
+[2.5]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex2.5.rb
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
 
-### day three ###
+- - -
+> ### day three ###
+- - -
+
+we discussed:
+* [ruby 101][r101]
+   * _round_ is a method that exists on a _float_ object
+   * played around in irb a lot
+* [atom][atom]
+   * sublime package manager / package control
+   * setting up subl / atom open commands for terminal
+   * ⌘⌃↑ and ⌘⌃↓ move active line / selection up/down
+   * ⌃⇧M - open preview pane for markdown
+   * LINTER magic - ⌘D
+* [ruby 102][r102]
+  * more playing around in irb
+  * use double quotes (") if you need to use escape sequences (\n)
+  * use single quotes (') if you need to use the string literal / _show_ the escape sequences
+  * symbol object ids
+     * you can use object ids to figure out whether two vars point at the same value / object
+  * you can space out numbers w/ underscores!
+     * 1000000 == 1_000_000
+     * integers == fixed nums
+     * decimals == float
+   * ==.js - evaluates both sides & looks at resultant expressions / values
+   * ===.js - also cares about parent object types
+* [flow][flow]
+   * must __end__ an __if__ statement _block_!
+
+internships! we discussed these at length
+
+assigned homework:
+* read chapter 5 of learn to program
+   * [exercise 5.6][5.6]
+* figure out why "a" > "A" (according to irb)
+
+[r101]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/ruby-101.md
+
+[atom]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/atom.md
+
+[r102]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/ruby-102.md
+
+[flow]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/flow-control.md
+
+[5.6]: nope-haven't-done-yet
+
+<div align="right">^<a href="#jump-links">top</a></div>
+
+<!--
+- - -
+> ### day four ###
+- - -
+
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
 
-### day four ###
+- - -
+> ### day five ###
+- - -
+
 
 <div align="right">^<a href="#jump-links">top</a></div>
-
-
-### day five ###
-
-<div align="right">^<a href="#jump-links">top</a></div>
+-->
