@@ -147,11 +147,11 @@ assigned homework:
 
 [flow]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/flow-control.md
 
-[e5.6]: https://github.com/drvonnjerryxlii/ada/blob/master/class-projects/ex5.6.rb
+[e5.6]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex5.6.rb
 
 [sally]: https://twitter.com/sallysuru
 
-[may6]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/d003-even-odd.rb
+[may6]: https://github.com/drvonnjerryxlii/ada/blob/master/class-projects/d003-even-odd.rb
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
