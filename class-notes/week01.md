@@ -22,6 +22,7 @@ we went over these things:
 * [how to os x][osx]
 
 [sh]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/Student%20Handbook.pdf
+
 [osx]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/how-to-os-x.md
 
 also discussed:
@@ -37,6 +38,7 @@ also discussed:
    * new homestarrunner video: fish eye lens.
 
 [tree]: http://postimg.org/image/b3ob6w8oh
+
 [ss]: http://en.wikipedia.org/wiki/Syntactic_sugar
 
 assigned homework:
@@ -92,7 +94,7 @@ assigned homework:
 * read chapter 2 - 4 of learn to program
    * [exercise 2.5][2.5]
 
-[2.5]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex2.5.rb
+[e2.5]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex2.5.rb
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
@@ -145,7 +147,7 @@ assigned homework:
 
 [flow]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/flow-control.md
 
-[5.6]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex5.6.rb
+[e5.6]: https://github.com/drvonnjerryxlii/ada/blob/master/class-projects/ex5.6.rb
 
 [sally]: https://twitter.com/sallysuru
 
@@ -153,15 +155,65 @@ assigned homework:
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
-<!--
 - - -
 > ### day four ###
 - - -
 
+continued discussing methods
+* integer
+   * even? / odd?
+   * next (also succ)
+   * numerator / denominator
+
+* array
+   *
+   * flatten
+   * pop
+   * sort
+      * quicksort
+
+* string
+   * center - takes int param & optional param for center char (default is
+     space)
+   * replace - instead of creating a new instance, updates the same object id
+     to have the new string
+   * strip - removes spaces from string
+      * lstrip - remove from left
+      * rstrip - remove from right
+      * strip - remove from both
+   * split - splits by default by space, takes an optional param of splitter
+     (ie, ; or ,)
+   * swapcase
+   * squeeze
+      * "ahhhhhhhhhhh".squeeze
+
+* float
+   * to_i
+   * to_s
+   * round
+   * floor
+   * ceil
+   * abs
+   * <=> - conditional
+      * if left value less than right, -1
+      * if left value equal to right, 0
+      * if left value greater than right, 1
+      * if incompatible data types, nil
+
+* hash
+   * has_key?
+   * has_value?
+   * replace
+   * update / merge
+
+[r103]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/ruby-103.md
+
+[calc]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/calculator.md
+
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
-
+<!--
 - - -
 > ### day five ###
 - - -
