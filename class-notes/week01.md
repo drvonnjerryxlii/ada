@@ -128,6 +128,10 @@ we discussed:
 
 internships! we discussed these at length
 
+today's project: study two methods for assigned data type, and create a little
+demo to teach everyone about the two methods you select.
+* [Sally][sally] & I wrote [this demo for integer methods .even? and .odd?][may6]
+
 assigned homework:
 * read chapter 5 of learn to program
    * [exercise 5.6][5.6]
@@ -141,7 +145,11 @@ assigned homework:
 
 [flow]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/flow-control.md
 
-[5.6]: nope-haven't-done-yet
+[5.6]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex5.6.rb
+
+[sally]: https://twitter.com/sallysuru
+
+[may6]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/d003-even-odd.rb
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
