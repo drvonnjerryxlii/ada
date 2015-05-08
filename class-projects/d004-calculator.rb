@@ -85,9 +85,9 @@ end
 # it takes one param and checks & simplifies it
 # it has some repetition, because I didn't want to mess w/ global variables
 # and I'm not sure how else to handle the scope !Q !W?
-def verify_operator(answer)
+def verify_operator(user_operator)
   # we only need the first three characters for these checks
-  answer = answer[0..2]
+  user_operator = user_operator[0..2].downcase
 
   # sets add operators
   operators_addition = %w{+ add plu}
@@ -102,9 +102,9 @@ def verify_operator(answer)
   # sets mod ops
   operators_modulo = %w{% mod}
 
-  # iterates thru add ops
+  # iterates through addition operators
   operators_addition.each do |oper|
-    # checks if op is same as verif answer
+    # checks if user operator is same as verif answer
     if answer == oper
       # returns simplified answer
       return "+"
@@ -239,17 +239,26 @@ end
 
 
 
-#
+# opens print_answer definition
+# takes five params - the answer/result, the first number, the operator, and
+# the second number -- basically all the stuff needed for the answer
 def print_answer(result, first_number, operation, second_number)
+  # sets the first part of the output
+  output = "That's #{result}! #{first_number} #{operation} #{second_number} ="
+  # checks if the operation was not exponential
   if operation != "^"
-    puts "That's #{result}! #{first_number} #{operation} #{second_number} = #{result}."
+    # adds the result to the output
+    output += " #{result}."
+  # then checks if it was an exponent operation
   elsif operation == "^"
-    expanded_answer = "That's #{result}! #{first_number} #{operation} #{second_number} ="
-    expanded_answer += "#{first_number}"
+    # adds the first number to the output
+    output += "#{first_number}"
+    # starts a quick loop based on the second number (minus one b/c already)
+    # printed!
     (second_number.to_i-1).times do
-      expanded_answer += " * #{first_number}"
+      output += " * #{first_number}"
     end
-    puts expanded_answer + " = #{result}."
+    puts output + " = #{result}."
   end
 end
 
@@ -269,7 +278,7 @@ def calculator_interface
   # asks the user for an operation to perform on the given number
   puts "What operation would you like to perform on #{first_number}?"
   # assigns result of calling verify_not_empty_answer on user input
-  operation = verify_answer($stdin.gets.chomp.downcase,false)
+  operation = verify_answer($stdin.gets.chomp,false)
   # asks the user for a second number
   puts "What do you want to #{operation} to #{first_number}?"
   # assigns result of calling verify_not_empty_answer on user input
