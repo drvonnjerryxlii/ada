@@ -23,6 +23,13 @@
 # 3. I decided pretty quickly that I wanted to make something I would use again,
 #    so this is a beast. I rock?
 #
+# 4. I left my test code in. If I broke something once, then I think in future
+#    updates I am likely to break it again.
+#
+# 5. Also, I think this will be a much more useful thingy after we learn how to
+#    interact with outside files. The database stuff could be stored in a text
+#    file, which would mean items added by the user could be remembered.
+#
 # Enjoy!
 #    --Jeri / @drvonnjerryxlii
 
@@ -32,7 +39,7 @@
 # GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD
 #
 # Expand your solution to ensure that no descriptive term in a menu item is
-# ever {"} repeated. SORT OF
+# ever {"} repeated. SORT OF uniq in list or uniq in soft softish eggs?
 #
 # Expand your solution to allow the user to determine how many items they'd
 # like to see via user input. YES
@@ -47,11 +54,12 @@
 
 #------------------------- BEGIN WEIRD GLOBAL THINGS ---------------------------
 
-$voice = false # don't speak
+$voice = false # (don't) speak until user says not to
 $individual = true # aka not combination
-$what_kind_of_plans_desired = nil # what can I say? I don't have any plans yet.
-$how_many_plans_desired = 0 # and I don't want any, either!
+$what_kind_of_ideas_desired = nil # what can I say? I don't have any ideas yet.
+$how_many_ideas_desired = 0 # and I don't want any, either!
 $user_wants_too_many = false # zero just doesn't know how to be too many.
+$user_data = [] # no interaction w/ user yet
 
 #-------------------------- END WEIRD GLOBAL THINGS ----------------------------
 #--------------------- BEGIN OUTPUT TEXT TO USER THINGS ------------------------
@@ -60,30 +68,75 @@ def speak(string_to_speak)
   puts "#{string_to_speak}"
 
   if $voice # originally included Good News, but it says "News" / or something every time X_x
-    good_voices = ["Alex", "Vicki", "Zarvox"]
+    good_voices = ["Alex", "Bad News", "Vicki", "Zarvox"]
     random_voice = good_voices[(rand * 3)]
     # say -v "voice name" "text to say"
     %x{say -v #{random_voice} #{string_to_speak}}
   end
 end
 
+
+
+
+def check_reset_voice(user_input)
+  voice_triggers = %w{speak word spoke say speech talk tell said}
+
+  voice_triggers.each do |voice_trigger|
+    if user_input.include? voice_trigger
+      if $voice == true
+        $voice = false
+      else
+        $voice = true
+      end
+    end
+  end
+end
+
 #---------------------- END OUTPUT TEXT TO USER THINGS -------------------------
 #----------------------------- BEGIN HELP THINGS -------------------------------
 
-# this isn't being used yet. eventually, there should be a help function here.
-def help_user
-  speak("I can't help you.")
+def help_user(user_input)
+  # do something to help user here @_@
+  speak("I'm sorry. I don't know how to help you yet.")
+end
+
+
+
+
+def check_help_request(user_input)
+  help = %{help what how when why where who}
+  help_triggers.each do |help_trigger|
+    if user_input.include? help_trigger
+      return help_user(user_input)
+    end
+  end
 end
 
 #------------------------------ END HELP THINGS --------------------------------
 #----------------- BEGIN VERIFICATION / CONFIRMATION THINGS --------------------
 
-def request_user_confirmation
-  user_continue = $stdin.gets.chomp.downcase
+def get_user_input(downcase)
+  user_input = $stdin.gets.chomp
 
-  if user_continue.include? "n"
+  if downcase
+    user_input.downcase!
+  end
+
+  check_reset_voice(user_input)
+  # check_help_request(user_input)
+
+  return user_input
+end
+
+
+
+
+def request_user_confirmation
+  user_confirmation = get_user_input(true)
+
+  if user_confirmation.include? "n"
     return false
-  elsif user_continue.include? "y"
+  elsif user_confirmation.include? "y"
     return true
   else
     possible_responses = [true, false]
@@ -98,40 +151,33 @@ end
 def verify_feeling(user_feeling)
   bored = %w{good bad lazy well upset bored hotdog elephant tacos}
   hungry = %w{hung angry peckish eat food dinner lunch breakfast dessert snack dish}
-  talky = %w{speak word spoke say speech talk said}
+  create = %w{creat add update more}
   #star = %w{star you}
-  #help = %{help what how when why where who}
-
-  talky.each do |feeling|
-    if user_feeling.include? feeling
-      $voice = true
-    end
-  end
-
-  # help.each do |feeling|
-  #   if user_feeling.include? feeling
-  #     help_user
-  #   end
-  # end
 
   bored.each do |feeling|
     if user_feeling.include? feeling
       $individual = true
-      return retrieve_plans("bored")
+      return retrieve_ideas("bored")
     end
   end
 
   hungry.each do |feeling|
     if user_feeling.include? feeling
       $individual = false
-      return retrieve_plans("dishes")
+      return retrieve_ideas("dishes")
+    end
+  end
+
+  create.each do |feeling|
+    if user_feeling.include? feeling
+      return create_user_ideas
     end
   end
 
   speak("You said #{user_feeling}. I'm sorry. I don't understand that emotion yet.")
   speak("Until I learn your emotion, I will interpret that as hungry / angry.")
   $individual = true
-  return retrieve_plans("hungry")
+  return retrieve_ideas("hungry")
 end
 
 
@@ -150,15 +196,22 @@ def verify_number(user_number)
   else
     speak("You said #{user_number}. That doesn't look like a number to me.")
     speak("Please provide your number in numeric format (eg, 12, -4,003.13).")
-    return verify_number($stdin.gets.chomp)
+    return verify_number(get_user_input(false))
   end
+end
+
+
+
+
+def set_number_of_ideas
+  $how_many_ideas_desired = verify_number(get_user_input(false))
 end
 
 #------------------ END VERIFICATION / CONFIRMATION THINGS ---------------------
 #------------------------- BEGIN FORMAT DATA THINGS ----------------------------
 
-def assign_max_value(array_of_plans)
-  a, b, c = array_of_plans[0].length, array_of_plans[1].length, array_of_plans[2].length
+def assign_max_value(array_of_ideas)
+  a, b, c = array_of_ideas[0].length, array_of_ideas[1].length, array_of_ideas[2].length
 
   if (a <= b) && (a <= c)
     return a
@@ -172,7 +225,7 @@ end
 #-------------------------- END FORMAT DATA THINGS -----------------------------
 #--------------------- BEGIN REDONKULOUS DATABASE THING ------------------------
 
-def retrieve_plans(which_plans, user_plans=nil)
+def retrieve_ideas(which_ideas)
   texture_flavor = [ # 10
     "creamy", "hot", "soft", "crunchy", "sweet", "salty", "savory", "herbed",
     "spicy", "mild"
@@ -201,34 +254,34 @@ def retrieve_plans(which_plans, user_plans=nil)
     # animal products
     "yogurt", "cheese", "eggs",
 
-    # whole plants (& whole plant parts like seeds and legumes)
+    # whole ideats (& whole ideat parts like seeds and legumes)
     "soy beans", "spinach", "lentils", "dried peas", "pinto beans",
     "kidney beans", "black beans", "navy beans", "lima beans",
     "chickpeas / garbanzo beans", "pumpkin seeds", "peanuts", "green peas",
     "oats", "collard greens",
 
-    # plant products
+    # ideat products
     "tofu", "tempeh"
   ]
 
   fiber = [ # good sources of fiber. inclusion cutoff is 10% of daily value,
             # based on whfoods-stated serving size from chart found 2015may8
             # at http://whfoods.org/genpage.php?tname=nutrient&dbid=59#foodchart
-    # whole plants (& whole plant parts like seeds and legumes)
+    # whole ideats (& whole ideat parts like seeds and legumes)
     "navy beans", "raspberries", "collard greens", "turnip greens",
     "beet greens", "dried peas", "lentils", "pinto beans", "black beans",
     "lima beans", "kidney beans", "barley", "wheat", "green peas",
     "winter squash", "pears", "broccoli", "cranberries", "spinach",
     "brussels sprouts", "green beans", "cabbage", "flaxseeds", "swiss chard",
     "asparagus", "carrots", "oranges", "strawberries", "mustard greens",
-    "fennel", "cauliflower", "kale", "summer squash", "eggplant / aubergine",
+    "fennel", "cauliflower", "kale", "summer squash", "eggideat / aubergine",
     "chickpeas / garbanzo beans", "soy beans", "avocados", "rye",
     "sweet potatoes", "quinoa", "papayas", "buckwheat", "apples", "olives",
     "sesame seeds", "oats", "potatoes", "blueberries", "beets", "banana",
     "onions", #"almonds", # although almonds qualify, I reject them on the
                           # grounds of their extremely high water usage.
 
-    # plant products
+    # ideat products
     "cinnamon", "tempeh"
   ]
 
@@ -240,11 +293,11 @@ def retrieve_plans(which_plans, user_plans=nil)
     # animals
     "sardines", "salmon", "beef", "shrimp",
 
-    # whole plants (& whole plant parts like seeds and legumes)
+    # whole ideats (& whole ideat parts like seeds and legumes)
     "flaxseeds", "walnuts", "brussels sprouts", "cauliflower", "mustard seeds",
     "soy beans", "avocados", "cashews",
 
-    # plant products
+    # ideat products
     "tofu", "olive oil", "canola oil"
   ]
 
@@ -273,8 +326,8 @@ def retrieve_plans(which_plans, user_plans=nil)
 
   # animals
   # animal products
-  # whole plants (& whole plant parts like seeds and legumes)
-  # plant products
+  # whole ideats (& whole ideat parts like seeds and legumes)
+  # ideat products
 
   recreation = [
     "Go fly a kite. Up to the highest height.", # I hope that song gets stuck in your head!
@@ -301,11 +354,11 @@ def retrieve_plans(which_plans, user_plans=nil)
     "Build a giant destructo-robot, and use it to remove all other seats of government from competition.",
 
     "Create a slow-acting poison, and only give out the antidote after you've received the world's crown.",
-    "Stage an accident at your place of work, suing the company for enough money to fund your world domination plans.",
+    "Stage an accident at your place of work, suing the company for enough money to fund your world domination ideas.",
     "Fabricate documents proving the existence of a fictional island nation, and use that to extract billions of dollars in foreign aid.",
     "Use hynotism to trick everyone into voting for you in the next World Ruler election.",
 
-    "Become a celebrity, and use your fame to convince people to take over the world for you & then hand it over.",
+    "Become a celebrity, and use your fame to convince people to take over the world for you and then hand it over.",
     "Move to another world and declare yourself its new leader.",
     "Turn the Lincoln Memorial into a death ray. Cackle evilly as they cart you away.",
     "Sneak into Area 51 to find some alien technology that will ease your path to world domination."
@@ -318,7 +371,7 @@ def retrieve_plans(which_plans, user_plans=nil)
     "Redesign Airbnb's home page.",
 
     "Create a new game from scratch based around the color purple and the shape of a water bottle.",
-     "Design a system for running and tracking the results of tic-tac-toe tournamets.",
+     "Design a system for running and tracking the results of tic-tac-toe tournaments.",
     "Bike parking in Seattle! Where is it? Does it suck? Make that app.",
     "Build a Pinky and the Brain random facts app.",
 
@@ -330,103 +383,99 @@ def retrieve_plans(which_plans, user_plans=nil)
 
   activities = [recreation, programming_projects, world_domination]
 
-  if which_plans == "hungry"
+  if which_ideas == "hungry"
     return food
 
-  elsif which_plans == "bored"
+  elsif which_ideas == "bored"
     return activities
 
-  elsif which_plans == "dishes"
+  elsif which_ideas == "dishes"
     return dishes
-
-  else
-    speak("ERRRROOROOO")
-    return food
   end
 end
 
 #---------------------- END REDONKULOUS DATABASE THING -------------------------
 #-------------- BEGIN DATABASE RETRIEVE, PICK, & DISPLAY THINGS ----------------
 
-def select_random_plans(array_of_plans, how_many_plans_desired)
+def select_random_ideas(array_of_ideas, how_many_ideas_desired)
   $user_wants_too_many = false
-  random_selection_of_plans = []
-  number_of_plans = 0
+  random_selection_of_ideas = []
+  number_of_ideas = 0
 
   if $individual
-    # puts "I am about to select individual plans!" #test !T
-    array_of_plans.flatten!.uniq!
-    number_of_plans += array_of_plans.length
+    # puts "I am about to select individual ideas!" #test !T
+    array_of_ideas.flatten!.uniq!
+    number_of_ideas += array_of_ideas.length
   else
-    # puts "I am about to select individual plans!" #test !T
-    number_of_plans += array_of_plans[3]
+    # puts "I am about to select individual ideas!" #test !T
+    number_of_ideas += array_of_ideas[3]
   end
 
 
   # handling case: user wants more things than exist
-  if how_many_plans_desired > number_of_plans
-    how_many_plans_desired = number_of_plans
+  if how_many_ideas_desired > number_of_ideas
+    how_many_ideas_desired = number_of_ideas
     $user_wants_too_many = true
   end
 
   # handling case: individual items
   if $individual
-    # puts "I am selecting individual plans!" #test !T
-    until random_selection_of_plans.length == how_many_plans_desired
-      which_random_index = (rand * array_of_plans.length).floor
-      which_random_plan = array_of_plans.slice!(which_random_index)
-      random_selection_of_plans.push(which_random_plan)
+    # puts "I am selecting individual ideas!" #test !T
+    until random_selection_of_ideas.length == how_many_ideas_desired
+      which_random_index = (rand * array_of_ideas.length).floor
+      which_random_idea = array_of_ideas.slice!(which_random_index)
+      random_selection_of_ideas.push(which_random_idea)
     end
   # handling case: combination items
   else
-    # puts "I am selecting combo plans!" #test !T
+    # puts "I am selecting combo ideas!" #test !T
     count = 0
     3.times do
-      random_selection_of_plans.push([])
-      from = array_of_plans[count]
-      to = random_selection_of_plans[count]
-      until to.length == how_many_plans_desired
+      random_selection_of_ideas.push([])
+      from = array_of_ideas[count]
+      to = random_selection_of_ideas[count]
+      until to.length == how_many_ideas_desired
         which_random_index = (rand * from.length).floor
-        which_random_plan = from.slice!(which_random_index)
-        to.push(which_random_plan)
+        which_random_idea = from.slice!(which_random_index)
+        to.push(which_random_idea)
       end
       count += 1
     end
   end
 
-  return random_selection_of_plans
+  return random_selection_of_ideas
 end
 
 
 
 
-def display_plans(plans)
+def display_ideas(ideas)
   press_enter = "\nPress enter/return to continue or control+c to quit."
-  number_of_plans = 0
+  number_of_ideas = 0
 
-  # set number of plans for individual plans
+  # set number of ideas for individual ideas
   if $individual
     # puts "I will display individuals" #test !T
-    number_of_plans = plans.length
-  # set number of plans for combination plans
+    number_of_ideas = ideas.length
+  # set number of ideas for combination ideas
   else
     # puts "I will display combos" #test !T
-    number_of_plans = plans[0].length
+    number_of_ideas = ideas[0].length
   end
 
   # handle case: user wants more things than exist
   if $user_wants_too_many
     # explains to user why more items aren't being displayed
     speak("You wanted more ideas than I had available.")
-    speak("I only have #{number_of_plans} ideas in my datasets.")
+    speak("I only have #{number_of_ideas} ideas in my datasets.")
   end
 
   # introduces things
-  speak("Here are your #{number_of_plans} ideas.")
+  speak("Here are your #{number_of_ideas} ideas.")
   speak("May they inspire you to do great things!")
 
-  # warns user about display method if large number of plans
-  if number_of_plans > 10
+  # warns user about display method if large number of ideas
+  if number_of_ideas > 10
     speak("I will display these for you ten at a time.")
   end
 
@@ -434,10 +483,10 @@ def display_plans(plans)
   if $individual
     # puts "I am individual being displayed!" #test !T
     count = 0
-    plans.each do |plan|
+    ideas.each do |idea|
       count += 1
-      speak("#{count}. #{plan}")
-      if count % 10 == 0 && count != plans.length
+      speak("#{count}. #{idea}")
+      if count % 10 == 0 && count != ideas.length
         speak(press_enter)
         $stdin.gets
         speak("Okay! Here is the next set of ideas.")
@@ -447,10 +496,10 @@ def display_plans(plans)
   else
     # puts "I am combination being displayed!" #test !T
     count = 0
-    number_of_plans.times do
-      speak("#{count + 1}. #{plans[0][count]} #{plans[1][count]} #{plans[2][count]}")
+    number_of_ideas.times do
+      speak("#{count + 1}. #{ideas[0][count]} #{ideas[1][count]} #{ideas[2][count]}")
       count += 1
-      if count % 10 == 0 && count != plans.length
+      if count % 10 == 0 && count != ideas.length
         speak(press_enter)
         $stdin.gets
         speak("Okay! Here is the next set of ideas.")
@@ -458,19 +507,119 @@ def display_plans(plans)
     end
   end
 
+  # display over
   speak(press_enter)
   $stdin.gets
+  # reset user wants too many ideas
+  $user_wants_too_many_ideas = false
 end
 
 #---------------- END DATABASE RETRIEVE, PICK, & DISPLAY THINGS ----------------
 #--------------------- BEGIN USER CREATE OWN DATASET THINGS --------------------
 
-def verify_user_plans_type
+def verify_user_data(piece_user_data)
+  speak("You said: '#{piece_user_data}'. Does that look right?")
 
+  if !request_user_confirmation
+    verify_user_data(get_user_input(false))
+  else
+    $user_data.push(piece_user_data)
+  end
 end
 
 
-def create_user_plans
+
+
+def create_user_data_individual
+  # find out how many items to add; somewhat arbitrary limit: 150
+  speak("Great! How many items would you like to add?")
+  how_many_create = verify_number(get_user_input(false))
+  until how_many_create <= 150
+    speak("I think that's a few too many items to type in.")
+    speak("Why don't you pick a smaller number?")
+    speak("My largest dataset has 126 items, so pick something close to that!")
+    verify_number(get_user_input(false))
+  end
+
+  # start adding them!
+  until $user_data.length == how_many_create
+    # this is two lines for readability
+    temp_storage = verify_user_data(get_user_input(false))
+    $user_data.push(temp_storage)
+  end
+end
+
+
+def create_user_data_combination
+  hints = [
+    # hints for creating first words
+    [ "This set will be the first word in your generated ideas.",
+      "Like 'soft' in soft sauteed egg or 'spicy' in spicy boiled chicken."
+    ],
+    # hints for creating middle words
+    [ "This set will be the second word in your generated ideas.",
+      "Like 'sauteed' spicy sauteed egg or 'boiled' in soft boiled chicken."
+    ],
+    # hints for creating last words
+    [ "This set will be the last word in your generated ideas.",
+      "Like 'chicken' in spicy sauteed chicken or 'egg' in soft boiled egg."
+    ]
+  ]
+
+  count = 0
+  3.times do # !W this can easily be turned into a variable once
+    hints[count].each do |hint|
+      speak(hint)
+    end
+    speak("How many items would you like to add to this set? This is set #{count + 1} of 3.")
+    how_many_create = verify_number(get_user_input(false))
+    until how_many_create <= 50
+      speak("I think that's a few too many items to type in.")
+      speak("Why don't you pick a smaller number?")
+      speak("My largest dataset has 126 items, so pick something closer to a third of that!")
+      verify_number(get_user_input(false))
+    end
+
+    until $user_data[count].length == how_many_create
+      temp_storage = verify_user_data(get_user_input(false))
+      $user_data[count].push(temp_storage)
+      count += 1
+    end
+  end
+end
+
+
+
+
+def verify_user_ideas_type(user_ideas_type)
+  individual = %w{indiv single solo one}
+  combination = %w{comb mult many three sev}
+
+  individual.each do |type|
+    if user_ideas_type.include? type
+      $individual = true
+      return create_user_data_individual
+    end
+  end
+
+  combination.each do |type|
+    if user_ideas_type.include? type
+      $individual = false
+      return create_user_data_combination
+    end
+  end
+
+  speak("#{user_ideas_type} isn't a type I understand. Can you say it again differently?")
+  speak("I understand idea types like: individual, single, solo, multiple, combo, or several.")
+  return verify_user_ideas_type(get_user_input(false))
+end
+
+
+
+
+
+
+def create_user_ideas
   speak("So you want to create your own dataset, huh? Do you know how to do that?")
   if request_user_confirmation
     speak("Do you want to store your data in single entries like so:")
@@ -485,9 +634,13 @@ def create_user_plans
   end
 
   speak("Do you want individual or combination sets?")
+  user_data = verify_user_ideas_type(get_user_input(false))
+  $what_kind_of_ideas_desire = user_data
 
+  speak("How many ideas would you like?")
+  set_number_of_ideas
 
-
+  display_ideas(select_random_ideas($what_kind_of_ideas_desired, $how_many_ideas_desired))
 end
 
 
@@ -497,63 +650,64 @@ end
 
 # this is sort of a beast, because I wanted to have it call itself but didn't
 # want to repeat unnecessary questions, etc
-# run_plans_machine asks for some user input about what plans to acquire and
+# run_ideas_machine asks for some user input about what ideas to acquire and
 # how many of them to fetch, and then it calls a couple find & display units
-def run_plans_machine(skip_feeling)
+def run_ideas_machine(skip_feeling)
   # these variables need to exist outside the loops
   skip_how_many = false
 
 
   # the beginning of complicated recursive call logic <-- right/wrong terminology?
-  # basically, if the user doesn't want a new type of plans, the fist block can
+  # basically, if the user doesn't want a new type of ideas, the fist block can
   # be skipped.
   if !skip_feeling # unless skip_feeling (counterintuitive to me)
-    # find out what plans to get by calling verify_feeling on user input
+    # find out what ideas to get by calling verify_feeling on user input
     speak("How are you feeling?")
-    $what_kind_of_plans_desired = verify_feeling($stdin.gets.chomp.downcase)
+    $what_kind_of_ideas_desired = verify_feeling(get_user_input(true))
 
   else
-    # ask if the user would like more plans
+    # ask if the user would like more ideas
     speak("Would you like some new ideas?")
     # checks if user wants to continue receiving ideas.
     # - if not, tells the next block (re: asking how many ideas) to skip itself.
     if request_user_confirmation
-      # asks if the user would like different plans.
+      # asks if the user would like different ideas.
       # - if yes, makes a recursive call with normal conditions,
       #   which won't skip the feelings block.
       # - if not, makes a recursive call with altered conditions,
       #   which will skip the feelins block.
       speak("Do you have a different feeling?")
       if request_user_confirmation
-        run_plans_machine(false)
+        run_ideas_machine(false)
       else
-        run_plans_machine(true)
+        run_ideas_machine(true)
       end
 
     else
       skip_how_many = true
       speak("Goodbye then! I hope you found inspiration.")
+      # return # !Q lolz what happens
     end
   end
 
   # this needs to be skipped sometimes because of the recursive calls above.
   if !skip_how_many # unless skip_how_many (counterintuitive to me)
-    # find out how many plans to get
+    # find out how many ideas to get
     speak("How many ideas would you like?")
-    $how_many_plans_desired = verify_number($stdin.gets.chomp)
+    set_number_of_ideas
 
-    # finally, the plans can be displayed to the user! this statement is a bit
-    # of a mouthful: it calls display_plans on the result of select_random_plans.
+    # finally, the ideas can be displayed to the user! this statement is a bit
+    # of a mouthful: it calls display_ideas on the result of select_random_ideas.
     # handling combination items
-    if $what_kind_of_plans_desired == "dishes"
-      display_plans(select_random_plans($what_kind_of_plans_desired, $how_many_plans_desired))
+    if $what_kind_of_ideas_desired == "dishes"
+      display_ideas(select_random_ideas($what_kind_of_ideas_desired, $how_many_ideas_desired))
     # handling individual items
     else
-      display_plans(select_random_plans($what_kind_of_plans_desired, $how_many_plans_desired))
+      display_ideas(select_random_ideas($what_kind_of_ideas_desired, $how_many_ideas_desired))
     end
 
     # then, calls itself recursively in case the user wants to play again.
-    run_plans_machine(true)
+    run_ideas_machine(true)
   end
 
 end
@@ -562,16 +716,17 @@ end
 
 
 # this is separate because I didn't want to make another level of skip this
-# thing or use a global variable
-def start_plans_machine
+# thing or to use a global variable
+def start_ideas_machine
   # says hello to user
-  speak("Hi! My name is Start Plans Machine, but you can call me Star for short.")
-  run_plans_machine(false)
+  speak("Hi! My name is Start Ideas Machine, but you can call me Star for short.")
+  run_ideas_machine(false)
+
 end
 
 #--------------- END GETTING THE EVERYTHING ELSE RUNNING THINGS ----------------
 #------------------------ BEGIN TRIGGER THE EVERYTHING -------------------------
 
-start_plans_machine
+start_ideas_machine
 
 #-------------------------- END TRIGGER THE EVERYTHING -------------------------
