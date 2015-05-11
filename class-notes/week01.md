@@ -271,7 +271,7 @@ HOMEWORK
 
 [mydg]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex7.5-deaf-grandma.rb
 
-[mylpyr]:
+[mylpyr]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex7.5-leap-years.rb
 
 [mybsa]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex8.3-building-and-sorting-array.rb
 
