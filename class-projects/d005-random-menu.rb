@@ -26,6 +26,10 @@
 #    interact with outside files. The database stuff could be stored in a text
 #    file, which would mean items added by the user could be remembered.
 #
+#    4.5. On a related note, if you see something like !W !T !R it's probably a
+#         note for myself for the next time I work on this in case I forget
+#         some of the work or tests I wanted to do.
+#
 # Enjoy!
 #    --Jeri / @drvonnjerryxlii
 
@@ -37,7 +41,7 @@
 
 #------------------------- BEGIN WEIRD GLOBAL THINGS ---------------------------
 
-$voice = true # (don't) speak until user says not to
+$voice = true # speak until user says not to
 $individual = true # aka not combination
 $what_kind_of_ideas_desired = nil # what can I say? I don't have any ideas yet.
 $how_many_ideas_desired = 0 # and I don't want any, either!
@@ -46,14 +50,15 @@ $user_wants_too_many = false # zero just doesn't know how to be too many.
 #-------------------------- END WEIRD GLOBAL THINGS ----------------------------
 #--------------------- BEGIN OUTPUT TEXT TO USER THINGS ------------------------
 
-# outputs
+# outputs provided string of text to terminal & possibly to speakers as well via
+# %x interaction with outside terminal environment. !W discovered the hard way
+# that say does not take some punctuation well: & ' " \ (
 def speak(string_to_speak)
   puts "#{string_to_speak}"
 
-  if $voice # !Q why news voices always say news at beginning??
+  if $voice
     good_voices = ["Alex", "Bad", "Good", "Vicki", "Zarvox"]
     random_voice = good_voices[(rand * good_voices.length)]
-    # say -v "voice name" "text to say"
     %x{say -v #{random_voice} #{string_to_speak}}
   end
 end
@@ -61,11 +66,14 @@ end
 
 
 
+# checks whether the voice should be toggle from true to false or vice versa by
+# looking for specific keywords in a provided string.
 def check_reset_voice(user_input)
   voice_triggers = %w{speak word spoke say speech talk tell said}
 
   voice_triggers.each do |voice_trigger|
-    if user_input.include? voice_trigger
+    if user_input.downcase.include? voice_trigger
+    # input is downcased in case the original get input call expected a number
       if $voice == true
         $voice = false
       else
@@ -78,14 +86,19 @@ end
 #---------------------- END OUTPUT TEXT TO USER THINGS -------------------------
 #----------------------------- BEGIN HELP THINGS -------------------------------
 
+# would help the user if only it knew how!
 def help_user(user_input)
-  # do something to help user here @_@
+  # !W do something to help user here @_@
   speak("I'm sorry. I don't know how to help you yet.")
+  speak("If you have any questions, please pass them along to Jeri.")
+  speak("She can teach me how to be more helpful!")
 end
 
 
 
 
+# checks whether help_user should be called by looking for specific keywords in
+# a provided string.
 def check_help_request(user_input)
   help = %{help what how when why where who}
   help_triggers.each do |help_trigger|
@@ -98,6 +111,12 @@ end
 #------------------------------ END HELP THINGS --------------------------------
 #----------------- BEGIN VERIFICATION / CONFIRMATION THINGS --------------------
 
+# gets input from a user, passes the input to check_reset_voice, and then
+# returns the user input string back to whatever requested it. because this is
+# the only way user input is harvested, any time the user says something it is
+# possible to toggle the voice on/off or trigger the currently not-so-helpful
+# help_user function (!W). has an option to trigger .downcase! on the user input
+# string before returning it.
 def get_user_input(downcase)
   user_input = $stdin.gets.chomp
 
@@ -106,7 +125,7 @@ def get_user_input(downcase)
   end
 
   check_reset_voice(user_input)
-  # check_help_request(user_input)
+  check_help_request(user_input) #!W !T
 
   return user_input
 end
@@ -114,6 +133,9 @@ end
 
 
 
+# for use after yes/no questions. calls get_user_input, checks for key letters
+# in user response, and returns true/false accordingly. returns a random boolean
+# response if no key letters found.
 def request_user_confirmation
   user_confirmation = get_user_input(true)
 
@@ -131,30 +153,38 @@ end
 
 
 
+# checks if a user input string contains any keywords associated with various
+# features and then calls the next step for whichever feature.
 def verify_feeling(user_feeling)
   creative = %w{creat add update more mine my own}
-  bored = %w{lazy bored take world hotdog elephant tacos}
   hungry = %w{hung angry peckish eat food dinner lunch breakfast dessert snack dish}
-  #star = %w{star you}
+  ingredients = %w{gred cook reci assem proc instr}
+  world_domination = %w{lazy bored take world hotdog elephant tacos}
 
-  # create's first, because eat is part of it
-  creative.each do |feeling|
+  creative.each do |feeling| # create is first, because 'eat' is part of it
     if user_feeling.include? feeling
       return create_user_ideas
     end
   end
 
-  bored.each do |feeling|
-    if user_feeling.include? feeling
-      $individual = true
-      return retrieve_ideas("bored")
-    end
-  end
-
-  hungry.each do |feeling|
+  hungry.each do |feeling| # ('eat' is a trigger here, but create has precedence)
     if user_feeling.include? feeling
       $individual = false
       return retrieve_ideas("dishes")
+    end
+  end
+
+  ingredients.each do |feeling|
+    if user_feeling.inclue? feeling
+      $individual = false
+      return retrieve_ideas("food")
+    end
+  end
+
+  world_domination.each do |feeling|
+    if user_feeling.include? feeling
+      $individual = true
+      return retrieve_ideas("bored")
     end
   end
 
@@ -168,6 +198,9 @@ end
 
 
 
+# after stripping spaces and commas out a provided string, verifies whether
+# said string is qualified to be turned into a number. returns it as an integer
+# if so. gives the user a hint and calls itself again if not.
 def verify_number(user_number)
   if user_number.include? " "
     user_number.strip!
@@ -185,9 +218,12 @@ def verify_number(user_number)
   end
 end
 
-#------------------ END VERIFICATION / CONFIRMATION THINGS ---------------------
-#------------------------- BEGIN FORMAT DATA THINGS ----------------------------
 
+
+
+# returns the length of the smallest of three arrays within an (outer) array.
+# used to assign a max value for the select random ideas function, so it will
+# not try to add empty items to a set.
 def assign_max_value(array_of_ideas)
   a = array_of_ideas[0].length
   b = array_of_ideas[1].length
@@ -202,9 +238,12 @@ def assign_max_value(array_of_ideas)
   end
 end
 
-#-------------------------- END FORMAT DATA THINGS -----------------------------
+#------------------ END VERIFICATION / CONFIRMATION THINGS ---------------------
 #--------------------- BEGIN REDONKULOUS DATABASE THING ------------------------
 
+# redonkulous database thing. contains three sets of data: dish ideas,
+# ingredient ideas, and activity ideas. when called with a string identifying
+# a particular dataset, spits out that dataset.
 def retrieve_ideas(which_ideas)
   texture_flavor = [
     "creamy", "hot", "soft", "crunchy", "sweet", "salty", "savory", "herbed",
@@ -225,6 +264,7 @@ def retrieve_ideas(which_ideas)
 
   dishes = [texture_flavor, preparation, ingredient]
 
+
   protein = [ # good sources o f protein. inclusion cutoff is 10% of daily value,
               # based on whfoods-stated serving size from chart found 2015may8
               # at http://whfoods.org/genpage.php?tname=nutrient&dbid=92#foodchart
@@ -235,34 +275,34 @@ def retrieve_ideas(which_ideas)
     # animal products
     "yogurt", "cheese", "eggs",
 
-    # whole plants (& whole ideat parts like seeds and legumes)
+    # whole plants (& whole plant parts like seeds and legumes)
     "soy beans", "spinach", "lentils", "dried peas", "pinto beans",
     "kidney beans", "black beans", "navy beans", "lima beans",
     "chickpeas / garbanzo beans", "pumpkin seeds", "peanuts", "green peas",
     "oats", "collard greens",
 
-    # ideat products
+    # plant products
     "tofu", "tempeh"
   ]
 
   fiber = [ # good sources of fiber. inclusion cutoff is 10% of daily value,
             # based on whfoods-stated serving size from chart found 2015may8
             # at http://whfoods.org/genpage.php?tname=nutrient&dbid=59#foodchart
-    # whole plants (& whole ideat parts like seeds and legumes)
+    # whole plants (& whole plant parts like seeds and legumes)
     "navy beans", "raspberries", "collard greens", "turnip greens",
     "beet greens", "dried peas", "lentils", "pinto beans", "black beans",
     "lima beans", "kidney beans", "barley", "wheat", "green peas",
     "winter squash", "pears", "broccoli", "cranberries", "spinach",
     "brussels sprouts", "green beans", "cabbage", "flaxseeds", "swiss chard",
     "asparagus", "carrots", "oranges", "strawberries", "mustard greens",
-    "fennel", "cauliflower", "kale", "summer squash", "eggideat / aubergine",
+    "fennel", "cauliflower", "kale", "summer squash", "eggplant / aubergine",
     "chickpeas / garbanzo beans", "soy beans", "avocados", "rye",
     "sweet potatoes", "quinoa", "papayas", "buckwheat", "apples", "olives",
     "sesame seeds", "oats", "potatoes", "blueberries", "beets", "banana",
     "onions", #"almonds", # although almonds qualify, I reject them on the
                           # grounds of their extremely high water usage.
 
-    # ideat products
+    # plant products
     "cinnamon", "tempeh"
   ]
 
@@ -274,11 +314,11 @@ def retrieve_ideas(which_ideas)
     # animals
     "sardines", "salmon", "beef", "shrimp",
 
-    # whole plants (& whole ideat parts like seeds and legumes)
+    # whole plants (& whole plant parts like seeds and legumes)
     "flaxseeds", "walnuts", "brussels sprouts", "cauliflower", "mustard seeds",
     "soy beans", "avocados", "cashews",
 
-    # ideat products
+    # plant products
     "tofu", "olive oil", "canola oil"
   ]
 
@@ -305,10 +345,6 @@ def retrieve_ideas(which_ideas)
 
   food = [protein, fiber, fat, delicious]
 
-  # animals
-  # animal products
-  # whole plants (& whole ideat parts like seeds and legumes)
-  # ideat products
 
   recreation = [
     "Go fly a kite. Up to the highest height.",
@@ -364,6 +400,7 @@ def retrieve_ideas(which_ideas)
 
   activities = [recreation, programming_projects, world_domination]
 
+
   if which_ideas == "hungry"
     return food
 
@@ -378,47 +415,72 @@ end
 #---------------------- END REDONKULOUS DATABASE THING -------------------------
 #-------------- BEGIN DATABASE RETRIEVE, PICK, & DISPLAY THINGS ----------------
 
+# takes dataset in array form and a number of ideas wanted from that dataset.
+# checks if the dataset is designed for display with individual or multiple
+# items on each line. checks for & removes repeat items, then assigns a maximum
+# number of items user can request from the dataset. loops through picking
+# random items from the dataset until the desired number of items are chosen.
+# finally, returns the random items to the requesting function call.
 def select_random_ideas(array_of_ideas, how_many_ideas_desired)
   $user_wants_too_many = false
   random_selection_of_ideas = []
-  number_of_ideas = 0
+  max_value = 0
 
+  # MAX VALUE individual
   if $individual
-    # puts "I am about to select individual ideas!" #test !T
+    # make UNIQUE
     array_of_ideas.flatten!.uniq!
-    number_of_ideas += array_of_ideas.length
+    # final MAX VALUE
+    max_value += array_of_ideas.length
+
+  # MAX VALUE combination
   else
-    number_of_ideas += assign_max_value(array_of_ideas)
+    # make UNIQUE
+    count = 0
+    3.times do
+      array_of_ideas[index].uniq!
+      count += 1
+    end
+
+    # final MAX VALUE
+    max_value += assign_max_value(array_of_ideas)
   end
 
-
-  # handling case: user wants more things than exist
-  if how_many_ideas_desired > number_of_ideas
-    how_many_ideas_desired = number_of_ideas
+  # adjusts number wanted items if user wants more than exist
+  if how_many_ideas_desired > max_value
+    how_many_ideas_desired = max_value
     $user_wants_too_many = true
   end
 
-  # handling case: individual items
+
+  # RANDOM individual
   if $individual
-    # puts "I am selecting individual ideas!" #test !T
     until random_selection_of_ideas.length == how_many_ideas_desired
       which_random_index = (rand * array_of_ideas.length).floor
       which_random_idea = array_of_ideas.slice!(which_random_index)
       random_selection_of_ideas.push(which_random_idea)
     end
-  # handling case: combination items
+
+  # RANDOM combination
   else
-    # puts "I am selecting combo ideas!" #test !T
+    # initialize loop count to zero
     count = 0
     3.times do
+      # make space for the items to go into:
       random_selection_of_ideas.push([])
-      from = array_of_ideas[count]
-      to = random_selection_of_ideas[count]
-      until to.length == how_many_ideas_desired
-        which_random_index = (rand * from.length).floor
-        which_random_idea = from.slice!(which_random_index)
-        to.push(which_random_idea)
+
+      # these two for readability of following block:
+      from_array = array_of_ideas[count]
+      to_array = random_selection_of_ideas[count]
+
+      # do actual random selection & move
+      until to_array.length == how_many_ideas_desired
+        which_random_index = (rand * from_array.length).floor
+        which_random_idea = from_array.slice!(which_random_index)
+        to_array.push(which_random_idea)
       end
+
+      # increment loop count
       count += 1
     end
   end
@@ -429,18 +491,17 @@ end
 
 
 
-# displays ideas in terminal!
+# adds flavor text to idea items, and eventually calls speak on them to have
+# them output to screen / speakers.
 def display_ideas(ideas)
   press_enter = "Press enter/return to continue or control+c to quit."
   number_of_ideas = 0
 
   # set number of ideas for individual ideas
   if $individual
-    # puts "I will display individuals" #test !T
     number_of_ideas = ideas.length
   # set number of ideas for combination ideas
   else
-    # puts "I will display combos" #test !T
     number_of_ideas = ideas[0].length
   end
 
@@ -449,7 +510,7 @@ def display_ideas(ideas)
     return request_run_machine_again
   end
 
-  # handle case: user wants more things than exist. explains to user why more
+  # handling case: user wanted more things than exist. explains to user why more
   # items aren't being displayed
   if $user_wants_too_many
     speak("You wanted more ideas than I had available.")
@@ -505,7 +566,19 @@ end
 #---------------- END DATABASE RETRIEVE, PICK, & DISPLAY THINGS ----------------
 #--------------------- BEGIN USER CREATE OWN DATASET THINGS --------------------
 
+# strips some characters that will break the voice. then asks user to verify
+# provided string and returns said string if the user confirms its correctness.
+# if the user doesn't confirm, asks for a new piece of data & calls itself to
+# verify said new piece.
 def verify_user_data(piece_user_data)
+  chars_voice_doesnt_like = %w{' / ( ) & `}
+
+  chars_voice_doesnt_like.each do |char| # !W find a way to not have to do this?
+    while piece_user_data.include? char  # how important is speaking? >_>
+      piece_user_data.slice!("'")
+    end
+  end
+
   speak("You said: '#{piece_user_data}'. Does that look right?")
 
   if !request_user_confirmation
@@ -519,6 +592,7 @@ end
 
 
 
+# creates user data for individual type datasets
 def create_user_data_individual
   user_data = []
 
@@ -544,7 +618,8 @@ end
 
 
 
-
+# creates user data for combination type datasets. offers a hint before creating
+# the first item of each inner array. !W use firsts to provide helpful examples?
 def create_user_data_combination
   user_data = []
 
@@ -565,7 +640,7 @@ def create_user_data_combination
 
   count = 0 # keep track of which dataset index we're on
 
-  3.times do # !W this can easily be turned into a variable
+  3.times do # !W this can easily be turned into a variable if nec.
     user_data.push([])
 
     hints[count].each do |hint|
@@ -597,6 +672,7 @@ end
 
 
 
+# verifies what type of data to create for the user.
 def verify_user_ideas_type(user_ideas_type)
   individual = %w{indiv single solo one}
   combination = %w{comb mult many three sev}
@@ -623,6 +699,8 @@ end
 
 
 
+# starts the creation cascade! has a ton of flavor text, since help function is
+# not yet helpful (!W).
 def create_user_ideas
   speak("So you want to create your own dataset, huh? Do you know how to do that?")
   if !request_user_confirmation
@@ -656,13 +734,8 @@ def create_user_ideas
   return
 end
 
-
-
 #---------------------- END USER CREATE OWN DATASET THINGS ---------------------
 #-------------- BEGIN GETTING THE EVERYTHING ELSE RUNNING THINGS ---------------
-
-
-
 
 # asks user whether a new round of idea generation is in order and either
 # restarts the idea generator or says goodbye.
