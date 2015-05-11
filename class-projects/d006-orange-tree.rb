@@ -1,3 +1,6 @@
+# this one is another group project! three adies to a group. :)
+
+
 class OrangeTree
 
   attr_reader :age, :alive, :height, :orange_count
@@ -55,6 +58,11 @@ class OrangeTree
       puts "There are no more oranges to pick this year."
     end
   end
+
+  def plant_on(grove)
+    grove.trees.push(self)
+  end
+
 end
 
 
@@ -63,12 +71,19 @@ class OrangeGrove
 
   def initialize
     @trees = []
+    @total_orange_count
   end
 
   def plant_trees(number)
-    number.times do
-      @trees.push(OrangeTree.new)
+    if number.to_i != 0
+      number.times do
+        @trees.push(OrangeTree.new)
+      end
+
+    else
+      puts "You can't plant #{number} trees. Please try again with a number."
     end
+
   end
 
   def one_year_passes_grove
@@ -80,3 +95,13 @@ class OrangeGrove
   end
 
 end
+
+
+#
+# -----------------------------
+#
+# @soil_quality
+# @tree_count
+#
+# as tree_count up, soil_quality down
+# as soil_quality down, orange_production down
