@@ -16,10 +16,13 @@ def find_leap_years(start_year, end_year)
     leap_years.push(start_year)
   end
 
-
   while current_year < end_year
     current_year += 1
-    if current_year % 4 == 0
+    # this % 100 stuff is to catch leap years that aren't leap years b/c of
+    # drift. thanks to Alice for this info!
+    if current_year % 100 == 0 && current_year % 400 == 0
+      leap_years.push(current_year)
+    elsif current_year % 4 == 0 && current_year % 100 != 0
       leap_years.push(current_year)
     end
   end
@@ -43,8 +46,8 @@ def verify_number(user_number)
   if (user_number > "/") && (user_number < ":")
     return user_number.to_i
   else
-    speak("You said #{user_number}. That doesn't look like a number to me.")
-    speak("Please provide your number in numeric format (eg, 1200, 1997).")
+    speak("You said #{user_number}. That doesn't look like a year to me.")
+    speak("Please provide your year in numeric format (eg, 1200, 1997).")
     return verify_number($stdin.gets.chomp)
   end
 end

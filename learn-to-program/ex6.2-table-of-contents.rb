@@ -1,3 +1,5 @@
+# my file seemed like it was already qualified for 8.3, so I didn't redo it.
+
 # stores table of contents & spits it out when necessary
 def load_table_of_contents
     preface = {

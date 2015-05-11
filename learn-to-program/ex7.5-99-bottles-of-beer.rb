@@ -9,7 +9,7 @@ def bottles_of_beer_on_the_wall(how_many_bottles)
   if how_many_bottles > 0
     bottles_of_beer_on_the_wall(how_many_bottles)
   else
-    "We're out of beer!"
+    puts "We're out of beer!"
   end
 end
 
