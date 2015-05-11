@@ -5,10 +5,8 @@
 * [day one](#day-one)
 * [day two](#day-two)
 * [day three](#day-three)
-
-<!--
 * [day four](#day-four)
-* [day five](#day-five) -->
+* [day five](#day-five)
 
 - - -
 > ### day one ###
@@ -41,7 +39,7 @@ also discussed:
 
 [ss]: http://en.wikipedia.org/wiki/Syntactic_sugar
 
-assigned homework:
+HOMEWORK:
 * read preface & chapter 1 of learn to program
 
 <div align="right">^<a href="#jump-links">top</a></div>
@@ -88,11 +86,11 @@ watched this video:
 
 [crjc]: http://confreaks.tv/videos/cascadiaruby2014-programming-in-the-small-teaching-my-5-year-old-ruby
 
-assigned homework:
+HOMEWORK:
 * look up bash profile / setting aliases
    * prompt setup: customize ps1
 * read chapter 2 - 4 of learn to program
-   * [exercise 2.5][2.5]
+   * [exercise 2.5][e2.5]
 
 [e2.5]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex2.5.rb
 
@@ -132,12 +130,13 @@ internships! we discussed these at length
 
 today's project: study two methods for assigned data type, and create a little
 demo to teach everyone about the two methods you select.
-* [Sally][sally] & I wrote [this demo for integer methods .even? and .odd?][may6]
+* classmate & I wrote [this demo for integer methods .even? and .odd?][may6]
 
-assigned homework:
+HOMEWORK:
 * read chapter 5 of learn to program
-   * [exercise 5.6][5.6]
+   * [exercise 5.6][e5.6]
 * figure out why "a" > "A" (according to irb)
+   * ASCII value!
 
 [r101]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/ruby-101.md
 
@@ -149,11 +148,10 @@ assigned homework:
 
 [e5.6]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex5.6.rb
 
-[sally]: https://twitter.com/sallysuru
-
 [may6]: https://github.com/drvonnjerryxlii/ada/blob/master/class-projects/d003-even-odd.rb
 
 <div align="right">^<a href="#jump-links">top</a></div>
+
 
 - - -
 > ### day four ###
@@ -166,7 +164,7 @@ continued discussing methods
    * numerator / denominator
 
 * array
-   *
+   * fetch
    * flatten
    * pop
    * sort
@@ -206,18 +204,75 @@ continued discussing methods
    * replace
    * update / merge
 
+ then discussed [ruby 103][r103] & [this guide to literals][lit]:
+    * heredocs are awesome!
+    * %w, %q, %x -> %x{say Good afternoon girls}
+       * %x interacts w/ the terminal, say is a command there
+    * range operator (0..5), (0...5)
+       * works on letters in general ASCII order
+    * blocks are also called closures in other languages
+       * do/end are interchangeable with {/}
+       * but ruby standards prefer do/end, because {/} are the hash syntax
+    * loops exist
+
+HOMEWORK
+* continue calculator work ([mine][mycalc])
+
 [r103]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/ruby-103.md
+
+[lit]: http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Literals
 
 [calc]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/calculator.md
 
+[mycalc]: https://github.com/drvonnjerryxlii/ada/blob/master/class-projects/d004-calculator.rb
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
-<!--
+
 - - -
 > ### day five ###
 - - -
 
+* reviewed class calculator projects
+* [talk w/ cynthia][cyn]
+* [ruby 104][r104]
+   * include?
+   * case/when
+
+ * started work on [random menu generator][rmg]
+ * weekly retrospective
+
+ HOMEWORK:
+ * continue work on random menu generator ([mine][myrmg])
+ * read chapters 6 - 8 of learn to program
+    * do all exercises from 6.2
+       * angry boss ([mine][myboss])
+       * table of contents ([mine][mytoc])
+    * do all exercises from 7.5
+       * 99 bottles of beer ([mine][my99])
+       * deaf grandma ([mine][mydg])
+       * leap years ([mine][mylpyr])
+    * do all exercises from 8.3
+       * building and sorting an array ([mine][mybsa])
+
+[cyn]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d005-cynthia-talk-women-in-tech.md
+
+[r104]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/6f9e2dd04f7b8636c8a077780d2e9218505e2575/topic_resources/ruby-104.md
+
+[rmg]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/random_menu.md
+
+[myrmg]: https://github.com/drvonnjerryxlii/ada/blob/master/class-projects/d005-random-menu.rb
+
+[myboss]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex6.2-angry-boss.rb
+
+[mytoc]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex6.2-table-of-contents.rb
+
+[my99]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex7.5-99-bottles-of-beer.rb
+
+[mydg]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex7.5-deaf-grandma.rb
+
+[mylpyr]:
+
+[mybsa]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex8.3-building-and-sorting-array.rb
 
 <div align="right">^<a href="#jump-links">top</a></div>
--->
