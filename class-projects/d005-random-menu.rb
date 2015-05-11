@@ -34,14 +34,12 @@
 #    --Jeri / @drvonnjerryxlii
 
 
-# Not entirely finished yet:
-
 # Expand your solution to ensure that no descriptive term in a menu item is
-# ever {"} repeated. SORT OF uniq in list or uniq in soft softish eggs?
+# ever {"} repeated. SORT OF !Q uniq in list or uniq in soft softish eggs?
 
 #------------------------- BEGIN WEIRD GLOBAL THINGS ---------------------------
 
-$voice = true # speak until user says not to
+$voice = false # speak until user says not to
 $individual = true # aka not combination
 $what_kind_of_ideas_desired = nil # what can I say? I don't have any ideas yet.
 $how_many_ideas_desired = 0 # and I don't want any, either!
@@ -87,27 +85,27 @@ end
 #----------------------------- BEGIN HELP THINGS -------------------------------
 
 # would help the user if only it knew how!
-def help_user(user_input)
-  # !W do something to help user here @_@
-  speak("I'm sorry. I don't know how to help you yet.")
-  speak("If you have any questions, please pass them along to Jeri.")
-  speak("She can teach me how to be more helpful!")
-end
-
-
-
-
-# checks whether help_user should be called by looking for specific keywords in
-# a provided string.
-def check_help_request(user_input)
-  help = %{help what how when why where who}
-  help_triggers.each do |help_trigger|
-    if user_input.include? help_trigger
-      return help_user(user_input)
-    end
-  end
-end
-
+# def help_user(user_input)
+#   # !W do something to help user here @_@
+#   speak("I'm sorry. I don't know how to help you yet.")
+#   speak("If you have any questions, please pass them along to Jeri.")
+#   speak("She can teach me how to be more helpful!")
+# end
+#
+#
+#
+#
+# # checks whether help_user should be called by looking for specific keywords in
+# # a provided string.
+# def check_help_request(user_input)
+#   help = %{help what how when why where who}
+#   help_triggers.each do |help_trigger|
+#     if user_input.include? help_trigger
+#       return help_user(user_input)
+#     end
+#   end
+# end
+#
 #------------------------------ END HELP THINGS --------------------------------
 #----------------- BEGIN VERIFICATION / CONFIRMATION THINGS --------------------
 
@@ -125,7 +123,7 @@ def get_user_input(downcase)
   end
 
   check_reset_voice(user_input)
-  check_help_request(user_input) #!W !T
+  # check_help_request(user_input) #!W !T
 
   return user_input
 end
@@ -161,28 +159,28 @@ def verify_feeling(user_feeling)
   ingredients = %w{gred cook reci assem proc instr}
   world_domination = %w{lazy bored take world hotdog elephant tacos}
 
-  creative.each do |feeling| # create is first, because 'eat' is part of it
-    if user_feeling.include? feeling
+  creative.each do |keyword| # create is first, because 'eat' is part of it
+    if user_feeling.include? keyword
       return create_user_ideas
     end
   end
 
-  hungry.each do |feeling| # ('eat' is a trigger here, but create has precedence)
-    if user_feeling.include? feeling
+  hungry.each do |keyword| # ('eat' is a trigger here, but create has precedence)
+    if user_feeling.include? keyword
       $individual = false
       return retrieve_ideas("dishes")
     end
   end
 
-  ingredients.each do |feeling|
-    if user_feeling.inclue? feeling
-      $individual = false
-      return retrieve_ideas("food")
+  ingredients.each do |keyword|
+    if user_feeling.include? keyword
+      $individual = true
+      return retrieve_ideas("hungry")
     end
   end
 
-  world_domination.each do |feeling|
-    if user_feeling.include? feeling
+  world_domination.each do |keyword|
+    if user_feeling.include? keyword
       $individual = true
       return retrieve_ideas("bored")
     end
@@ -190,7 +188,7 @@ def verify_feeling(user_feeling)
 
 
   speak("You said #{user_feeling}. I'm sorry. I don't understand that emotion yet.")
-  speak("Until I learn your emotion, I will interpret that as hungry / angry.")
+  speak("Until I learn your emotion, I will interpret that as hungry / angry.") # !W? this is sort of a lie b/c keyboard mismatch w/ name
   $individual = true
   return retrieve_ideas("hungry")
 end
@@ -265,7 +263,7 @@ def retrieve_ideas(which_ideas)
   dishes = [texture_flavor, preparation, ingredient]
 
 
-  protein = [ # good sources o f protein. inclusion cutoff is 10% of daily value,
+  protein = [ # good sources of protein. inclusion cutoff is 10% of daily value,
               # based on whfoods-stated serving size from chart found 2015may8
               # at http://whfoods.org/genpage.php?tname=nutrient&dbid=92#foodchart
     # animals
@@ -358,7 +356,7 @@ def retrieve_ideas(which_ideas)
     "Learn to play an instrument!",
 
     "Get crafty! Hang around in dark corners with a trenchcoat. Try to look as suspicious as possible.",
-    "Scream, Bllllaaarrrrrrrrgggggggghhhhhh! No, seriously. Scream it right now! You'll feel better. I promise.",
+    "Scream, Bllllaaarrrrrrrrgggggggghhhhhh! No, seriously. Scream it right now! You will feel better. I promise.",
     "Jog around the block.",
     "Find the nearest coffee shop or cafe and order the weirdest thing you can find on the menu."
   ]
@@ -438,7 +436,7 @@ def select_random_ideas(array_of_ideas, how_many_ideas_desired)
     # make UNIQUE
     count = 0
     3.times do
-      array_of_ideas[index].uniq!
+      array_of_ideas[count].uniq!
       count += 1
     end
 
@@ -600,8 +598,8 @@ def create_user_data_individual
   speak("Great! How many items would you like to add?")
   how_many_create = verify_number(get_user_input(false))
   until how_many_create <= 150
-    speak("I think that's a few too many items to type in.")
-    speak("Why don't you pick a smaller number?")
+    speak("I think that will be a few too many items to type in.")
+    speak("Can you pick a smaller number?")
     speak("My largest dataset has 126 items, so pick something close to that!")
     verify_number(get_user_input(false))
   end
@@ -626,15 +624,15 @@ def create_user_data_combination
   hints = [
     # hints for creating first words
     [ "This set will be the first word in your generated ideas.",
-      "Like 'soft' in soft sauteed egg or 'spicy' in spicy boiled chicken."
+      "Like -soft- in soft sauteed egg or -spicy- in spicy boiled chicken."
     ],
     # hints for creating middle words
     [ "This set will be the second word in your generated ideas.",
-      "Like 'sauteed' spicy sauteed egg or 'boiled' in soft boiled chicken."
+      "Like -sauteed- spicy sauteed egg or -boiled- in soft boiled chicken."
     ],
     # hints for creating last words
     [ "This set will be the last word in your generated ideas.",
-      "Like 'chicken' in spicy sauteed chicken or 'egg' in soft boiled egg."
+      "Like -chicken- in spicy sauteed chicken or -egg- in soft boiled egg."
     ]
   ]
 
@@ -691,7 +689,7 @@ def verify_user_ideas_type(user_ideas_type)
     end
   end
 
-  speak("#{user_ideas_type} isn't a type I understand. Can you say it again differently?")
+  speak("#{user_ideas_type} is not a type I understand. Can you say it again differently?")
   speak("I understand idea types like: individual, single, solo, multiple, combo, or several.")
   return verify_user_ideas_type(get_user_input(false))
 end
