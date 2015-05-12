@@ -72,6 +72,17 @@ class OrangeGrove
   def initialize
     @trees = []
     @total_orange_count
+    @soil_quality = "healthy"
+  end
+
+  def soil_quality
+    if @trees.length <= 5
+      @soil_quality = "healthy"
+    elsif @trees.length <= 10
+      @soil_quality = "average"
+    else
+      @soil_quality = "unhealthy"
+    end
   end
 
   def plant_trees(number)
@@ -99,9 +110,27 @@ end
 
 #
 # -----------------------------
-#
-# @soil_quality
+# GROVE
+# @soil_quality - 0-5 healthy (10yrs) 3 oranges <-- definitely
+#                 6-10 average (8yrs) 2 oranges
+#                 11+ unhealthy (5yrs) 1 oranges
 # @tree_count
+# @check_soil_quality
+#    - how many trees
+#
+# TREE
+# @in_grove init no
+# @grove grove name
 #
 # as tree_count up, soil_quality down
 # as soil_quality down, orange_production down
+#
+# grove plant trees
+#         - update in_grove
+#         - update soil_quality
+# grove one year passes
+#         - check planting
+#         - check
+#         - delete dead trees first, then plant new ones
+# tree plant on will update in_grove
+#
