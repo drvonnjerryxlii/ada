@@ -1,9 +1,11 @@
 # this one is another group project! three adies to a group. :)
-
+# https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/orange_tree.md
+# -------------------------------------
+# actually, according to the new dinner requirements, I think we can move on to dessert!
 
 class OrangeTree
 
-  attr_reader :age, :alive, :height, :orange_count
+  attr_reader :age, :alive, :grove, :height, :orange_count
 
   def initialize
     @age = 0
@@ -13,9 +15,19 @@ class OrangeTree
   end
 
   def grow_oranges
-    if @age >= 3
-      @orange_count = @age * 2
+    if @age >= 3 # oranges don't grow on young trees!
+      if @grove.soil_quality == "unhealthy"
+        @orange_count = @age # not many if poor soil quality
+
+      elsif @grove.soil_quality == "average"
+        @orange_count = @age * 2 # a few more if average
+
+      else
+        @orange_count = @age * 3 # otherwise healthy amounts!
+      end
+
     end
+
   end
 
   def grow_taller
@@ -26,27 +38,38 @@ class OrangeTree
     end
   end
 
+  def kill_tree
+    @alive = false
+    @orange_count = 0
+    @age = 0 # necessary?
+    @height = 0
+    puts "This tree has died."
+  end
+
   def grow_older
-    @age += 1
+    if @grove
+      if (@grove.soil_quality == "unhealthy") && (@age >= 5)
+        kill_tree
+      elsif (@grove.soil_quality == "average") && (@age >= 8)
+        kill_tree
+      end
+    end
+
+    if age >= 10
+      kill_tree
+    else
+      @age += 1
+    end
+
   end
 
   def one_year_passes
+    grow_older
     if @alive == true
       if @age < 10
-        grow_older
         grow_taller
         grow_oranges
-
-      else
-        puts "This tree has lived ten long years and has now died."
-        @orange_count = 0
-        @age = "dead"
-        @height = 0
-        @alive = false
       end
-
-    else
-      puts "This tree is dead."
     end
   end
 
@@ -59,8 +82,9 @@ class OrangeTree
     end
   end
 
-  def plant_on(grove)
-    grove.trees.push(self)
+  def plant_on(grove_name)
+    grove_name.trees.push(self)
+    @grove = grove_name
   end
 
 end
@@ -106,31 +130,3 @@ class OrangeGrove
   end
 
 end
-
-
-#
-# -----------------------------
-# GROVE
-# @soil_quality - 0-5 healthy (10yrs) 3 oranges <-- definitely
-#                 6-10 average (8yrs) 2 oranges
-#                 11+ unhealthy (5yrs) 1 oranges
-# @tree_count
-# @check_soil_quality
-#    - how many trees
-#
-# TREE
-# @in_grove init no
-# @grove grove name
-#
-# as tree_count up, soil_quality down
-# as soil_quality down, orange_production down
-#
-# grove plant trees
-#         - update in_grove
-#         - update soil_quality
-# grove one year passes
-#         - check planting
-#         - check
-#         - delete dead trees first, then plant new ones
-# tree plant on will update in_grove
-#
