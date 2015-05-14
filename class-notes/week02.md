@@ -5,9 +5,9 @@
 * [day 6](#day-six)
 * [day 7](#day-seven)
 * [day 8](#day-eight)
+* [day 9](#day-nine)
 
 <!--
-* [day 9](#day-nine)
 * [day 10](#day-ten) -->
 
 - - -
@@ -133,15 +133,6 @@ cynthia
 * divide & conquer again ([my detailed notes][gemsnt])
 
 
-<!--
-* local branching
-* merging branches
-* pushing branches
-* forking repositories
-* pull requests
-* merge conflicts
--->
-
 HOMEWORK:
 * __do not__ do the teamwork survey today; too much homework!
 * if you didn't finish, continue git immersion 1-25
@@ -162,15 +153,32 @@ HOMEWORK:
 <div align="right">^<a href="#jump-links">top</a></div>
 
 
-<!--
 - - -
 > ### day nine ###
 - - -
+
+* went over some cool integrations of gems presented yesterday!
+* [discussed git in more detail][d9git].
+
+
+
+<!--
+* local branching
+* merging branches
+* pushing branches
+* forking repositories
+* pull requests
+* merge conflicts
+-->
+
+[d9git]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d009-git-branching-vs-forking-vs-cloning.md
+
 
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
 
+<!--
 - - -
 > ### day ten ###
 - - -
