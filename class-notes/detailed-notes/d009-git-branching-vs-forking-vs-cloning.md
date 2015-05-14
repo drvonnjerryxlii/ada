@@ -3,13 +3,13 @@
 - - -
 
 
-#### cloning ####  
+#### cloning ####
 (making a local working copy)
 
 * when you clone something, you get all the branches, too.
 * fetch repository to stay in touch / up-to-date.
 
-#### branching ####  
+#### branching ####
 (making a safe place to work without screwing up production code)
 
 * work in a branch on code that is not ready for production
@@ -20,7 +20,7 @@
       * merge branch with your master/breakfast when lunch is ready & working
         well!
 
-#### forking ####  
+#### forking ####
 (making a separate, self-contained copy of the project in your github to work on
 separately)
 
@@ -31,7 +31,7 @@ separately)
     * then everyone can fork project to their own separate work environment
       * and we will be cloning from here!
 
-#### __pull requests__ ####  
+#### __pull requests__ ####
 (merge a fork back into its source)
 
 
