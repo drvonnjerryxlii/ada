@@ -54,7 +54,7 @@ not supplied:
 
 [srp]: http://en.wikipedia.org/wiki/Single_responsibility_principle
 
-[ccls]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/week02-example-class-definition.rb
+[ccls]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d006-class-definition-example.rb
 
 [orange]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/orange_tree.md
 
@@ -97,7 +97,7 @@ HOMEWORK:
 
 [hash]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/hash.md
 
-[myhash]:
+[myhash]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d007-class-exploration-more.rb
 
 [sys]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/solar-system.md
 
