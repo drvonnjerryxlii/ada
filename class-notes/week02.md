@@ -6,9 +6,7 @@
 * [day 7](#day-seven)
 * [day 8](#day-eight)
 * [day 9](#day-nine)
-
-<!--
-* [day 10](#day-ten) -->
+* [day 10](#day-ten)
 
 - - -
 > ### day six ###
@@ -40,13 +38,11 @@ not supplied:
  HOMEWORK:
  * read chapters 9, 12, & 13 from learn to program
     * you can define something with implicit arguments!
-       * def ask question vs def ask (question)!
-       * !T def ask question potatoes vs def ask (question, potatoes)?
     * 9.5 exercises:
-        * improved ask method ([mine][myiam])
+        * improved ask method (skipped it)
         * old-school roman numerals ([mine][myrno])
-        * modern roman numerals ([mine][myrnm])
-    * DON'T DO 13.5
+        * modern roman numerals (skipped it)
+    * DON'T READ / DO 13.5
 
 [d5]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/week01.md#day-five
 
@@ -74,8 +70,8 @@ not supplied:
 - - -
 
 continued working on orange tree group project ([ours][myorg])
-* debriefed at end / discuss group dynamics & re
-* then discussed a little as the whole class
+* debriefed at end / discussed group dynamics
+* then discussed group dynamics a little as the whole class
 
 then went over:
 * [hashes 101][hash] ([my experimentation file][myhash])
@@ -121,7 +117,7 @@ group project fancifying baby dragon
 more git!
 * getting rid of vim!
    * `git config --global core.editor "atom--wait"`
-   * !Q !R did not work for me
+   * !Q !R did not work for me but at least it killed vim redirect <3
 
 cynthia
 * teamwork workshop monday
@@ -158,31 +154,38 @@ HOMEWORK:
 - - -
 
 * went over some cool integrations of gems presented yesterday!
-* [discussed git in more detail][d9git].
+* [discussed git in more detail][d9git]
+* [live coded mastermind game][mm] ([group code][mmgrp])
+* pair programmed: [hangman game][hg]
 
+HOMEWORK:
+* finish git immersion 1-25
+* do teamwork survey for monday workshop
+   * e/istp emphasis on not strong letters (>_> 1% 12% 12% 11%)
 
-
-<!--
-* local branching
-* merging branches
-* pushing branches
-* forking repositories
-* pull requests
-* merge conflicts
--->
 
 [d9git]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d009-git-branching-vs-forking-vs-cloning.md
 
+[mm]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/mastermind.md
 
+[mmgrp]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/mastermind_group_code.rb
+
+[hg]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/hangman.md
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
 
-<!--
 - - -
 > ### day ten ###
 - - -
 
+morning:
+* continued work on hangman game!
+* presentations from some volunteer groups
+
+afternoon:
+* skill check
+* weekly retrospective
+
 
 <div align="right">^<a href="#jump-links">top</a></div>
--->
