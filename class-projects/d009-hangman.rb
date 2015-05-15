@@ -45,7 +45,17 @@ class Hangman
 
   def set_answer
     possible_answers = [ "potato", "broccoli", "animal", "hotdog",
-      "elephant", "cat", "taco", "whale", "walrus", "vulture" ]
+      "elephant", "cat", "taco", "whale", "walrus", "vulture", "lunch",
+      "morning", "evening", "scotch", "whiskey", "salad", "notebook",
+      "laptop", "coffee", "caffeine", "solar", "system", "planet",
+      "cheerful", "happy", "emotion", "below", "scream", "shout", "jumprope",
+      "wizard", "rainfall", "cloudy", "sunlight", "sunshine", "program",
+      "hangman", "sticky", "oranges", "eraser", "pencil", "powerful",
+      "creative", "cleaning", "nontoxic", "keyboard", "key", "any", "four",
+      "badge", "ridge", "cringe", "fringe", "lawful", "lawless", "chaotic",
+      "chaos", "crafty", "space", "outside", "outdoor", "cabin", "camping",
+      "tentacle", "monster", "you", "our", "hour"
+      ]
 
     # select random word
     which_random_index = rand(0...possible_answers.length)
@@ -93,7 +103,18 @@ class Hangman
 
     until (input >= "a") && (input <= "z") && (input.length == 1) # while these aren't true / until they are
       puts "Please enter a valid letter."
-      input = gets.chomp.downcase
+      return get_guess # make the user give another guess
+      # input = gets.chomp.downcase
+      #
+      # if input == "quit"
+      #   exit
+      # end
+    end
+
+    if @letters_guessed.include? input # if letter guessed has already been guessed
+      puts "You've already guessed that! Pick a new one."
+      puts "Don't guess: " + @letters_guessed.join(" ") # You've guessed: a b c
+      return get_guess # make user give another guess
     end
 
     @letters_guessed.push(input)
