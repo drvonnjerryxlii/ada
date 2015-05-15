@@ -1,58 +1,49 @@
 # Calculator Exercise
-
-# BRONZE BRONZE BRONZE BRONZE BRONZE BRONZE BRONZE BRONZE BRONZE BRONZE BRONZE
-#
-# Build a calculator command line interface (CLI) that allows a user to perform
-# simple arithmetic. YES
-# The program should ask for an operation (addition, subtraction, multiplication,
-# division) and two numbers, then give the result of applying the operation to
-# the two numbers. YES
-# The program should accept both the name (add) and the symbol (+) for each
-# possible operation. YES
+# Finished dinner. Did not finish platinum.
 
 
-# SILVER SILVER SILVER SILVER SILVER SILVER SILVER SILVER SILVER SILVER SILVER
-#
-# Print out the formula in addition to the result, i.e. 2 + 2 = 4. YES
-# Add support for computing exponents (2^4 = 2 * 2 * 2 * 2 = 16). YES
-# Add support for the modulo operator (10 % 3 = 1). YES
 
 
-# GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD GOLD
-#
-# Gracefully handle unexpected user input:
-#
-# What happens if the user input is nil (i.e., the user just pressed enter)? YES
-# What happens if the user tries to add hotdog to elephant? YES
+# opens unhelpful help_user definition
+def help_user
+  # prints some unhelpful text to the screen
+  puts "I'm not a professional. I'm afraid I can't help you like that."
+  # prompts the user to hit enter
+  print "Press enter/return to continue."
+  # waits for user to press enter
+  $stdin.gets
+# ends help_user definition & sends user's intepreter back from whence it came
+end
+
 
 
 
 # runs the calculation! takes three params: the first number, the operation
 # applied to it, and the second number.
 def calculate(first_number, operation, second_number)
-  # first it checks for addition operators
+  # first it checks for addition
   if (operation == "+")
-    # if there are any, it returns the result of adding the two numbers together
+    # if there, it returns the result of adding the two numbers together
     return first_number + second_number
-  # then it checks for subtraction operators
+  # then it checks for subtraction
   elsif (operation == "-")
-    # if there are any, it returns the result of subtracting the firest number from the second
+    # if there, it returns the result of subtracting the firest number from the second
     return first_number - second_number
-  # then it checks for multiplication operators
+  # then it checks for multiplication
   elsif (operation == "*")
-    # if there are any, it returns the result of multiplying the two numbers together
+    # if there, it returns the result of multiplying the two numbers together
     return first_number * second_number
-  # then it checks for division operators
+  # then it checks for division
   elsif (operation == "/")
-    # if there are any, it returns the result of dividing the first number by the second
+    # if there, it returns the result of dividing the first number by the second
     return first_number / second_number
-  #  then it checks for exponential operators
+  #  then it checks for exponentiation
   elsif (operation == "^")
-    # if there are any, it returns the result of the first number to the second number's power >_>
+    # if there, it returns the result of the first number to the second number's power >_>
     return first_number ** second_number
-  # then it checks for modulo operators
+  # then it checks for modulus
   elsif (operation == "%")
-    # if there are any, it returns the result of finding the remainder of the first number divided by the second
+    # if there, it returns the result of finding the remainder of the first number divided by the second
     return first_number % second_number
   # closing the if block
   end
@@ -89,83 +80,58 @@ def verify_operator(user_operator)
   # we only need the first three characters for these checks
   user_operator = user_operator[0..2].downcase
 
-  # sets add operators
+  # setting valid operators for each type of operation
   operators_addition = %w{+ add plu}
-  # sets sub opers
   operators_subtraction = %w{- sub min}
-  # sets mul ops
   operators_multiplication = %w{* x mul tim}
-  # sets div ops
   operators_division = %w{/ div}
-  # sets exp ops
-  operators_exponent = %w{** pow exp}
-  # sets mod ops
+  operators_exponent = %w{^ ** pow exp}
   operators_modulo = %w{% mod}
 
   # iterates through addition operators
-  operators_addition.each do |oper|
-    # checks if user operator is same as verif answer
-    if answer == oper
-      # returns simplified answer
+  operators_addition.each do |valid_operator|
+    # checks if user operator is same as a valid operator in this group
+    if user_operator == valid_operator
+      # returns simplified operator if so
       return "+"
     # ends if block
     end
-  # ends add ops iter
+  # ends addition operators iteration block
   end
 
-  # iters thru sub ops
-  operators_subtraction.each do |oper|
-    # checks if op is same as verif ans
-    if answer == oper
-      # returns simplf answer if so
+  # subtraction checks & simplification
+  operators_subtraction.each do |valid_operator|
+    if user_operator == valid_operator
       return "-"
-    # ends if block
     end
-  # ends sub ops iter
   end
 
-  # iters thru mul ops
-  operators_multiplication.each do |oper|
-    # checks if op is same as verif ans
-    if answer == oper
-      # returns smplf answer if so
+  # multiplication checks & simplification
+  operators_multiplication.each do |valid_operator|
+    if user_operator == valid_operator
       return "*"
-    # ends if
     end
-  # ends iter
   end
 
-  # iters thru div ops
-  operators_division.each do |oper|
-    # checks if op same as verf ans
-    if answer == oper
-      # ret smp ans if so
+  # division checks & simplification
+  operators_division.each do |valid_operator|
+    if user_operator == valid_operator
       return "/"
-    # ends if
     end
-  # ends iter
   end
 
-  # iters thru exp ops
-  operators_exponent.each do |oper|
-    # checks if op eq verf ans
-    if answer == oper
-      # ret smp ans if so
+  # exponent checks & simplification
+  operators_exponent.each do |valid_operator|
+    if user_operator == valid_operator
       return "^"
-    # ends if
     end
-  # ends iter
   end
 
-  # iters thru mod ops
-  operators_modulo.each do |oper|
-    # chks if op eq verf ans
-    if answer == oper
-      # ret smp ans if so
+  # modulus checks & simplification
+  operators_modulo.each do |valid_operator|
+    if user_operator == valid_operator
       return "%"
-    # ends if
     end
-  # ends iter
   end
 
   # returns false if nothing else works, so verify_answer will call itself again
@@ -177,120 +143,154 @@ end
 
 
 # verifies that a number value. takes one parameter.
-def verify_number(answer)
+def verify_number(user_number)
+  # first, get rid of spaces & commas
+  if [" ", ","].include? user_number
+    # calls & applies to user_number result of squeezing out " " & ","
+    user_number.squeeze!(" ").squeeze!(",")
+  end
+
   # if ASCII would say the number is above '/' and below ':',
   # then according to ASCII it's a number in a string! n_n
-  if (answer > "/") && (answer < ":")
-    # since it's a number, returns the answer
-    return answer
+  # I was sooo excited to discover this! :D
+  # awesome ASCII chart: http://www.bibase.com/images/ascii.gif
+  if (user_number > "/") && (user_number < ":")
+    # since it's a number, returns the user_number
+    return user_number
   # if it's not an ASCII character between '/' and ':',
-  # then it's not a number
+  # then it's not a number in a string
   else
     # so returns false, which will trigger another call of verify answer
     return false
   # ends if block
   end
+
+  # test
+  puts "This should never make it onto the screen!"
 # ends verify_number definition
 end
 
 
 
-# verifies answer. takes two params: the answer itself & whether it should be number
-def verify_answer(answer, shouldBeNumber)
-  # runs loop as long as answer is apparently empty
-  until answer.length > 0 do
-    # sort of explains why last answer sucked & asks for new answer
+# verifies user input. takes two params: the user input itself & whether it should be number
+def verify_user_input(user_input, should_be_number)
+  # checks for calls for help & calls help if so
+  if user_input.downcase.strip == "help"
+    # calls help_user
+    help_user
+  # ends if block
+  end
+
+  # runs loop as long as user_input is apparently empty
+  until user_input.length > 0 do
+    # sort of explains why last user_input sucked & asks for new user_input
     puts "I'm sorry. I didn't understand that. Can you tell me again?"
     # assigns user input to var
-    answer = $stdin.gets.chomp
+    user_input = $stdin.gets.chomp
   # ends until not-empty loop
   end
 
   # checks if it's a number value and if it passed the number test (calls inline)
-  if shouldBeNumber && !verify_number(answer)
-    # explains to the user why the last answer wasn't accepted & requests a new one
-    puts "Oops. That's not a number I recognize. Can you say it differently?"
+  if should_be_number && !verify_number(user_input)
+    # explains to the user why the last user_input wasn't accepted & requests a new one
+    puts "You said: #{user_input}. That's not a number I recognize."
     # offers some advice about acceptable numbers
-    puts "I understand numbers like -12 or 65.012, but I don't understand
-written numbers like negative twelve or sixty-five and twelve thousanths."
-    # calls verify_answer on the new user input & lets verify_answer know the
+    puts "Can you say it to me differently? I understand numbers like -12 or 65.012."
+    puts "I don't understand spelled-out numbers like nine thousand and eight."
+    # calls verify_user_input on the new user input & lets verify_user_input know the
     # user input should be a number
-    verify_answer($stdin.gets.chomp,true)
+    user_input = verify_user_input($stdin.gets.chomp,true)
+    return user_input
   # checks if it's not a number value & whether it failed the operator test,
   # which it calls inline
-  elsif !shouldBeNumber && !verify_operator(answer)
-    # explains to the user why the last answer wasn't accepted & requests a new one
+elsif !should_be_number && !verify_operator(user_input)
+    # explains to the user why the last user_input wasn't accepted & requests a new one
     puts "Oops. That's not a math operator I recognize. Can you say it differently?"
     # offers some advice about operations that are available
     puts "I can do addition, subtraction, multiplication, division, modulo, and
 exponent calculations."
-    # calls verify_answer on the new user input & lets verify_answer know the
+    # calls verify_user_input on the new user input & lets verify_user_input know the
     # user input should not be a number (should therefore be an operator)
-    verify_answer($stdin.gets.chomp,false)
+    user_input = verify_user_input($stdin.gets.chomp,false)
+    return user_input
   # ends if block
   end
 
-  # returns qualified answer! if the interpreter gets this far, the answer has
+  # test
+  puts "This should make it onto the screen after a user_input is verified!"
+  puts "The passing item is: #{user_input}."
+
+  # returns qualified user_input! if the interpreter gets this far, the user_input has
   # passed all the qualification tests! :)
-  return answer
-# ends verify_answer definition
+  return user_input
+# ends verify_user_input definition
 end
 
 
 
 
-# opens print_answer definition
-# takes five params - the answer/result, the first number, the operator, and
-# the second number -- basically all the stuff needed for the answer
-def print_answer(result, first_number, operation, second_number)
-  # sets the first part of the output
+# opens format_answer definition. takes four arguments - the answer/result, the
+# first number, the operator, and the second number -- basically all the stuff
+# needed for printing out the answer!
+def format_answer(result, first_number, operation, second_number)
+  # initializes the output string & sets the beginning of it
   output = "That's #{result}! #{first_number} #{operation} #{second_number} ="
+
   # checks if the operation was not exponential
   if operation != "^"
-    # adds the result to the output
+    # adds the result to the output string
     output += " #{result}."
   # then checks if it was an exponent operation
   elsif operation == "^"
-    # adds the first number to the output
+    # adds the first number to the output string
     output += "#{first_number}"
     # starts a quick loop based on the second number (minus one b/c already)
     # printed!
     (second_number.to_i-1).times do
+      # adds * number to the output string
       output += " * #{first_number}"
+    # ends the x times block
     end
-    puts output + " = #{result}."
+  # ends the if block
   end
+
+  # returns the output string
+  return output + " = #{result}."
+# ends the format_answer definition
 end
 
 
 
 
-# runs the calculator user interface! takes zero params, because we don't have
-# anything to pass around yet. calls verify_answer on each answer, and will
+# runs the calculator user interface! takes zero arguments, because we don't
+# have anything to pass around yet. calls verify_answer on each answer, and will
 # eventually call the calculate operation with user data that passes the verify
 # steps. :)
-# well, okay, technically this is just the opening statement for all that crap.
 def calculator_interface
   # asks the user for a starting number
-  puts "Hi! I'm a basic calculator. What number would you would like to do math on?"
-  # assigns result of calling verify_answer (number!) on user input
-  first_number = verify_answer($stdin.gets.chomp,true)
+  puts "Hi! I'm a basic calculator. What number would you would like to do some math on?"
+  # assigns result of calling verify_user_input (+ number = true) on user input
+  first_number = verify_user_input($stdin.gets.chomp, true)
+
   # asks the user for an operation to perform on the given number
   puts "What operation would you like to perform on #{first_number}?"
-  # assigns result of calling verify_not_empty_answer on user input
-  operation = verify_answer($stdin.gets.chomp,false)
+  # assigns result of calling verify_user_input on user input (+ number = false)
+  operation = verify_user_input($stdin.gets.chomp, false)
+
   # asks the user for a second number
   puts "What do you want to #{operation} to #{first_number}?"
-  # assigns result of calling verify_not_empty_answer on user input
-  second_number = verify_answer($stdin.gets.chomp,true)
+  # assigns result of calling verify_user_input on user input ( + number = true)
+  second_number = verify_user_input($stdin.gets.chomp,true)
+
   # prints the data to the screen
-  puts "Okay, so we're going to #{first_number} #{operation} #{second_number}!"
+  puts "Okay, so I'm going to do: #{first_number} #{operation} #{second_number}!"
   # assigns the result of calling calculate on the user input variables
-  result = calculate(first_number.to_f,operation,second_number.to_f)
+  result = calculate(first_number.to_f, operation, second_number.to_f)
   # simplifies variable to integer if float not necessary
   result = simplify_number(result)
-  # finally, prints result to screen!
-  print_answer(result,first_number,operation,second_number)
+
+  # finally, prints result of calling format_answer to the screen!
+  puts format_answer(result, first_number, operation, second_number)
 # ends calculator_interface definition
 end
 
@@ -302,7 +302,7 @@ calculator_interface
 
 
 
-# unfinished :(
+# unfinished:
 
 # PLATINUM PLATINUM PLATINUM PLATINUM PLATINUM PLATINUM PLATINUM PLATINUM
 #
