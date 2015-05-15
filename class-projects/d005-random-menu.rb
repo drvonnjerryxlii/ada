@@ -9,26 +9,26 @@
 #
 # Notes:
 #
-# 1. I misread the menu thing as serve up any kind of random menu thing. I went
-#    back later and added food arrays but preserved the original content. This
-#    has added a funny new element to the program.
-#
-# 2. I really enjoyed the spoken element that Victoriya added to her calculator
+# 1. I really enjoyed the spoken element that Victoriya added to her calculator
 #    project, so I decided to add a spoken word feature to this program. This
 #    feature for mac users actually seems pretty useful, because you could start
 #    the program and then walk over to various cabinets to check for ingredients
 #    while the program is reeling off the resultant list.
 #
-# 3. I decided pretty quickly that I wanted to make something I would use again,
-#    so this is a bit of a beast. I rock?
+#    *  It won't work for non mac users, and I wasn't sure how to handle that.
 #
-# 4. Also, I think this will be a much more useful thingy after we learn how to
+#    *  Also, because I felt I was writing it for future me, I probably did not
+#       create the best user experience for users other than me. I think this
+#       program does a pretty poor job of telling the user what it is doing or
+#       what things it knows how to do.
+##
+# 2. Also, I think this will be a much more useful thingy after we learn how to
 #    interact with outside files. The database stuff could be stored in a text
 #    file, which would mean items added by the user could be remembered.
 #
-#    4.5. On a related note, if you see something like !W !T !R it's probably a
-#         note for myself for the next time I work on this in case I forget
-#         some of the work or tests I wanted to do.
+#    *  On a related note, if you see something like !W !T !R it's probably a
+#       note for my future self for the next time I work on this (in case I
+#       forget some of the work or tests I wanted to do.
 #
 # Enjoy!
 #    --Jeri / @drvonnjerryxlii
@@ -37,9 +37,10 @@
 # Expand your solution to ensure that no descriptive term in a menu item is
 # ever {"} repeated. SORT OF !Q uniq in list or uniq in soft softish eggs?
 
+
 #------------------------- BEGIN WEIRD GLOBAL THINGS ---------------------------
 
-$voice = false # speak until user says not to
+$voice = true # speak until user says not to
 $individual = true # aka not combination
 $what_kind_of_ideas_desired = nil # what can I say? I don't have any ideas yet.
 $how_many_ideas_desired = 0 # and I don't want any, either!
@@ -143,7 +144,7 @@ def request_user_confirmation
     return true
   else
     possible_responses = [true, false]
-    random_choice = (rand * 2).floor
+    random_choice = rand(0...possible_responses.length)
     return possible_responses[random_choice]
   end
 end
@@ -165,7 +166,7 @@ def verify_feeling(user_feeling)
     end
   end
 
-  hungry.each do |keyword| # ('eat' is a trigger here, but create has precedence)
+  hungry.each do |keyword| # eat is a trigger here, but create has precedence
     if user_feeling.include? keyword
       $individual = false
       return retrieve_ideas("dishes")
@@ -257,7 +258,7 @@ def retrieve_ideas(which_ideas)
   ingredient = [
     "crab", "eggs", "tacos", "dumplings", "zucchini / courgette", "pineapple",
     "pear", "mushrooms", "sweet potato", "cabbage", "beans", "rice",
-    "peppers", "cheese"
+    "peppers", "cheese", "mussels"
   ]
 
   dishes = [texture_flavor, preparation, ingredient]
@@ -338,7 +339,7 @@ def retrieve_ideas(which_ideas)
     "eye of newt", "fingernails", "a few loose hairs", "a bug",
     "a small piece of plastic", "a bandaid", "a bowl of teeth", "chips", "ice",
     "a dragon", "a coin", "a penny", "an eyelash", "a tiny feather",
-    "the shiniest rock"
+    "the shiniest rock", "two jars"
   ]
 
   food = [protein, fiber, fat, delicious]
@@ -573,7 +574,7 @@ def verify_user_data(piece_user_data)
 
   chars_voice_doesnt_like.each do |char| # !W find a way to not have to do this?
     while piece_user_data.include? char  # how important is speaking? >_>
-      piece_user_data.slice!("'")
+      piece_user_data.slice!(char)
     end
   end
 
