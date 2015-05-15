@@ -1,42 +1,9 @@
+# -*- coding: utf-8 -*-
+require "colorize"
+
 # pair project w/ Wang
 
-# our notes:
-
-# SET UP
-# display empty board
-# = select random word
-# = display right number of letter spaces for that word
-# = display actual board
-#
-# TURN
-# = prompt user guess one letter please
-# = check if letter in word
-#    - if right, update display of letters in word
-#    - if wrong, update display of hangman
-#             &  increase wrong guess counter
-#
-# CHECK WIN/LOSE
-# - if displayed letters == actual word:
-#       WIN WIN WIN
-# - elsif wrong guess counter == limit
-#       LOSE LOSE LOSE
-# - else
-#       go back to turn / restart turn loop / don't break loop
-
-
 class Hangman
-# our dead hangman. poor dead hangman!
-"""
-      ______
-     |      |
-    {0}     |
-   (\~/)    |
-    (:)     |
-   _/ \_    |
-     _______|___
-    |           |
-"""
-
 # 1. {0}
 # 2. (\
 # 3. /)
@@ -91,20 +58,19 @@ class Hangman
   end
 
 
-
-
   def start
     puts "Let's play hangman!"
 
     @now_playing = true
-    @answer_display = []
     @bad_count = 0
     @good_count = 0
+    @letters_guessed = []
 
     set_answer
     display_board
     play
   end
+
 
   def play
     while @now_playing
@@ -115,17 +81,28 @@ class Hangman
     end
   end
 
+
   def get_guess
     puts "Guess your letter:"
 
-    input = gets.chomp.downcase
+    input = gets.chomp.downcase # downcase == shouldn't matter if cap letters
 
     if input == "quit"
       exit
     end
 
+    until (input >= "a") && (input <= "z") && (input.length == 1) # while these aren't true / until they are
+      puts "Please enter a valid letter."
+      input = gets.chomp.downcase
+    end
+
+    @letters_guessed.push(input)
+
+    puts "You've guessed: " + @letters_guessed.join(" ") # You've guessed: a b c
+
     return input
   end
+
 
   def check_guess(guess)
     unless @answer.include? guess # if answer not include guess, do this
@@ -137,7 +114,6 @@ class Hangman
 
       index = 0
       number_of_indexes.times do
-        puts @answer[index] # tests
 
         if @answer[index] == guess
           @good_count += 1
@@ -158,19 +134,19 @@ class Hangman
 
   def bad_guess
     if @bad_count == 1
-      @third =   "   {0}     |      "
+      @third =   "   {0}".colorize(:blue) + "     |      "
     elsif @bad_count == 2
-      @fourth =  "  (\\       |      "
+      @fourth =  "  (\\".colorize(:cyan) + "       |      "
     elsif @bad_count == 3
-      @fourth =  "  (\\ /)    |      "
+      @fourth =  "  (\\".colorize(:cyan) + " /)".colorize(:magenta) + "    |      "
     elsif @bad_count == 4
-      @fourth =  "  (\\~/)    |      "
+      @fourth =  "  (\\".colorize(:cyan) + "~".colorize(:yellow) + "/)".colorize(:magenta) + "    |      "
     elsif @bad_count == 5
-      @fifth =   "   (:)     |      "
+      @fifth =   "   (:)".colorize(:red) + "     |      "
     elsif @bad_count == 6
-      @sixth =   "  _/       |      "
+      @sixth =   "  _/".colorize(:green) + "       |      "
     else # @count == 7
-      @sixth = "  _/ \\_    |      "
+      @sixth = "  _/".colorize(:green) + " \\_".colorize(:light_green) + "    |      "
       lose
     end
   end
@@ -188,13 +164,12 @@ class Hangman
   def win
     puts "You win!"
     @now_playing = false
-
   end
+
 
   def lose
     puts "You lose!"
     @now_playing = false
-
   end
 
 
