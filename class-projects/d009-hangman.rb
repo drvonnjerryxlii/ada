@@ -63,8 +63,6 @@ class Hangman
 
     # update hangman word display
     @tenth = " _" * @answer.length
-
-    puts @answer # for tests
   end
 
 
