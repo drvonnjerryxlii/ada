@@ -1,7 +1,17 @@
+# Wang & I finished the  breakfast & lunch requirements & part of dinner together.
+# We weren't sure we'd have time to finish the dinner requirements, so we focused
+# on not penalizing the user for guessing the same letter twice & at the same time
+# handling guesses that weren't qualified letters. We did not add difficulty levels.
+
+# This morning, I also added a couple lines to handle guessing the whole word, but
+# it's not a fully implemented feature: it doesn't add a piece to the hangman for
+# bad guesses. But it does let you skip ahead to winning if you already know the
+# word, which is what I was going for. It also throws some errors. >_>
+
 # -*- coding: utf-8 -*-
 require "colorize"
 
-# pair project w/ Wang
+# pair project w/ Wang :)
 
 class Hangman
 # 1. {0}
@@ -99,19 +109,18 @@ class Hangman
       exit
     end
 
+    if input == @answer # this isn't finished; it doesn't increment @bad_count
+      return win        # or call bad_guess.
+    end
+
     until (input >= "a") && (input <= "z") && (input.length == 1) # while these aren't true / until they are
       puts "Please enter a valid letter."
       return get_guess # make the user give another guess
-      # input = gets.chomp.downcase
-      #
-      # if input == "quit"
-      #   exit
-      # end
     end
 
     if @letters_guessed.include? input # if letter guessed has already been guessed
       puts "You've already guessed that! Pick a new one."
-      puts "Don't guess: " + @letters_guessed.join(" ") # You've guessed: a b c
+      puts "Don't guess: " + @letters_guessed.join(" ") # Don't guess: a b c
       return get_guess # make user give another guess
     end
 
@@ -129,18 +138,16 @@ class Hangman
       bad_guess
 
     else # if answer include guess, do this
-      number_of_indexes = @answer.length
+      letters = @answer.length
 
       index = 0
-      number_of_indexes.times do
+      letters.times do
 
-        if @answer[index] == guess
+        if @answer[index] == guess # if letter at index in @answer == guess
           @good_count += 1
           # put index / letter into display
           # according to our display, index to update is (index * 2) +1
           index_to_update = (index * 2) + 1
-          # @answer_display.push(index_to_update)
-          # @answer_display.sort!
 
           good_guess(index, index_to_update)
         end
@@ -164,7 +171,7 @@ class Hangman
       @fifth =   "   (:)".colorize(:red) + "     |      "
     elsif @bad_count == 6
       @sixth =   "  _/".colorize(:green) + "       |      "
-    else # @count == 7
+    else # @bad_count == 7
       @sixth = "  _/".colorize(:green) + " \\_".colorize(:light_green) + "    |      "
       lose
     end
@@ -181,25 +188,15 @@ class Hangman
 
 
   def win
-    puts "You win!"
+    puts "You win! The word was #{ @answer }."
     @now_playing = false
   end
 
 
   def lose
-    puts "You lose!"
+    puts "You lose! The word was #{ @answer }."
     @now_playing = false
   end
-
-
-
-
-
-
-
-
-
-
 end
 
 Hangman.new

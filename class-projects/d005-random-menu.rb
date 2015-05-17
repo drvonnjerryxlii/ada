@@ -17,11 +17,11 @@
 #
 #    *  It won't work for non mac users, and I wasn't sure how to handle that.
 #
-#    *  Also, because I felt I was writing it for future me, I probably did not
+#    *  And because I felt I was writing this for future me, I probably did not
 #       create the best user experience for users other than me. I think this
 #       program does a pretty poor job of telling the user what it is doing or
 #       what things it knows how to do.
-##
+#
 # 2. Also, I think this will be a much more useful thingy after we learn how to
 #    interact with outside files. The database stuff could be stored in a text
 #    file, which would mean items added by the user could be remembered.
@@ -191,7 +191,7 @@ def verify_feeling(user_feeling)
   speak("You said #{user_feeling}. I'm sorry. I don't understand that emotion yet.")
   speak("Until I learn your emotion, I will interpret that as hungry / angry.") # !W? this is sort of a lie b/c keyboard mismatch w/ name
   $individual = true
-  return retrieve_ideas("hungry")
+  return retrieve_ideas("dishes")
 end
 
 
