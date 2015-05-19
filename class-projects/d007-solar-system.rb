@@ -23,61 +23,24 @@
 #    * AGE http://www.universetoday.com/33740/how-old-is-mercury/ all 4.6bil
 #    * DISTANCE http://www.universetoday.com/15462/how-far-are-the-planets-from-the-sun/
 #
-#--------------------------- begin DEFINE STAR CLASS ---------------------------
+#----------------------- begin SPACE OBJECT CLASS SECTOR -----------------------
 
-class Moon
-  attr_reader :day, :exports, :name, :number, :planet, :sentience, :size,
-    :year
+class SpaceObject
+  attr_reader :age, :day, :distance, :exports, :local_year, :name, :number,
+  :planet, :sentience, :size, :year
 
-  def initialize(moon_hash)
-    @day           = moon_hash[:day]
-    @distance      = moon_hash[:distance]
-    @exports       = moon_hash[:exports]
-    @name          = moon_hash[:name]
-    @number        = moon_hash[:number]
-    @sentience     = moon_hash[:sentience]
-    @size          = moon_hash[:size]
-    @symbol        = moon_hash[:symbol]
-    @year          = moon_hash[:year]
-  end
-
-  def orbits(planet_name)
-    if planet_name.class == Planet
-      planet_name.moons[@symbol] = self
-    else
-      puts "Moons can only orbit planets."
-    end
-  end
-
-  def describe
-    puts "This is a moon named #{ @name }! It orbits planet #{ planet.name }."
-    puts "Its primary exports are #{ @exports[:primary] }."
-  end
-
-  private
-
-end
-
-#---------------------------- end DEFINE MOON CLASS ----------------------------
-#-------------------------- begin DEFINE PLANET CLASS --------------------------
-
-class Planet
-  attr_accessor :moons
-  attr_reader :day, :distance, :exports, :local_year, :name, :sentience, :size, :star,
-    :year
-
-  def initialize(planet_hash)
+  def initialize(object_hash)
     #----------- INITIALIZE BASE VALUES ----------
-    @day                 = planet_hash[:day]
-    @distance            = planet_hash[:distance]
-    @exports             = planet_hash[:exports]
-    @moons               = {}
-    @name                = planet_hash[:name]
-    @number              = planet_hash[:number]
-    @sentience           = planet_hash[:sentience]
-    @size                = planet_hash[:size]
-    @symbol              = planet_hash[:symbol]
-    @year                = planet_hash[:year]
+    @age       = object_hash[:age]
+    @day       = object_hash[:day]
+    @distance  = object_hash[:distance]
+    @exports   = object_hash[:exports]
+    @name      = object_hash[:name]
+    @number    = object_hash[:number]
+    @sentience = object_hash[:sentience]
+    @size      = object_hash[:size]
+    @symbol    = object_hash[:symbol]
+    @year      = object_hash[:year]
 
     #----------- UPDATE INITIALIZED VALUES ----------
     update_day
@@ -85,181 +48,7 @@ class Planet
     update_sentience
   end
 
-  #----------- SELECT DESCRIBERS ----------
-
-  def select_describe
-    puts "Hi! #{ @name } here. What would you like to know about me?"
-    puts "1. I can summarize / tell you a few of my favorite things about my planetary body."
-    puts "2. I can tell you about my chief exports."
-    puts "3. Or I can tell you about my moons!"
-    puts "4. I can also tell you how far I am from other objects in the solar system."
-
-    user_input = get_user_input("What would you like to know?")
-
-    summary = %w{one 1 uno summ favor planet body}
-    exports = %w{two 2 tow dos cheif chief expo ports}
-    moons = %w{thre 3 tres moon luna satel}
-    distance = %w{four 4 cuat fuor dista far from syst form}
-
-    if check_triggers(summary, user_input) #!W this is gebroked
-      return self.describe
-    elsif check_triggers(exports, user_input)
-      return self.describe_exports
-    elsif check_triggers(moons, user_input)
-      return self.describe_moons
-    elsif check_triggers(distance, user_input)
-      return self.select_distance
-    else
-      options = [self.describe, self.describe_exports, self.describe_moons, self.select_distance]
-
-      random_index = rand(0...options.length)
-
-      return options[random_index]
-    end
-  end
-
-  # this is a beast. I'm sure there is an easier way to do this; it just isn't
-  # coming to mind right now. oh man @_@. I just realized at the least I could
-  # have crammed everything into an array or hash and looped through it. !W
-  def select_distance #!W generate this yo
-
-    # display system objects available to user
-    puts "1. Sol"
-    sol_triggers = %w{1 one sol sun} # despite being first, this will be checked last b/c 10-17 all have 1s in them
-
-    puts "2. Mercury"
-    mer_triggers = %w{2 two merc cury}
-
-    puts "3. Venus"
-    ven_triggers = %w{3 thre venu enus}
-
-    puts "4. Earth"
-    ear_triggers = %w{4 four fuor eart terr}
-
-    puts "5. Moon"
-    moo_triggers = %{5 five moon luna} # this will also be checked after all the other moons b/c moon
-
-    puts "6. Mars"
-    mar_triggers = %w{6 six mars mras} # this will be checked after triton in case user types sixteen
-
-    puts "7. Jupiter"
-    jup_triggers = %w{7 seve jupi iter} # this will be checked after its moons in case the user says jupiter's callisto etc
-                                        # and also after pluto in case the user types seventeen
-    puts "8. Callisto"
-    cal_triggers = %w{calli listo 8 eigh}
-
-    puts "9. Europa"
-    eur_triggers = %w{euro ropa 9 nine nien}
-
-    puts "10. Ganymede"
-    gan_triggers = %w{gany mede meed 10 ten}
-
-    puts "11. Io"
-    io_triggers = %w{io 11 elev elve}
-
-    puts "12. Saturn"
-    sat_triggers = %w{satu turn 12 twel elve} # this will be checked after its moon
-
-    puts "13. Titan"
-    tit_triggers = %w{tita itan 13 thirt thrit}
-
-    puts "14. Uranus"
-    ura_triggers = %w{uran anus 14 fourt urteen}
-
-    puts "15. Neptune"
-    nep_triggers = %w{nept tune 15 fifteen fteen} # this will be checked after its moon
-
-    puts "16. Triton"
-    tri_triggers = %w{trit iton 16 sixte xteen}
-
-    puts "17. Pluto"
-    plu_triggers = %w{plut luto dwarf 17 sevent nteen}
-
-    # ask user which object
-    user_input = get_user_input("What would you like to compare me to?")
-
-    star = get_known_universe
-
-
-    # redonkulous check.
-    if check_triggers(mer_triggers, user_input)
-      self.distance_from(star.planets[:mercury])
-
-    elsif check_triggers(ven_triggers, user_input)
-      self.distance_from(star.planets[:venus])
-
-    elsif check_triggers(ear_triggers, user_input)
-      self.distance_from(star.planets[:earth])
-
-    elsif check_triggers(cal_triggers, user_input)
-      self.distance_from(star.planets[:jupiter].moons[:callisto])
-
-    elsif check_triggers(eur_triggers, user_input)
-      self.distance_from(star.planets[:jupiter].moons[:europa])
-
-    elsif check_triggers(gan_triggers, user_input)
-      self.distance_from(star.planets[:jupiter].moons[:ganymede])
-
-    elsif check_triggers(io_triggers, user_input)
-      self.distance_from(star.planets[:jupiter].moons[:io])
-
-    elsif check_triggers(tit_triggers, user_input)
-      self.distance_from(star.planets[:saturn].moons[:titan])
-
-    elsif check_triggers(sat_triggers, user_input)
-      self.distance_from(star.planets[:saturn])
-
-    elsif check_triggers(ura_triggers, user_input)
-      self.distance_from(star.planets[:uranus])
-
-    elsif check_triggers(tri_triggers, user_input)
-      self.distance_from(star.planets[:neptune].moons[:triton])
-
-    elsif check_triggers(mar_triggers, user_input)
-      self.distance_from(star.planets[:mars])
-
-    elsif check_triggers(nep_triggers, user_input)
-      self.distance_from(star.planets[:neptune])
-
-    elsif check_triggers(plu_triggers, user_input)
-      self.distance_from(star.planets[:pluto])
-
-    elsif check_triggers(jup_triggers, user_input)
-      self.distance_from(star.planets[:jupiter])
-
-    elsif check_triggers(moo_triggers, user_input)
-      self.distance_from(star.planets[:earth].moons[:moon])
-
-    elsif check_triggers(sta_triggers, get_user)
-      self.distance_from(star)
-
-    else
-      puts "I'm sorry. I didn't understand what you wanted to compare me to."
-      return self_describe
-    end
-
-    return
-  end
-
-  #----------- USE DESCRIBERS ----------
-
-  def describe
-    puts "\tAt about #{ format_distance }, from good ol' #{ @star }"
-    puts "(on average), #{ @name } is the #{ @number } planet from the sun. It has #{ format_moons }, and its closest"
-    puts "neighbors often describe it as \"#{ @sentience }.\"\n\n"
-
-    puts "\tFor every earth standard day, #{ @name } experiences #{ @day.round(3) } days, or #{ format_hours }"
-    puts "earth hours. For every year that passes on earth, #{ @name } experiences #{ (1 / @year).round(3) }. That is,"
-    puts "it rotates around #{ @star } every #{ format_months } earth months. Hmmm, that's #{ format_year }."
-    puts "#{ @local_year }\n\n"
-
-    puts "#{ describe_exports } \n"
-
-    puts "That's all I can tell you right now!\n\n"
-
-    return
-  end
-
+  #----------- DESCRIBERS ----------
   def describe_exports
     if @exports
       puts "\t#{ @name }'s primary exports are:"
@@ -277,23 +66,6 @@ class Planet
     return
   end
 
-  def describe_moons
-    if @moons.length > 0
-      puts "I have #{ format_moons } orbiting me:"
-
-      count = 1
-      @moons.each do |moon_symbol, moon_hash|
-        puts "#{ count }. #{ moon_hash.name }"
-        count += 1
-      end
-
-    else
-      puts "There are no moons visibly orbiting me."
-      puts "I might be lonely, or they might be too small for you to see."
-    end
-
-    return
-  end
 
   def distance_from(something)
     if something.distance > @distance
@@ -309,17 +81,7 @@ class Planet
     return result
   end
 
-  def orbits(star_name)
-    if star_name.class == Star
-      star_name.planets[@symbol] = self
-    else
-      puts "Planets can only orbit stars."
-    end
-
-    set_local_year(star_name.age)
-    set_star_name(star_name.name)
-  end
-
+  #----------- PRIVATE / INTERNAL METHODS ----------
   private
 
   def convert_au_to_miles(au)
@@ -327,11 +89,37 @@ class Planet
     return miles
   end
 
-#----------- UPDATE VALUES IMMEDIATELY
-  def update_day
+  def set_local_year(age)
+    year = age / @year
+
+    if year / 1_000_000_000 > 1 # if large number of years, convert to billions
+      year /= 1_000_000_000
+      year = "#{ year.round(2) } billion"
+    else
+      year /= 1_000_000 # otherwise, millions are okay
+      year = "#{ year.round(2) } million"
+    end
+
+    @local_year = "In local years, #{ @name } has existed for about #{ year } years."
+  end
+
+  def update_day #!W when learn inheritance, can has master class
     if @day < 0
       @day *= -1
       @retrograde = true
+    end
+  end
+
+  def update_number
+    # if block does not include else so non-numbered objects won't be updated
+    if @number == 1
+      @number = "#{ @number }st"
+    elsif @number == 2
+      @number = "#{ @number }nd"
+    elsif @number == 3
+      @number = "#{ @number }rd"
+    elsif @number
+      @number = "#{ @number }th"
     end
   end
 
@@ -347,37 +135,6 @@ class Planet
     end
   end
 
-  def update_number
-    if @number == 1
-      @number = "#{ @number }st"
-    elsif @number == 2
-      @number = "#{ @number }nd"
-    elsif @number == 3
-      @number = "#{ @number }rd"
-    else
-      @number = "#{ @number }th"
-    end
-  end
-
-  #----------- UPDATE VALUES WHEN ASSIGNED TO STAR
-  def set_local_year(age)
-    year = age / @year
-
-    if year / 1_000_000_000 > 1 # if large number of years, convert to billions
-      year /= 1_000_000_000
-      year = "#{ year.round(2) } billion"
-    else
-      year /= 1_000_000 # otherwise, millions are okay
-      year = "#{ year.round(2) } million"
-    end
-
-    @local_year = "In local years, #{ @name } has existed for about #{ year } years."
-  end
-
-  def set_star_name(name)
-    @star = name
-  end
-
   #----------- FORMAT DATA FOR DESCRIBERS
   def format_distance
     au = @distance.round(3)
@@ -385,6 +142,7 @@ class Planet
 
     return "#{ au } astronomical units, or #{ miles } million miles"
   end
+
 
   def format_exports
     if @exports
@@ -413,21 +171,15 @@ class Planet
     end
   end
 
+
   def format_hours
     hours = @day * 24
     return hours.round(3)
   end
 
+
   def format_months
     return (@year * 12).round(3)
-  end
-
-  def format_moons
-    if @moons.length == 1
-      return "#{ @moons.length } moon"
-    else
-      return "#{ @moons.length } moons"
-    end
   end
 
   def format_retrograde #!W
@@ -449,51 +201,172 @@ class Planet
   end
 end
 
-#--------------------------- end DEFINE PLANET CLASS ---------------------------
-#--------------------------- begin DEFINE STAR CLASS ---------------------------
+#------------------------ end SPACE OBJECT CLASS SECTOR ------------------------
+#--------------------------- begin MOON CLASS SECTOR ---------------------------
 
-class Star
-  attr_reader :age, :day, :exports, :name, :sentience
+class Moon < SpaceObject
+  def orbits(planet_name)
+    if planet_name.class == Planet
+      planet_name.moons[@symbol] = self
+    else
+      puts "Moons can only orbit planets."
+    end
+
+    set_local_year(4_600_000_000) # !W workaround, other option broken
+    set_planet_name(planet_name.name)
+  end
+
+  #----------- DESCRIBERS ----------
+
+  def describe
+    puts "This is a moon named #{ @name }! It orbits planet #{ planet.name }."
+    puts "Its primary exports are #{ @exports[:primary] }."
+  end
+
+  private
+
+  #----------- UPDATE VALUES WHEN ASSIGNED TO PLANET
+
+  def set_planet_name(name)
+    @planet = name
+  end
+end
+
+
+#---------------------------- end MOON CLASS SECTOR ----------------------------
+#-------------------------- begin PLANET CLASS SECTOR --------------------------
+
+class Planet < SpaceObject
+  attr_accessor :moons
+  attr_reader :star
+
+  def initialize(planet_hash)
+    #----------- INITIALIZE BASE VALUES ----------
+    super(planet_hash)
+    @moons = {}
+  end
+
+  #----------- DESCRIBERS ----------
+
+  def describe
+    puts "\tAt about #{ format_distance }, from good ol' #{ @star }"
+    puts "(on average), #{ @name } is the #{ @number } planet from the sun. It has #{ format_moons }, and its closest"
+    puts "neighbors often describe it as \"#{ @sentience }.\"\n\n"
+
+    puts "\tFor every earth standard day, #{ @name } experiences #{ @day.round(3) } days, or #{ format_hours }"
+    puts "earth hours. For every year that passes on earth, #{ @name } experiences #{ (1 / @year).round(3) }. That is,"
+    puts "it rotates around #{ @star } every #{ format_months } earth months. Hmmm, that's #{ format_year }."
+    puts "#{ @local_year }\n\n"
+
+    puts "#{ describe_exports } \n"
+
+    puts "That's all I can tell you right now!\n\n"
+
+    return
+  end
+
+
+  def describe_moons
+    if @moons.length > 0
+      puts "I have #{ format_moons } orbiting me:"
+
+      count = 1
+      @moons.each do |moon_symbol, moon_hash|
+        puts "#{ count }. #{ moon_hash.name }"
+        count += 1
+      end
+
+    else
+      puts "There are no moons visibly orbiting me."
+      puts "I might be lonely, or they might be too small for you to see."
+    end
+
+    return
+  end
+
+  def orbits(star_name)
+    if star_name.class == Star
+      star_name.planets[@symbol] = self
+    else
+      puts "Planets can only orbit stars."
+    end
+
+    set_local_year(star_name.age)
+    set_star_name(star_name.name)
+  end
+
+
+  private
+
+
+
+
+  #----------- UPDATE VALUES WHEN ASSIGNED TO STAR
+  def set_local_year(age)
+    year = age / @year
+
+    if year / 1_000_000_000 > 1 # if large number of years, convert to billions
+      year /= 1_000_000_000
+      year = "#{ year.round(2) } billion"
+    else
+      year /= 1_000_000 # otherwise, millions are okay
+      year = "#{ year.round(2) } million"
+    end
+
+    @local_year = "In local years, #{ @name } has existed for about #{ year } years."
+  end
+
+
+  def set_star_name(name)
+    @star = name
+  end
+
+  #----------- FORMAT DATA FOR DESCRIBERS
+
+  def format_moons #!W when learn inheritance, can has master class
+    if @moons.length == 1
+      return "#{ @moons.length } moon"
+    else
+      return "#{ @moons.length } moons"
+    end
+  end
+end
+
+#--------------------------- end PLANET CLASS SECTOR ---------------------------
+#--------------------------- begin STAR CLASS SECTOR ---------------------------
+
+class Star < SpaceObject
   attr_accessor :planets
 
+
   def initialize(star_hash)
-    @age       = star_hash[:age]
-    @day       = star_hash[:day]
-    @distance_from_star  = 0 # the center of the solar system!
-    @exports   = star_hash[:exports]
-    @name      = star_hash[:name]
+    super(star_hash)
+    @distance  = 0
     @planets   = {}
-    @sentience = star_hash[:sentience]
-    @symbol    = star_hash[:symbol]
   end
+
 
   def describe_planets
     if @planets.length > 0
       puts "There are #{ @planets.length } planets orbiting me:"
 
       count = 1
-      @planets.each do |planet|
+      @planets.each do |planet_symbol, planet|
         puts "#{ count }. #{ planet.name }"
         count += 1
-
-        if planet.moons.length > 0
-          planet.describe_moons
-        end
       end
 
     else
       puts "There are no planets visibly orbiting me."
       puts "I might be lonely, or they might be too small for you to see."
-
     end
 
     return
   end
-
 end
 
-#---------------------------- end DEFINE STAR CLASS ----------------------------
-#--------------- begin ALL MY DATAS LIVE HERE, LOVELY LITTLE DATAS -------------
+#---------------------------- end STAR CLASS SECTOR ----------------------------
+#------------------------------- begin DATA SECTOR -----------------------------
 
 def get_known_universe
 
@@ -572,7 +445,6 @@ def get_known_universe
 
   moon = Moon.new(moon_info)
   moon.orbits(earth)
-  puts moon.planet
 
   #------------MARS--------------
   mars_info = {
@@ -757,24 +629,8 @@ def get_known_universe
   return sun
 end
 
-#---------------- end ALL MY DATAS LIVE HERE, LOVELY LITTLE DATAS --------------
-#----------------------------- begin HELP SECTOR -------------------------------
-
-def help_user
-  help_text = """
-You can ask about the star, the planets (individually or en masse), or any moon
-close to the size of the smallest planet. Each of these objects has attributes
-of their own that you are welcome to ask about. On specific star system objects,
-you can ask about things like: day, year, local year, and moons.
-  """
-
-  puts help_text
-
-  return
-end
-
-
-
+#------------------------------- end DATA SECTOR -------------------------------
+#-------------------------- begin USER INPUT SECTOR ----------------------------
 
 def get_user_input(question)
   puts question
@@ -785,33 +641,11 @@ def get_user_input(question)
     exit
   end
 
-  # check if user needs help
-  # help_triggers = %w{help ques ? how why where what who}
-  # check_triggers(help_triggers, user_input, help_user)
   return user_input
 end
 
-#------------------------------ end HELP SECTOR --------------------------------
+#--------------------------- end USER INPUT SECTOR -----------------------------
 #------------------- begin VALIDATION / CONFIRMATION SECTOR --------------------
-
-def verify_user_request(question)
-  planet = %w{plan jupi eart merc mars ven uran nept satu plut}
-  moon = %w{moon io gany trit tita listo euro}
-  sun = %w{sun sol sys}
-
-  user_input = get_user_input(question)
-
-  if check_triggers(planet, user_input)
-    select_planet
-  elsif check_triggers(moon, user_input)
-    select_moon
-  else check_triggers(sun, user_input)
-    select_star
-  end
-
-  return
-end
-
 
 def verify_user_confirmation(question)
   user_confirmation = get_user_input(question)
@@ -892,123 +726,75 @@ def select_planet
 
   planets_here = [mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto]
 
+  puts "\nAvailable planets:"
+  puts "Mercury, Venus, Earth, Mars, Jupiter, Uranus, Neptune, and Pluto."
+
   user_input = get_user_input("What planet would you like to know more about?")
-  puts "Great! You want to know more about #{ user_input }. I can give you a general description,"
-  puts "or I can check how far it is from another object in the system."
 
-  # check if user wants general description
-  if verify_user_confirmation("Would you like a general description of #{ user_input }?")
-    planets_here.each do |planet_here|
-      if check_triggers(planet_here[:triggers], user_input)
-        return universe.planets[planet_here[:planet]].describe
-      end
-    end
-
-  # or comparison
-  elsif verify_user_confirmation("Would you like to compare #{ user_input }'s' location to another object in the system?")
-    planets_here.each do |planet_here|
-      if check_triggers(planet_here[:triggers], user_input)
-        return universe.planets[planet_here[:planet]].select_distance
-      end
-    end
-
-  else
-    puts "Oops. You didn't pick one of the two choices!"
-    return select_planet
-  end
-end
-
-
-def select_moon
-  universe = get_known_universe
-
-  moon = {
-    moon: :moon,
-    triggers: %w{eart luna}
-  }
-
-  io = {
-    moon: :io,
-    triggers: %w{io}
-  }
-
-  callisto = {
-    moon: :callisto,
-    triggers: %w{isto calli}
-  }
-
-  ganymede = {
-    moon: :ganymede,
-    triggers: %w{gany mede nym}
-  }
-
-  europa = {
-    moon: :europa,
-    triggers: %w{euro ropa}
-  }
-
-  triton = {
-    moon: :triton,
-    triggers: %w{trit iton}
-  }
-
-  titan = {
-    moon: :titan,
-    triggers: %w{tita itan}
-  }
-
-  moons_here = [moon, io, callisto, ganymede, europa, triton, titan]
-
-  user_input = get_user_input("What moon would you like to know more about?")
-  puts "Great! You want to know more about #{ user_input }."
-
-  moons_here.each do |moon_here|
-    if check_triggers(moon_here[:triggers], user_input)
-      return universe.planets[moon_here[:moon]].describe
+  planets_here.each do |planet_here|
+    if check_triggers(planet_here[:triggers], user_input)
+      puts "Great! You want to know more about #{ user_input }.\n\n"
+      return universe.planets[planet_here[:planet]].describe
     end
   end
-end
 
+  puts "I didn't understand that."
 
-def select_star
-  universe = get_known_universe
-
-  sun = {
-    star: :sun,
-    triggers: %w{sun sol}
-  }
-
-  stars_here = [sun]
-
-  user_input = get_user_input("What star would you like to know more about?")
-  puts "Great! You want to know more about #{ user_input }."
-
-  stars_here.each do |star_here|
-    if check_triggers(star_here[:triggers], user_input)
-      return universe.describe_planets
-    end
-  end
+  return
 end
 
 
 def query_universe
-  # puts "Note: if you are playing in irb/pry/etc & want to play with my stored"
-  # puts "solar system, you'll need to assign the result of load_known_universe"
-  # puts "to a variable. You will receive my Star class object affectionately"
-  # puts "known as the sun. It has one star, nine planets, and seven moons."
-  # puts "Enjoy! (Ctrl+C.)"
-
-  verify_user_request("What would you like to know about the solar system?")
+  select_planet
 
   if verify_user_confirmation("Would you like to know something else?")
     return query_universe
   else
-    puts "Okay. It was nice chatting with your about the solar system. Goodbye!"
+    puts "Okay. It was nice chatting with you about the solar system. Goodbye!"
     return
   end
 end
 
 #----------------------- end INTERACT WITH DATA SECTOR -------------------------
+#--------------------- recommended setup for irb/pry/etc -----------------------
+
+# I recommend setting up like this:
+
+# # star
+# sun = get_known_universe
+
+# # planets
+# mercury = sun.planets[:mercury]
+# venus = sun.planets[:venus]
+# earth = sun.planets[:earth]
+# mars = sun.planets[:mars]
+# jupiter = sun.planets[:jupiter]
+# saturn = sun.planets[:saturn]
+# uranus = sun.planets[:uranus]
+# neptune = sun.planets[:neptune]
+# pluto = sun.planets[:pluto]
+
+# # moons
+# moon = earth.moons[:moon]
+# callisto = jupiter.moons[:callisto]
+# europa = jupiter.moons[:europa]
+# ganymede = jupiter.moons[:ganymede]
+# io = jupiter.moons[:io]
+# titan = saturn.moons[:titan]
+# triton = neptune.moons[:triton]
+
+# things worth trying:
+#   - sun.describe_planets
+#   - sun.exports
+#   - jupiter.describe_moons
+#   - neptune.distance_from(pluto)
+#   - pluto.distance_from(jupiter)
+#   - earth.exports
+#   - mars.describe
+#   - mercury.sentience
+
+# I made pretty much everything readable, so you can check out all the data.
+
 #---------------------- FINALLY, CALL QUERY_SOLAR_SYSTEM! ----------------------
 
-query_universe
+query_universe # comment this out if you're playing in irb/pry/etc
