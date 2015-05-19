@@ -92,7 +92,7 @@ HOMEWORK:
 * read chapter 2 - 4 of learn to program
    * [exercise 2.5][e2.5]
 
-[e2.5]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex2.5.rb
+[e2.5]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex02.5.rb
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
@@ -146,7 +146,7 @@ HOMEWORK:
 
 [flow]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/flow-control.md
 
-[e5.6]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex5.6.rb
+[e5.6]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex05.6.rb
 
 [may6]: https://github.com/drvonnjerryxlii/ada/blob/master/class-projects/d003-even-odd.rb
 
@@ -263,16 +263,16 @@ HOMEWORK
 
 [myrmg]: https://github.com/drvonnjerryxlii/ada/blob/master/class-projects/d005-random-menu.rb
 
-[myboss]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex6.2-angry-boss.rb
+[myboss]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex06.2-angry-boss.rb
 
-[mytoc]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex6.2-table-of-contents.rb
+[mytoc]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex06.2-table-of-contents.rb
 
-[my99]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex7.5-99-bottles-of-beer.rb
+[my99]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex07.5-99-bottles-of-beer.rb
 
-[mydg]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex7.5-deaf-grandma.rb
+[mydg]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex07.5-deaf-grandma.rb
 
-[mylpyr]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex7.5-leap-years.rb
+[mylpyr]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex07.5-leap-years.rb
 
-[mybsa]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex8.3-building-and-sorting-array.rb
+[mybsa]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex08.3-building-and-sorting-array.rb
 
 <div align="right">^<a href="#jump-links">top</a></div>

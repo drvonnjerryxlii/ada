@@ -56,11 +56,7 @@ not supplied:
 
 [myorg]: https://github.com/drvonnjerryxlii/ada/blob/master/class-projects/d006-orange-tree.rb
 
-[myiam]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex9.5-improved-ask-question.rb
-
-[myrno]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex9.5-roman-numberals-old.rb
-
-[myrnm]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex9.5-roman-numerals-modern.rb
+[myrno]: https://github.com/drvonnjerryxlii/ada/blob/master/learn-to-program/ex09.5-roman-numberals-old.rb
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
@@ -185,7 +181,30 @@ morning:
 
 afternoon:
 * skill check
+   * reviewed unless
+
+* discussed [how to turn in homework][howhw]
+   * set up pgp keys :D
+      * !Q why can't we just paste the fingerprint hash?
+      * !Q also do I need to re-clone stuff? not clear answer reask
+   * `pbcopy [filename]` copies file to clipboard
+   * for now, okay to turn in modified group work that doesn't match
+   * in future, they will have to match the rest of the group
+   * in the pull request say stuff like
+      * I COMPLETED BREAKFAST. I started lunch but only finished this part, but
+        I think that part is so cool! definitely check it out.
+      * i'm using the colorize gem. make sure you have it installed.
+      * this part was really confusing for me, please give me some extra
+        feedback. anything required- mention it.
+
+* cool video
 * weekly retrospective
 
+
+HOMEWORK:
+* turn in all of your projects!
+
+
+[howhw]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/how-to-turn-in-your-projects.md
 
 <div align="right">^<a href="#jump-links">top</a></div>

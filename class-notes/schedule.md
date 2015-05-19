@@ -2,17 +2,24 @@
 > ### jump links ###
 - - -
 
-* schedule & week by week notes
-* just the time off
-
+* [schedule & week by week notes][#schedule]
+* [just the time off][#time-off]
 
 - - -
 > ### schedule ###
 - - -
 
-* week 1
-* week 2
-* week 3
+* [week 1][w1]
+* [week 2][w2]
+* [week 3][w3]
+
+[w1]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/week01.md
+
+[w2]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/week02.md
+
+[w3]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/week03.md
+
+<div align="right">^<a href="#jump-links">top</a></div>
 
 
 - - -
@@ -46,3 +53,5 @@
    * 11.21 SAT - 11.29 SUN
 
 * 11.30 INTERNSHIPS START
+
+<div align="right">^<a href="#jump-links">top</a></div>
