@@ -1,4 +1,4 @@
-# Shanna Chau + Jeri Sommers - FarMar Finder
+# svc+js - FarMar Finder
 
 In this assignment we will be creating an application to look up farmers markets and their related vendors, products, and sales. We will use __CSV__ files as our _database_.
 

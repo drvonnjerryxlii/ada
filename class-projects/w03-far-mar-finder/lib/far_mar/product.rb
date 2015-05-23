@@ -1,3 +1,5 @@
+# self.most_revenue(n) returns the top n products instances ranked by total revenue
+
 module FarMar
   class Product
     # assign path to csv file as a constant.
@@ -74,7 +76,7 @@ module FarMar
 
     #----------------------------------------------------------------------
     # CLASS METHODS
-    
+
 
     # self.all - returns all rows of the CSV file as objects.
     def self.all

@@ -1,3 +1,10 @@
+# products returns a collection of FarMar::Product instances that are associated to the market through the FarMar::Vendor class.
+# self.search(search_term) returns a collection of FarMar::Market instances where the market name or vendor name contain the search_term. For example FarMar::Market.search('school') would return 3 results, one being the market with id 75 (Fox School Farmers FarMar::Market).
+# prefered_vendor - returns the vendor with the highest revenue
+# prefered_vendor(date) - returns the vendor with the highest revenue for the given date
+# worst_vendor - returns the vendor with the lowest revenue
+# worst_vendor(date) - returns the vendor with the lowest revenue on the given date
+
 module FarMar
   class Market
     # assign path to csv file as a constant.
@@ -47,6 +54,27 @@ module FarMar
     end
 
 
+    # prefered_vendor - returns the vendor with the highest revenue
+    # prefered_vendor(date) - returns the vendor with the highest revenue for the given date
+    def preferred_vendor(date="all")
+      vendors = self.vendors
+
+      best_vendor = nil
+      best_revenue = 0
+
+      vendors.each do |vendor|
+        current_revenue = vendor.revenue
+
+        if current_revenue > best_revenue
+          best_revenue = current_revenue
+          best_vendor = vendor
+        end
+      end
+
+      return best_vendor
+    end
+
+
     # products returns a collection of FarMar::Product instances that are associated to the market through the FarMar::Vendor class.
     def products
       # grabs all associated vendors from instance method .vendors.
@@ -82,6 +110,17 @@ module FarMar
       end
 
       return matching_vendors
+    end
+
+
+    # worst_vendor - returns the vendor with the lowest revenue
+    # worst_vendor(date) - returns the vendor with the lowest revenue on the given date
+    def worst_vendor(date="all")
+      vendors = self.vendors
+
+      vendors.each do |vendor|
+
+      end
     end
 
 

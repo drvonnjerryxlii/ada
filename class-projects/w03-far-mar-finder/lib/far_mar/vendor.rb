@@ -1,3 +1,8 @@
+# self.most_revenue(n) returns the top n vendor instances ranked by total revenue
+# self.most_items(n) returns the top n vendor instances ranked by total number of items sold
+# self.revenue(date) returns the total revenue for that date across all vendors
+# revenue(date) returns the total revenue for that specific purchase date and vendor instance
+
 module FarMar
   class Vendor
     # assign path to csv file as a constant.
@@ -66,16 +71,25 @@ module FarMar
       return matching_products
     end
 
-
     # revenue - returns the the sum of all of the vendor's sales (in cents).
-    def revenue
+    # revenue(date) returns the total revenue for that specific purchase date and vendor instance.
+    def revenue(date="all")
       # grabs all sales from instance method .sales.
       all_sales = self.sales
       total_revenue = 0
 
+      unless date == "all"
+        # just double-checking that provided date is a date.
+        date = Date.parse(date.to_s)
+      end
+
       # loop through sales, adding amount of sales to total revenue.
       all_sales.each do |sale|
-        total_revenue += sale.amount
+        if date == "all"
+          total_revenue += sale.amount
+        elsif date == Date.parse(sale.purchase_time.to_s)
+          total_revenue += sale.amount
+        end
       end
 
       return total_revenue
