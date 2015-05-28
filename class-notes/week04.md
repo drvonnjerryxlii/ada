@@ -6,9 +6,9 @@ btw, beware broken links. :)
 
 * [day 16](#day-sixteen)
 * [day 17](#day-seventeen)
+* [day 18](#day-eighteen)
 
 <!--
-* [day 18](#day-eighteen)
 * [day 19](#day-nineteen) -->
 
 - - -
@@ -25,8 +25,10 @@ reviewed our goals for this week:
 * `return "Error message text" if num < 0`
 * group exercise [factorials][fact]
 
-live coded [fibonacci][fibo]
-live coded [roman numeras][roma]
+live coded [fibonacci][fibo] (currently broken link b/c using for work on euler
+problem #104 && euler problems == please don't publish)
+
+live coded [roman numerals][roma] (redo of old assignment from learn to program)
 * `rspec -fd` <-- includes documentation notes, ie, full context from tests for both passes & fails.
 
 [scrabble][scrab]
@@ -36,11 +38,11 @@ HOMEWORK
 
 [algo]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/recursion.md
 
-[fact]: safdasd
+[fact]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d016-factorial.rb
 
 [fibo]: asfasdf
 
-[roma]: adfssd
+[roma]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d016-convert.rb
 
 [scrab]: https://github.com/Ada-Developers-Academy/C3Projects--Scrabble
 
@@ -71,15 +73,32 @@ continued working on scrabble project.
 <div align="right">^<a href="#jump-links">top</a></div>
 
 
-<!--
 - - -
 > ### day eighteen ###
 - - -
+
+reviewed koans: about hashes
+* Hash.new(something_here) sets a default value for keys
+* if something_here == [], then the default value is AN array
+* if you push into a default value that hasn't already been set (no hash[:key]
+  = value), you might just be updating the default value.
+     * `hash = Hash.new([])`
+     * `hash[:one] = []` <-- sets a new value for new key `:one`
+     * `hash[:one] << "uno"` <-- pushes into key `:one`'s current value
+     * `hash[:two] << "dos"` <-- pushes into __the__ default array, since
+       `hash[:two]` isn't separately defined & thus uses default value.
+     * `hash[:three] << "tres"` <-- pushes into __the__ default array, since
+       `hash[:three]` isn't separately defined & thus uses default value.
+     * `hash[:one]` => `["uno"]` <-- returns unique value of `hash[:one]`
+     * `hash[:two]` => `["dos", "tres"]` <-- returns default array
+     * `hash[:three]` => `["dos", "tres"]` <-- returns default array
+     * `hash[:four]` => `["dos", "tres"]` <-- returns default array
 
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
 
+<!--
 - - -
 > ### day nineteen ###
 - - -

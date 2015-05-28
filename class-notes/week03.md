@@ -81,12 +81,14 @@ HOMEWORK
 
 [advanced variables][av]
 * in ruby town, no globals.
+* [experimenting with scope of variables][varexp]
 
 [csv as a database][csvdb]
 * `require 'csv'`
 * `CSV.open(filename, 'r', headers: true).each do |row|`  
   `..puts row`  
   `end`
+* [experimenting with this][csvexp]
 
 group projects, paired w/ shanna
 
@@ -114,6 +116,10 @@ HOMEWORK:
 [av]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/advanced_variables.md
 
 [csvdb]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/csv_database.md
+
+[csvexp]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d012-csv-experimentation.rb
+
+[varexp]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d016-factorial.rb
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
