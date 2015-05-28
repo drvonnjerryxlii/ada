@@ -18,3 +18,5 @@ AKA stuff that you need before the first class
 - - -
 
 * the pragmatic programmers - learn to program (second edition) - chris pine
+
+* practical object-oriented design in ruby - sandi metz
