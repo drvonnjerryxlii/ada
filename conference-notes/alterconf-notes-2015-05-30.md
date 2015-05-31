@@ -13,10 +13,10 @@ warning to anyone reading: these are not very organized, and there might be part
 - - -
 
 * [Yvonne Lam, re: getting started in open source software](#yvonne-lam)
-* [Monica Thomas, re: Tech Money, Gentrification, and the Policing of Blackness in Capitol Hill](#monica-thomas)
-* [Samantha from Invisible Arcade](#invisible=arcade), re: who they are*
+* [Monica Thomas, re: tech money, gentrification, and the policing of blackness in capitol hill](#monica-thomas)
+* [Samantha from Invisible Arcade, re: who they are](#invisible-arcade)*
 * [Ijeoma Oluo, re: how tech turned her into a social justice writer](#ijeoma-oluo)*
-* [Elaine Nelson, re: finding your core values](#elain-nelson)*
+* [Elaine Nelson, re: finding your core values](#elaine-nelson)*
 * [Donte Parks, re: breaking down diversity into actionable steps for improvement](#donte-parks)
 * [Whitney Levis](#whitney-levis)*
 * [Kevin Stewart, re: managing while black](#kevin-stewart)
@@ -31,7 +31,7 @@ warning to anyone reading: these are not very organized, and there might be part
 > ### YVONNE LAM ###
 - - -
 
-#### getting started in open source software ####
+#### Getting Started in Open Source Software ####
 
 [@yvonnezlam][yvntweet]
 * [gitforknitters][gfk]
@@ -212,6 +212,7 @@ getting outside of our bubble
 
 
 Samantha. unity (copenhagen). worked on amazon fire phone
+
 [@SamanthaZero][sztweet]
 
 next invisible arcade will be in chicago this summer!
@@ -234,7 +235,6 @@ invisible arcade is free!
 
 if you have any questions about disability insurance, she recommends:
 [http://www.nahu.org/consumer/diinsuranceguide.cfm][self]
-
 
 [self]: http://www.nahu.org/consumer/diinsuranceguide.cfm
 
@@ -280,7 +280,7 @@ you never know. it's easier to get the insurance and not need it.
 - - -
 
 
-#### how the tech industry made me social justice writer ####
+#### How the Tech Industry Made Me a Social Justice Writer ####
 
 [@IjeomaOluo][iotweet]
 
@@ -294,6 +294,10 @@ then trayvon martin happened.
 * she felt uncomfortable.
 * why isn't anyone talking about this?
 * what if somebody yells at me if I say something?
+
+ijeoma does this amazing project: [i believe you. it's not your fault.][ioproj]
+
+[ioproj]: http://ibelieveyouitsnotyourfault.tumblr.com/
 
 how do you deal with jerks on twitter?
 * the irony that this person is so invested in what she has to say.
