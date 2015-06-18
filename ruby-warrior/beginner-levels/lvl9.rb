@@ -17,6 +17,7 @@ class Player
     elsif warrior.feel.wall? || (warrior.feel.stairs? && !can_has_stairs?)
       warrior.pivot!
     elsif can_has_enemy?(lookee_see)
+      attack_enemy(warrior)
       unless warrior.feel.empty?
         warrior.attack!
       else
