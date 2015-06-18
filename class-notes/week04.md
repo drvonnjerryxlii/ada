@@ -7,9 +7,7 @@ btw, beware broken links. :)
 * [day 16](#day-sixteen)
 * [day 17](#day-seventeen)
 * [day 18](#day-eighteen)
-
-<!--
-* [day 19](#day-nineteen) -->
+* [day 19](#day-nineteen)
 
 - - -
 > ### day sixteen ###
@@ -94,6 +92,14 @@ reviewed koans: about hashes
      * `hash[:three]` => `["dos", "tres"]` <-- returns default array
      * `hash[:four]` => `["dos", "tres"]` <-- returns default array
 
+[jeremy & kari live-coded scrabble breakfast][jkscr]
+* `a.to_sym == :a`!
+* `binding.pry` in specs! <3
+* finally covered ternary operators!!1two
+   * (if_condition ? do_this_if_true : do_this_if_false)
+
+
+[jkscr]: kgjhgfj
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
