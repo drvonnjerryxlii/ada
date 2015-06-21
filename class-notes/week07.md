@@ -123,6 +123,62 @@ new project:
 > ### day thirty-two ###
 - - -
 
+[better errors][berr]
+* first we made a broken link to guarantee everyone would have a rails error page.
+* added a couple lines to Gemfile.
+   * `# make error messages more betterer`  
+     `gem "better_errors"`  
+     `gem "binding_of_caller"`
+* bundled.
+* added a route to broken link (but not a view or method).
+* viola! fancy new error message, courtesy of better errors.
+
+awesome better errors stuff:
+* stack trace
+   * click on parts of the stack to see the bits of code executed!
+   * then move to live shell to play aronud with the code, see what's happening.
+* live shell thing!!!! <3  
+  typing in variables and seeing exactly what they are at this point in the stack.  
+  sooo awesome! n_n
+   * `action_name` nil
+   * `action` "broken_link"
+   * `self` long huge object
+* also request info, local variables, instance variables detailed info below!
+   * `_request` and `_env` look like all the browser/http stuff! check it out:
+      * `"PATH_INFO"=>"/broken_link"`
+      * `"HTTP_CONNECTION"=>"keep-alive"`
+      * `"REQUEST_URI"=>"http://localhost:3000/broken_link"`
+      * `"SERVER_PORT"=>"3000"`
+      * `"SERVER_SOFTWARE"=>"WEBrick/1.3.1 (Ruby/2.2.2/2015-04-13)"`
+      * `"HTTP_USER_AGENT"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36"`
+
+[berr]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/rails/rails-request-state.md
+
+[rails forms][rforms]
+[params & session][p&s]
+
+[rforms]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/rails/rails-forms.md
+[p&s]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/params-and-session.md
+
+[live coding][lc32]
+* p = Proposal.new(params.permit(proposal: [:title, :abstract]))
+* p = Proposal.new(params.permit(proposal => [:title, :abstract]))
+* `def create`  
+  ....`@proposal = Proposal.new(create_params[:proposal])`  
+  ....`@proposal.save`
+  .  
+  ....`render :thank_you`  
+  `end`  
+  .  
+  `private`  
+  .  
+  `def create_params`  
+  ....`params.permit(proposal: [:title, :abstract])`  
+  `end`
+
+
+[lc32]: asdfsadf
+
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
@@ -130,6 +186,60 @@ new project:
 - - -
 > ### day thirty-three ###
 - - -
+
+[STACKS AND QUEUES][s&q]
+
+[s&q]: https://docs.google.com/presentation/d/1rsxjS8l4Lo21nskccyBH7Hap19NfL-D1BNGgiPlW0bc/edit
+
+abstract data types
+* in computer science, an abstract data type (ADT) is a way of storing data that is defined by its behavior from the point of view of a user of the data, sepcifically in terms of: possible values, possible operations on data of this type, and the behavior of these operations.
+
+ADTs
+* native arrays, linked list, tree, set, map, hash, bag, graph, heap, stack and queue, etc
+* two generally tested in interview: linked list & tree
+
+STACK
+* LIFO - last in first out
+* a collection of items in which only the most recently added item may be removed.
+* the only book you can take from a stack without knocking it over is the one on the top.
+
+QUEUE
+* FIFO - first in first out
+* a collection of items in which the first items entered are the first items removed.
+* the first car into the freeway exit gets off first.
+
+STACK OPERATIONS - LIFO
+* `push(e)` push an element onto the stack
+* `pop()` take top item off
+* `empty?()`
+* `top()` sometimes called `peak` - just tells you the top item
+* `size()` tells you how many are there
+
+QUEUE OPERATIONS - FIFO
+* `enqueue(e)` adds an element to the end
+* `dequeue()` removes from the front
+* `empty?()`
+* `front()` tells you the item at the front of the queue (first to be removed)
+* `size()` tells you how many are there
+
+USING A STACK
+printer example
+* printers often print in reverse order so the first page will be on the top
+
+USING A QUEUE
+still a printer
+* printers take jobs in as a queue
+* the first job in will be printed first
+* the last job in will be printed last
+
+RUBY MONK EXERCISE
+* [my stack solution][mys]
+* [my queue solution][myq]
+
+[mys]: asdfasd
+[myq]: asdfasdf
+
+
 
 
 <div align="right">^<a href="#jump-links">top</a></div>
