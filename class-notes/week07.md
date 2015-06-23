@@ -241,5 +241,4 @@ RUBY MONK EXERCISE
 
 
 
-
 <div align="right">^<a href="#jump-links">top</a></div>
