@@ -100,6 +100,21 @@ after lunch:
 > ### day thirty-six ###
 - - -
 
+more farmar project time. :)
+
+rails for zombies validation:
+* `validates_presence_of :status`
+* `validates_numericality_of :fingers`
+* `validates_uniqueness_of :toothmarks`
+* `validates_confirmation_of :password`
+* `validates_acceptance_of :zombification`
+* `validates_length_of :password, minimum: 3`
+* `validates_format_of :email, with: /regex/i`
+* `validates_inclusion_of :age, in: 21..99`
+* `validates_exclusion_of :age, in: 0...21,`
+* `validate :name, presence: true, uniqueness: true`
+
+
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
@@ -108,6 +123,16 @@ after lunch:
 > ### day thirty-seven ###
 - - -
 
+heroku limits:
+* 10,000 rows :(
+
+[style guide][stgd] discussion:
+* use heredocs for long strings
+
+HOMEWORK:
+* rails for zombies 4
+
+[stgd]: https://github.com/Ada-Developers-Academy/ruby-style-guide
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
@@ -116,5 +141,35 @@ after lunch:
 > ### day thirty-eight ###
 - - -
 
+presentations
+* `number_to_currency` helper!
+* brittany kari refresh header photo changes
+   * selected random index from array of image urls and then displayed that random image
+* time.now for sales w/o dates
+* you _can_ use `self.blerg` syntax to make class methods in the models???!
+   * also !R SQL `like` keyword
+   * `def self.search(query)`  
+     ....`where("name LIKE ?", "%#{ query }%")`  
+     `end`
+
+discussed buttons vs links
+* use buttons for submitting forms & javascript buttons
+* use links for anything else
+* !Q onclick javascript
+
+Jeremy, I didn't have a chance to ask you about this, but I'm curious about what you were saying re: onclick not working as well as buttons for javascript triggers. ~~Is that because of mobile devices?~~ Can you tell me more about your stance?
+
+the two best articles I read this week:
+* http://www.npr.org/sections/codeswitch/2015/06/24/417108714/dispatch-from-charleston-the-cost-of-white-comfort
+* http://www.thestranger.com/features/feature/2015/06/24/22436544/my-whole-life-ive-been-asked-if-im-a-girl-or-a-boy
+
+HOMEWORK:
+* ~~koans~~
+* merge all outstanding code reviews
+* take home assessment
+
+1. Take home skill check
+
+2. Review and close any/add open PRs that have been reviewed: Random Menu, FarMar (original), Hangman, Bank Accounts, Scrabble, Scrabble Sinatra
 
 <div align="right">^<a href="#jump-links">top</a></div>
