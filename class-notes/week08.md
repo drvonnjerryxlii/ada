@@ -80,75 +80,18 @@ discussed:
 * [agile & waterfall methodologies][agile]
 * kanban systems
    * trello -- we will use this for FarMar this week.
+* [advanced routing][r102]
+   * [my notes from our playing around in stuff.][my102play]
 
-#### [advanced routing][r102]
-
-::> `terminal`: `rake routes`
-
-Prefix Verb | URI Pattern | Controller#Action
------------:|-------------|------------------
-root GET | / | welcome#index
-
-::> `config/routes.rb`: `resources :labels`  
-::> `terminal`: `rake routes`
-
-Prefix Verb | URI Pattern | Controller#Action
------------:|-------------|------------------
-root GET | / | welcome#index
-labels GET | /labels(.:format) | labels#index
-POST | /labels(.:format) | labels#create
-new_label GET | /labels/new(.:format) | labels#new
-edit_label GET | /labels/:id/edit(.:format) | labels#edit
-label GET | /labels/:id(.:format) | labels#show
-PATCH | /labels/:id(.:format) | labels#update
-PUT | /labels/:id(.:format) | labels#update
-DELETE | /labels/:id(.:format) | labels#destroy
-
-::> `config/routes.rb`: `resources :labels, except: [:create]`
-::> `terminal`: `rake routes`
-
-Prefix Verb | URI Pattern | Controller#Action
------------:|-------------|------------------
-root GET | / | welcome#index
-labels GET | /labels(.:format) | labels#index
-new_label GET | /labels/new(.:format) | labels#new
-edit_label GET | /labels/:id/edit(.:format) | labels#edit
-label GET | /labels/:id(.:format) | labels#show
-PATCH | /labels/:id(.:format) | labels#update
-PUT | /labels/:id(.:format) | labels#update
-DELETE | /labels/:id(.:format) | labels#destroy
-
-::> `config/routes.rb`: `resources :labels do`  
-::> `config/routes.rb`: ....`resources :albums`  
-::> `config/routes.rb`: `end`  
-::> `terminal`: `rake routes`
-
-Prefix Verb | URI Pattern | Controller#Action
------------:|-------------|------------------
-root GET | / | welcome#index
-label_albums GET | /labels/:label_id/albums(.:format) | albums#index
-POST | /labels/:label_id/albums(.:format) | albums#create
-new_label_album GET | /labels/:label_id/albums/new(.:format) | albums#new
-edit_label_album GET | /labels/:label_id/albums/:id/edit(.:format) | albums#edit
-label_album GET | /labels/:label_id/albums/:id(.:format) | albums#show
-PATCH | /labels/:label_id/albums/:id(.:format) | albums#update
-PUT | /labels/:label_id/albums/:id(.:format) | albums#update
-DELETE | /labels/:label_id/albums/:id(.:format) | albums#destroy
-labels GET | /labels(.:format) | labels#index
-new_label GET | /labels/new(.:format) | labels#new
-edit_label GET | /labels/:id/edit(.:format) | labels#edit
-label GET | /labels/:id(.:format) | labels#show
-PATCH | /labels/:id(.:format) | labels#update
-PUT | /labels/:id(.:format) | labels#update
-DELETE | /labels/:id(.:format) | labels#destroy
-
-#### [far mar 2.0][twofar]
+after lunch:
+* project intro: [far mar 2.0][twofar]
+* project time: [ours][myfm2]
 
 [agile]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/agile.md
 [r102]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/rails/routes-102.md
-
-
+[r102play]: asdf asdf
 [twofar]: https://github.com/Ada-Developers-Academy/C3Projects--FarMarRails
+[myfm2]: asfasdfasdf
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
