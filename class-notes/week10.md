@@ -12,6 +12,14 @@
 > ### day thirty-nine ###
 - - -
 
+reviewed homework
+* take home assessment
+
+[validations & error messages][verr]
+*
+
+[verr]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/validations.md
+
 
 <div align="right">^<a href="#jump-links">top</a></div>
 

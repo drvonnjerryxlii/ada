@@ -1,7 +1,7 @@
 # this one is another group project! three adies to a group. :)
 # https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/orange_tree.md
 # -------------------------------------
-# actually, according to the new dinner requirements, I think we can move on to dessert!
+# pretty sure we stopped at finishing dinner, but not certain whether it's correct.
 
 class OrangeTree
 
@@ -115,13 +115,15 @@ class OrangeGrove
         @trees.push(OrangeTree.new)
       end
 
+      soil_quality
+
     else
       puts "You can't plant #{number} trees. Please try again with a number."
     end
 
   end
 
-  def one_year_passes_grove
+  def one_year_passes
     @total_orange_count = 0
     @trees.each do |tree|
       tree.one_year_passes

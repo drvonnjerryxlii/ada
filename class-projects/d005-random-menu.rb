@@ -38,13 +38,13 @@
 # ever {"} repeated. SORT OF !Q uniq in list or uniq in soft softish eggs?
 
 
-#------------------------- BEGIN WEIRD GLOBAL THINGS ---------------------------
+#------------------------ BEGIN WEIRD GLOBALy THINGS ---------------------------
 
-$voice = true # speak until user says not to
-$individual = true # aka not combination
-$what_kind_of_ideas_desired = nil # what can I say? I don't have any ideas yet.
-$how_many_ideas_desired = 0 # and I don't want any, either!
-$user_wants_too_many = false # zero just doesn't know how to be too many.
+VOICE = true # speak until user says not to
+INDIVIDUAL = true # aka not combination
+WHAT_KIND_OF_IDEAS_DESIRED = nil # what can I say? I don't have any ideas yet.
+HOW_MANY_IDEAS_DESIRED = 0 # and I don't want any, either!
+USER_WANTS_TOO_MANY = false # zero just doesn't know how to be too many.
 
 #-------------------------- END WEIRD GLOBAL THINGS ----------------------------
 #--------------------- BEGIN OUTPUT TEXT TO USER THINGS ------------------------
@@ -55,7 +55,7 @@ $user_wants_too_many = false # zero just doesn't know how to be too many.
 def speak(string_to_speak)
   puts "#{string_to_speak}"
 
-  if $voice
+  if VOICE
     good_voices = ["Alex", "Bad", "Good", "Vicki", "Zarvox"]
     random_voice = good_voices[(rand * good_voices.length)]
     %x{say -v #{random_voice} #{string_to_speak}}
@@ -73,10 +73,10 @@ def check_reset_voice(user_input)
   voice_triggers.each do |voice_trigger|
     if user_input.downcase.include? voice_trigger
     # input is downcased in case the original get input call expected a number
-      if $voice == true
-        $voice = false
+      if VOICE == true
+        VOICE = false
       else
-        $voice = true
+        VOICE = true
       end
     end
   end
@@ -168,21 +168,21 @@ def verify_feeling(user_feeling)
 
   hungry.each do |keyword| # eat is a trigger here, but create has precedence
     if user_feeling.include? keyword
-      $individual = false
+      INDIVIDUAL = false
       return retrieve_ideas("dishes")
     end
   end
 
   ingredients.each do |keyword|
     if user_feeling.include? keyword
-      $individual = true
+      INDIVIDUAL = true
       return retrieve_ideas("hungry")
     end
   end
 
   world_domination.each do |keyword|
     if user_feeling.include? keyword
-      $individual = true
+      INDIVIDUAL = true
       return retrieve_ideas("bored")
     end
   end
@@ -190,7 +190,7 @@ def verify_feeling(user_feeling)
 
   speak("You said #{user_feeling}. I'm sorry. I don't understand that emotion yet.")
   speak("Until I learn your emotion, I will interpret that as hungry / angry.") # !W? this is sort of a lie b/c keyboard mismatch w/ name
-  $individual = true
+  INDIVIDUAL = true
   return retrieve_ideas("dishes")
 end
 
@@ -421,12 +421,12 @@ end
 # random items from the dataset until the desired number of items are chosen.
 # finally, returns the random items to the requesting function call.
 def select_random_ideas(array_of_ideas, how_many_ideas_desired)
-  $user_wants_too_many = false
+  USER_WANTS_TOO_MANY = false
   random_selection_of_ideas = []
   max_value = 0
 
   # MAX VALUE individual
-  if $individual
+  if INDIVIDUAL
     # make UNIQUE
     array_of_ideas.flatten!.uniq!
     # final MAX VALUE
@@ -448,12 +448,12 @@ def select_random_ideas(array_of_ideas, how_many_ideas_desired)
   # adjusts number wanted items if user wants more than exist
   if how_many_ideas_desired > max_value
     how_many_ideas_desired = max_value
-    $user_wants_too_many = true
+    USER_WANTS_TOO_MANY = true
   end
 
 
   # RANDOM individual
-  if $individual
+  if INDIVIDUAL
     until random_selection_of_ideas.length == how_many_ideas_desired
       which_random_index = (rand * array_of_ideas.length).floor
       which_random_idea = array_of_ideas.slice!(which_random_index)
@@ -497,7 +497,7 @@ def display_ideas(ideas)
   number_of_ideas = 0
 
   # set number of ideas for individual ideas
-  if $individual
+  if INDIVIDUAL
     number_of_ideas = ideas.length
   # set number of ideas for combination ideas
   else
@@ -511,7 +511,7 @@ def display_ideas(ideas)
 
   # handling case: user wanted more things than exist. explains to user why more
   # items aren't being displayed
-  if $user_wants_too_many
+  if USER_WANTS_TOO_MANY
     speak("You wanted more ideas than I had available.")
     speak("I only have #{number_of_ideas} ideas in my datasets.")
   end
@@ -526,7 +526,7 @@ def display_ideas(ideas)
   end
 
   # handling individual dispays
-  if $individual
+  if INDIVIDUAL
     count = 0 # keeps track of item/loop number, which is also the index of the item
     ideas.each do |idea|
       count += 1
@@ -558,7 +558,7 @@ def display_ideas(ideas)
   speak(press_enter)
   $stdin.gets
   # reset user wants too many ideas
-  $user_wants_too_many_ideas = false
+  USER_WANTS_TOO_MANY_ideas = false
   return request_run_machine_again
 end
 
@@ -678,14 +678,14 @@ def verify_user_ideas_type(user_ideas_type)
 
   individual.each do |type|
     if user_ideas_type.include? type
-      $individual = true
+      INDIVIDUAL = true
       return
     end
   end
 
   combination.each do |type|
     if user_ideas_type.include? type
-      $individual = false
+      INDIVIDUAL = false
       return
     end
   end
@@ -716,9 +716,9 @@ def create_user_ideas
 
   speak("Do you want individual or combination sets?")
   user_data = verify_user_ideas_type(get_user_input(false))
-  $what_kind_of_ideas_desired = user_data
+  WHAT_KIND_OF_IDEAS_DESIRED = user_data
 
-  if $individual
+  if INDIVIDUAL
     user_data = create_user_data_individual
   else
     user_data = create_user_data_combination
@@ -757,12 +757,12 @@ end
 # on the given type and number of ideas.
 def run_ideas_machine
   speak("How are you feeling?") # does not necessarily ask in a straightforward way >_>
-  $what_kind_of_ideas_desired = verify_feeling(get_user_input(true))
+  WHAT_KIND_OF_IDEAS_DESIRED = verify_feeling(get_user_input(true))
 
   speak("How many ideas would you like?")
-  $how_many_ideas_desired = verify_number(get_user_input(false))
+  HOW_MANY_IDEAS_DESIRED = verify_number(get_user_input(false))
 
-  display_ideas(select_random_ideas($what_kind_of_ideas_desired, $how_many_ideas_desired))
+  display_ideas(select_random_ideas(WHAT_KIND_OF_IDEAS_DESIRED, HOW_MANY_IDEAS_DESIRED))
   return
 end
 
