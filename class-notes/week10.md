@@ -76,7 +76,7 @@ testing in rails live code
 > ### day forty-one ###
 - - -
 
-bootstrap
+[bootstrap][boots]
 * has a grid system that spans 12 columns
    * in a wide screen it might span all 12
    * in a smaller screen, it knows where to move columns to make things look good
@@ -84,8 +84,34 @@ bootstrap
    * if you install bootstrap and don't add classes to your html, nothing will happen
 * you can specify -- use 12 columns on an extra small device and 6 columns on a medium
    * by default it will optimize for smaller devices
+* `gem "bootstrap-sass", "~> 3.3.5"`
+* in `application.css`  
+  __rename to `application.scss`__  
+  `@import "bootstrap-sprockets";`  
+  `@import "bootstrap";`
+* in `application.js`  
+  `//= require bootstrap-sprockets` -- move the dot to the end of this line instead of the line about `tree`
+
+[boots]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/bootstrap.md
+
+http://getbootstrap.com/examples/theme/
 
 font awesome
+
+THE GREAT SUSPENDER!
+
+`before :all` __does not clean up after itself in rspec rails testing__
+`before :each` clears out the records it creates
+
+Jeremy's possible solutions to DAS PROBLEM
+`get root_path`
+`request.path.split('/')`
+
+`get '/:format', to: 'media#index', constraints: { format: ~~put regexp here~~}, as: 'taco'`
+
+he googled:
+`rails routes resources with query params`
+
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
