@@ -100,17 +100,18 @@ font awesome
 
 THE GREAT SUSPENDER!
 
-`before :all` __does not clean up after itself in rspec rails testing__
-`before :each` clears out the records it creates
+* `before :all` __does not clean up after itself in rspec rails testing__
+* `before :each` clears out the records it creates
 
 Jeremy's possible solutions to DAS PROBLEM
-`get root_path`
-`request.path.split('/')`
+* `get root_path`
+* `request.path.split('/')`
+* NO DID NOT WORK :(
 
-`get '/:format', to: 'media#index', constraints: { format: ~~put regexp here~~}, as: 'taco'`
-
-he googled:
-`rails routes resources with query params`
+Jeremy's next possible solution to DAS PROBLEM
+* `get '/:format', to: 'media#index', constraints: { format: ~~put regexp here~~}, as: 'taco'`
+* he googled: `rails routes resources with query params`
+* YYYEEEEESSSSSsss
 
 
 <div align="right">^<a href="#jump-links">top</a></div>
