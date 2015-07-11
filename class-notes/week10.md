@@ -99,7 +99,10 @@ http://getbootstrap.com/examples/theme/
 font awesome
 
 THE GREAT SUSPENDER!
+* mystical TA recommended this chrome extension for keeping excess tabs from crashing yo' browser.
+   * sounds amazing!
 
+rspec tests that mess up the test database:
 * `before :all` __does not clean up after itself in rspec rails testing__
 * `before :each` clears out the records it creates
 
@@ -121,6 +124,8 @@ Jeremy's next possible solution to DAS PROBLEM
 > ### day forty-two ###
 - - -
 
+ASHLEY IS WIZARD!
+* `resources :books, controller: "media"`
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
@@ -128,6 +133,29 @@ Jeremy's next possible solution to DAS PROBLEM
 - - -
 > ### day forty-three ###
 - - -
+
+more project time
+
+`categories = Category.all.map { |category| category.plural }`
+* Jeremy says this is a bad idea, because databases are not reliable.
+* switching back to the old array version fixes the missing keys & table errors, so rails must agree.
+
+cs fundamentals-- sorting and efficiency
+
+ANITA IS ALSO A WIZARD~
+* `@medium.reload` -- because of course to save memory things get cached from the database
+
+
+SELF-ASSIGNED HOMEWORK:
+## need to add rails to my default gemset!
+* then start [this project][thatprog]
+* write a blag post about what learned from routing hiccups, etc MediaRanker
+* explore NASA Star API
+* try adding authentication to something?
+
+[thatproj]: http://tutorials.jumpstartlab.com/projects/blogger.html
+
+INSTRUCTOR-ASSIGNED HOMEWORK:
 
 
 <div align="right">^<a href="#jump-links">top</a></div>
