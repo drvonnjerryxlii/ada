@@ -145,19 +145,21 @@ cs fundamentals-- sorting and efficiency
 ANITA IS ALSO A WIZARD~
 * `@medium.reload` -- because of course to save memory things get cached from the database
 
-
 SELF-ASSIGNED HOMEWORK:
-## need to add rails to my default gemset!
-* then start [this project][thatprog]
+* ~~need to add rails to my default gemset!~~ done
+* then start [this project][thatproj]?
 * write a blag post about what learned from routing hiccups, etc MediaRanker
 * explore NASA Star API
 * try adding authentication to something?
-* rails tutorial?
-   * `bundle exec rake test`
-   * `rails generate integration_test site_layout`
-   * `bundle exec rake test:integration`
+   * decided to run through [rails tutorial][rtut]
+   * [notes][myrtut]
+* maybe clean up weekly notes to replace all the asdfkljasdf-y broken links with reality
 
 [thatproj]: http://tutorials.jumpstartlab.com/projects/blogger.html
+
+[rtut]: https://www.railstutorial.org/
+
+[myrtut]: asfasdf
 
 INSTRUCTOR-ASSIGNED HOMEWORK:
 
