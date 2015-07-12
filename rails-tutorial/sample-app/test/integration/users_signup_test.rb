@@ -10,6 +10,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
 
     assert_template 'users/new'
+    assert_select 'div#error_explanation'
+    assert_select 'div.field_with_errors'
   end
 
   test "signup form should create a user with if form info is valid" do
@@ -35,6 +37,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         password_confirmation: "catpleasestopmeowing" } # srsly cat
     end
     assert_template 'users/show'
-
+    assert_not flash.now[:failure] # not sure if this is right, but it works??
   end
 end
