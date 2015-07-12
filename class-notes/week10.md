@@ -152,6 +152,10 @@ SELF-ASSIGNED HOMEWORK:
 * write a blag post about what learned from routing hiccups, etc MediaRanker
 * explore NASA Star API
 * try adding authentication to something?
+* rails tutorial?
+   * `bundle exec rake test`
+   * `rails generate integration_test site_layout`
+   * `bundle exec rake test:integration`
 
 [thatproj]: http://tutorials.jumpstartlab.com/projects/blogger.html
 

@@ -8,5 +8,15 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", help_path
     assert_select "a[href=?]", about_path
     assert_select "a[href=?]", contact_path
+    get signup_path
+    assert_select "title", full_title("Sign up")
+  end
+
+  # In the integration test from Listing 5.25, add code to visit the signup page
+  # using the get method and verify that the resulting page title is correct.
+  test "signup page" do
+    get signup_path
+    assert_template 'users/new'
+    assert_select 'h1', 'Sign up'
   end
 end
