@@ -6,7 +6,7 @@
 
 This is the home base for my class notes from Ada. You'll also find some smaller projects, homework assignments, and a few other things I've explored -- like games and other outside materials.
 
-Other Ada projects (reverse chronologically):
+Projects not in this repository (reverse chronologically):
 
 <!--
 maybe unhide this after apps close?

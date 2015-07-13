@@ -149,7 +149,7 @@ SELF-ASSIGNED HOMEWORK:
 * ~~need to add rails to my default gemset!~~ done
 * then start [this project][thatproj]?
 * write a blag post about what learned from routing hiccups, etc MediaRanker
-* explore NASA Star API
+* ~~explore NASA Star API~~ yes
 * try adding authentication to something?
    * decided to run through [rails tutorial][rtut]
    * [notes][myrtut]
