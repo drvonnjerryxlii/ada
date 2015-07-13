@@ -2,11 +2,11 @@
 > ### jump links ###
 - - -
 
-* [day 34](#day-thirty--four)
-* [day 35](#day-thirty--five)
-* [day 36](#day-thirty--six)
-* [day 37](#day-thirty--seven)
-* [day 38](#day-thirty--eight)
+* [day 34](#day-thirty-four)
+* [day 35](#day-thirty-five)
+* [day 36](#day-thirty-six)
+* [day 37](#day-thirty-seven)
+* [day 38](#day-thirty-eight)
 
 - - -
 > ### day thirty-four ###
@@ -89,9 +89,9 @@ after lunch:
 
 [agile]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/agile.md
 [r102]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/rails/routes-102.md
-[r102play]: asdf asdf
+[r102play]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d035-advanced-routing.md
 [twofar]: https://github.com/Ada-Developers-Academy/C3Projects--FarMarRails
-[myfm2]: asfasdfasdf
+[myfm2]: https://github.com/drvonnjerryxlii/C3Projects--FarMarRails/tree/adh+js/master
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
@@ -165,11 +165,7 @@ the two best articles I read this week:
 
 HOMEWORK:
 * ~~koans~~
-* merge all outstanding code reviews
-* take home assessment
-
-1. Take home skill check
-
-2. Review and close any/add open PRs that have been reviewed: Random Menu, FarMar (original), Hangman, Bank Accounts, Scrabble, Scrabble Sinatra
+* ~~merge all outstanding code reviews~~
+* ~~take home assessment~~
 
 <div align="right">^<a href="#jump-links">top</a></div>

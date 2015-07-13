@@ -28,6 +28,11 @@ reviewed homework
 [verr]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/validations.md
 [mdrk]: https://github.com/Ada-Developers-Academy/C3Projects--MediaRanker
 
+HOMEWORK:
+* [better specs][bs]
+
+[bs]: http://betterspecs.org/
+
 <div align="right">^<a href="#jump-links">top</a></div>
 
 
@@ -76,7 +81,7 @@ testing in rails live code
 > ### day forty-one ###
 - - -
 
-[bootstrap][boots]
+[bootstrap][boots] ([exploration][myexp])
 * has a grid system that spans 12 columns
    * in a wide screen it might span all 12
    * in a smaller screen, it knows where to move columns to make things look good
@@ -93,6 +98,8 @@ testing in rails live code
   `//= require bootstrap-sprockets` -- move the dot to the end of this line instead of the line about `tree`
 
 [boots]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/bootstrap.md
+
+[myexp]: https://github.com/drvonnjerryxlii/ada/tree/master/class-notes/detailed-notes/d041-bootstrap-101
 
 http://getbootstrap.com/examples/theme/
 
@@ -148,8 +155,8 @@ ANITA IS ALSO A WIZARD~
 SELF-ASSIGNED HOMEWORK:
 * ~~need to add rails to my default gemset!~~ done
 * then start [this project][thatproj]?
-* write a blag post about what learned from routing hiccups, etc MediaRanker
-* ~~explore NASA Star API~~ yes
+* write a blag post about what learned from routing hiccups, etc MediaRanker?
+* ~~explore NASA Star API~~ [yes][space]
 * try adding authentication to something?
    * decided to run through [rails tutorial][rtut]
    * [notes][myrtut]
@@ -157,11 +164,15 @@ SELF-ASSIGNED HOMEWORK:
 
 [thatproj]: http://tutorials.jumpstartlab.com/projects/blogger.html
 
+[space]: https://github.com/drvonnjerryxlii/ada/blob/master/space.md
+
 [rtut]: https://www.railstutorial.org/
 
-[myrtut]: asfasdf
+[myrtut]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d043-weekend-rails-tutorial-notes.md
 
 INSTRUCTOR-ASSIGNED HOMEWORK:
+* the odin project's [session, cookies, & authentication][topsca]
 
+[topsca]: http://www.theodinproject.com/ruby-on-rails/sessions-cookies-and-authentication
 
 <div align="right">^<a href="#jump-links">top</a></div>

@@ -164,7 +164,8 @@ reviewed poodr chapter 4.
      object.
 
 sequence diagram example:
-![](detailed-notes/d028-seqence-diagram-fr-stack-overflow)
+![a sequence diagram for banking transactions](https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d028-sequence-diagram-fr-stackoverflow.png)
+* from [stack overflow][sosd]
 
 [sosd]: http://stackoverflow.com/questions/1850096/using-quick-sequence-diagram-editor-for-sequence-diagrams
 

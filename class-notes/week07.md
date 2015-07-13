@@ -2,11 +2,11 @@
 > ### jump links ###
 - - -
 
-* [day 29](#day-twenty--nine)
+* [day 29](#day-twenty-nine)
 * [day 30](#day-thirty)
-* [day 31](#day-thirty--one)
-* [day 32](#day-thirty--two)
-* [day 33](#day-thirty--three)
+* [day 31](#day-thirty-one)
+* [day 32](#day-thirty-two)
+* [day 33](#day-thirty-three)
 
 - - -
 > ### day twenty-nine ###
@@ -26,7 +26,7 @@ amazon & spare5 presentations
 * <3
 
 [seq]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/sequence_diagrams.md
-[mytask]: asdfasdf
+[mytask]: https://github.com/drvonnjerryxlii/C3Projects--TaskList/tree/kja+js/master
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
@@ -111,10 +111,11 @@ resources:
 
 new project:
 * [task list -- rails version!][tlr]
-* [my fork][mytlr]
+* [my fork][mytlr] ([live][livetlr)
 
-[tlr]: asdfasdf
-[mytlr]: asdfasdf
+[tlr]: https://github.com/Ada-Developers-Academy/C3Projects--TaskListRails
+[mytlr]: https://github.com/drvonnjerryxlii/C3Projects--TaskListRails/tree/js/master
+[livetlr]: https://carls-taskmaster.herokuapp.com/
 
 <div align="right">^<a href="#jump-links">top</a></div>
 
@@ -160,7 +161,7 @@ awesome better errors stuff:
 [rforms]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/rails/rails-forms.md
 [p&s]: https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/params-and-session.md
 
-[live coding][lc32]
+live coding
 * p = Proposal.new(params.permit(proposal: [:title, :abstract]))
 * p = Proposal.new(params.permit(proposal => [:title, :abstract]))
 * `def create`  
@@ -175,9 +176,6 @@ awesome better errors stuff:
   `def create_params`  
   ....`params.permit(proposal: [:title, :abstract])`  
   `end`
-
-
-[lc32]: asdfsadf
 
 
 <div align="right">^<a href="#jump-links">top</a></div>
@@ -234,10 +232,8 @@ still a printer
 
 RUBY MONK EXERCISE
 * [my stack solution][mys]
-* [my queue solution][myq]
 
-[mys]: asdfasd
-[myq]: asdfasdf
+[mys]: https://github.com/drvonnjerryxlii/ada/blob/master/class-notes/detailed-notes/d033-stack.rb
 
 
 
