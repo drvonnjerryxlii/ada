@@ -37,6 +37,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         password_confirmation: "catpleasestopmeowing" } # srsly cat
     end
     assert_template 'users/show'
+    assert is_logged_in?
     assert_not flash.now[:failure] # not sure if this is right, but it works??
   end
 end

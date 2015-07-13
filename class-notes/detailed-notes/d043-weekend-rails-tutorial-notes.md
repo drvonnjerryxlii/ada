@@ -43,3 +43,5 @@ where last left off at end of ch7:
 > In Chapter 8, we will complete our authentication machinery by allowing users to log in and out of the application. In Chapter 9, we will allow all users to update their account information, and we will allow site administrators to delete users, thereby completing the full suite of Users resource REST actions from Table 7.1.
 
 therefore, __must complete chapters 8 & 9 to finish goal of testing out / playing with authentication implementation__
+
+* `rails generate migration add_remember_digest_to_users remember_digest:string`
