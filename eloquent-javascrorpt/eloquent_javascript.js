@@ -24,7 +24,7 @@ var flatten = function(array) {
   return flattened;
 }
 
-console.log(flatten(arrays));
+// console.log(flatten(arrays));
 // → [1, 2, 3, 4, 5, 6]
 
 // The == operator compares objects by identity. But sometimes, you would prefer to
@@ -111,34 +111,34 @@ var arrayToList = function(array) {
 // // → undefined
 
 
-var reverseArray = function(arrayToReverse) {
-  var last = arrayToReverse.length - 1;
-  for (var first = 0; first < last; first++) {
-    lastItem = arrayToReverse[last];
-    arrayToReverse[last] = arrayToReverse[first];
-    arrayToReverse[first] = lastItem;
-    last--;
-  }
-  return arrayToReverse;
+var reverse = function(array) {
+  var reversed = [];
+  for (var i = array.length - 1; i >= 0; i--)
+    reversed.push(array[i]);
+
+  return reversed;
 }
 
-// console.log(reverseArray(["A", "B", "C"]));
-// // → ["C", "B", "A"];
-// var arrayValue = [1, 2, 3, 4, 5];
+x = [1, 2, 3, 4, 5];
+console.log(reverse(x));
+// → ["C", "B", "A"];
+console.log(x);
 
-var reverseArrayInPlace = function() { // I don't think this is right. it will only actually modify arrayValue.
-  var last = arrayValue.length - 1;
+
+var reverseArrayInPlace = function(array) {
+  var last = array.length - 1;
   for (var first = 0; first < last; first++) {
-    lastItem = arrayValue[last];
-    arrayValue[last] = arrayValue[first];
-    arrayValue[first] = lastItem;
+    lastItem = array[last];
+    array[last] = array[first];
+    array[first] = lastItem;
     last--;
   }
 }
 
-// reverseArrayInPlace(arrayValue);
-// console.log(arrayValue);
-// // → [5, 4, 3, 2, 1]
+var arrayValue = [1, 2, 3, 4, 5];
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
+// → [5, 4, 3, 2, 1]
 
 var range = function(start, end) {
   if ((start % 1 == 0) && (end % 1 == 0)) { // the end number probably doesn't need to be an integer, but for consistency's sake...
