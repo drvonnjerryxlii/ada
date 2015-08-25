@@ -11,7 +11,11 @@ This is the home base for my class notes from my time in [Ada Cohort[2]][c3]. Yo
 
 Projects not in this repository (reverse chronologically):
 
-* weeks 10 & 11 group [bEtsy](https://github.com/catchingash/C3Projects--bEtsy) ([live on Heroku](https://desolate-coast-1026.herokuapp.com/))
+* week 16 mini projects: [JSDigitalClock](https://github.com/drvonnjerryxlii/js-digital-clock) ([live version](http://drvonnjerryxlii.github.io/js-digital-clock))
+* week 15 pair [ShippingApi](https://github.com/acmei/C3Projects--ShippingAPI) ([live on Heroku](http://fedax.herokuapp.com/))
+* weeks 13 & 14 group [SeeMore](https://github.com/????????????????/C3Projects--SeeMore)
+* week 12 pair [AdaCooks](https://github.com/drvonnjerryxlii/C3Projects--AdaCooks)
+* weeks 10 & 11 group [bEtsy](https://github.com/catchingash/C3Projects--bEtsy) ~~([live on Heroku](https://desolate-coast-1026.herokuapp.com/))~~
 * week 10 solo [ProPass](https://github.com/drvonnjerryxlii/C3Projects--ProPass)
 * week 9 solo [MediaRanker](https://github.com/drvonnjerryxlii/C3Projects--MediaRanker)
 * week 8 pair [FarMarRails](https://github.com/drvonnjerryxlii/C3Projects--FarMarRails) ([live on Heroku](https://fierce-lake-7922.herokuapp.com/))
