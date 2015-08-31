@@ -1,30 +1,58 @@
 // note: start at the bottom if you want to see what I wrote first.
 
-var every = function(array, testConditions) {
-  // return true if testConditions match all item
+
+// return true if testCondition matches all array items
+function every(array, testCondition) {
+  result = true;
+  for (var i = 0; i < array.length; i++) {
+    if (!testCondition(array[i])) {
+      result = false;
+      break;
+    };
+  }
+  return result;
 }
 
-var some = function(array, testConditions) {
-  // return true if testConditions match any item
+// return true if testCondition matches any array item
+function some(array, testCondition) {
+  result = false;
+  for (var i = 0; i < array.length; i++) {
+    if (testCondition(array[i])) {
+      result = true;
+      break;
+    };
+  }
+  return result;
 }
+
+// log(every([NaN, NaN, NaN], isNaN));
+// // → true
+// log(every([NaN, NaN, 4], isNaN));
+// // → false
+// log(some([NaN, 3, 4], isNaN));
+// // → true
+// log(some([2, 3, 4], isNaN));
+// // → false
 
 
 // Use the reduce method in combination with the concat method to “flatten” an array
 // of arrays into a single array that has all the elements of the input arrays.
 var arrays = [[1, 2, 3], [4, 5], [6]];
-var flatten = function(array) {
+function flatten(array) { // NOTE: rewrite me to be resursive!
   flattened = [];
   array.forEach(function(innerArray) {
     // !W something can be done here to check if innerArray is array
     // if not, push to flatten, if so, forEach and continue
-    innerArray.forEach(function(item) {
-      flattened.push(item);
-    });
+    if (Array.isArray(innerArray)) {
+      innerArray.forEach(function(item) {
+        flattened.push(item);
+      });
+    };
   });
   return flattened;
 }
 
-// console.log(flatten(arrays));
+// log(flatten(arrays));
 // → [1, 2, 3, 4, 5, 6]
 
 // The == operator compares objects by identity. But sometimes, you would prefer to
@@ -40,17 +68,15 @@ var flatten = function(array) {
 // to take one silly exception into account: by a historical accident, typeof null
 // also produces "object".
 
-// var deepEqual = function(first, second) {
-//   // write some code here
-//   // NOTE: !W come back to this after !R or !T a for each to find the keys
-// }
-//
+function deepEqual(first, second) {
+}
+
 // var obj = {here: {is: "an"}, object: 2};
-// console.log(deepEqual(obj, obj));
-// // → true
-// console.log(deepEqual(obj, {here: 1, object: 2}));
+// log(deepEqual(obj, obj));
+// → true
+// log(deepEqual(obj, {here: 1, object: 2}));
 // // → false
-// console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+// log(deepEqual(obj, {here: {is: "an"}, object: 2}));
 // // → true
 
 // Write a function arrayToList that builds up a data structure like the previous
@@ -63,7 +89,7 @@ var flatten = function(array) {
 //
 // If you haven’t already, also write a recursive version of nth.
 
-var nth = function(list, index) {
+function nth(list, index) {
   if (index == 0)
     return list.value;
   else if (list.rest == null)
@@ -72,11 +98,11 @@ var nth = function(list, index) {
     return nth(list.rest, index - 1);
 }
 
-var prepend = function(value, list) {
+function prepend(value, list) {
   return { value: value, rest: list };
 }
 
-var listToArray = function(list) {
+function listToArray(list) {
   var array = [];
   while (list.value) {
     array.push(list.value);
@@ -87,7 +113,7 @@ var listToArray = function(list) {
   return array;
 }
 
-var arrayToList = function(array) {
+function arrayToList(array) {
   var rest;
   var lastIndex = array.length - 1;
   for (var i = lastIndex; i >= 0; i--) {
@@ -99,19 +125,19 @@ var arrayToList = function(array) {
   return rest;
 }
 
-// console.log(arrayToList([10, 20]));
+// log(arrayToList([10, 20]));
 // // → {value: 10, rest: {value: 20, rest: null}}
-// console.log(listToArray(arrayToList([10, 20, 30])));
+// log(listToArray(arrayToList([10, 20, 30])));
 // // → [10, 20, 30]
-// console.log(prepend(10, prepend(20, null)));
+// log(prepend(10, prepend(20, null)));
 // // → {value: 10, rest: {value: 20, rest: null}}
-// console.log(nth(arrayToList([10, 20, 30]), 1));
+// log(nth(arrayToList([10, 20, 30]), 1));
 // // → 20
-// console.log(nth(arrayToList([10, 20, 30]), 40));
+// log(nth(arrayToList([10, 20, 30]), 40));
 // // → undefined
 
 
-var reverse = function(array) {
+function reverse(array) {
   var reversed = [];
   for (var i = array.length - 1; i >= 0; i--)
     reversed.push(array[i]);
@@ -119,13 +145,13 @@ var reverse = function(array) {
   return reversed;
 }
 
-x = [1, 2, 3, 4, 5];
-console.log(reverse(x));
-// → ["C", "B", "A"];
-console.log(x);
+// x = [1, 2, 3, 4, 5];
+// log(reverse(x));
+// // → ["C", "B", "A"];
+// log(x);
 
 
-var reverseArrayInPlace = function(array) {
+function reverseArrayInPlace(array) {
   var last = array.length - 1;
   for (var first = 0; first < last; first++) {
     lastItem = array[last];
@@ -135,12 +161,12 @@ var reverseArrayInPlace = function(array) {
   }
 }
 
-var arrayValue = [1, 2, 3, 4, 5];
-reverseArrayInPlace(arrayValue);
-console.log(arrayValue);
-// → [5, 4, 3, 2, 1]
+// var arrayValue = [1, 2, 3, 4, 5];
+// reverseArrayInPlace(arrayValue);
+// log(arrayValue);
+// // → [5, 4, 3, 2, 1]
 
-var range = function(start, end) {
+function range(start, end) {
   if ((start % 1 == 0) && (end % 1 == 0)) { // the end number probably doesn't need to be an integer, but for consistency's sake...
     var output = [];
     for (var i = start; i <= end; i++)
@@ -150,7 +176,7 @@ var range = function(start, end) {
   }
 }
 
-var sum = function(numbersArray) {
+function sum(numbersArray) {
   var total = 0;
   for (var i = 0; i < numbersArray.length; i++)
     total += isNaN(i) ? 0 : numbersArray[i]; // isNaN(i) is checking for non-numeric values
@@ -158,9 +184,9 @@ var sum = function(numbersArray) {
   return total;
 }
 
-// console.log(sum(range(1, 10)));
+// log(sum(range(1, 10)));
 
-var getBiggest = function(numbersArray) {
+function getBiggest(numbersArray) {
   // pass an array to getBiggest
   // get a return value that is the biggest number in the array
   var biggestNumber = numbersArray[0];
@@ -173,7 +199,7 @@ var getBiggest = function(numbersArray) {
 
 // var arrayOfNums = [2, 7, 7, 3, 9, 0, 1, 6, 8, 3, 8, 4, 7, 9];
 // var biggest = getBiggest(arrayOfNums);
-// console.log("The biggest is: ", biggest);
+// log("The biggest is: ", biggest);
 
 var ToDo = {
   task: "Finish the exercises before it stops being Sunday.",
@@ -183,14 +209,14 @@ var ToDo = {
   setDone: function(state) { this.done = state; }
 }
 
-// console.log(ToDo.done);
+// log(ToDo.done);
 
-var countBs = function(string) {
+function countBs(string) {
   return countChar(string, "B");
 }
 
 // this function will only work if the user passes in a single character for char
-var countChar = function(string, char) {
+function countChar(string, char) {
   char_count = 0;
   for (var i = 0; i < string.length; i++) {
     if (string.charAt(i) == char)
@@ -200,38 +226,48 @@ var countChar = function(string, char) {
 
 }
 
-// console.log(countBs("BBC"));
+// log(countBs("BBC"));
 // // → 2
-// console.log(countChar("kakkerlak", "k"));
+// log(countChar("kakkerlak", "k"));
 // // → 4
 
 function isEven(num) {
-  if ((num == 2) || (num == 0))
-    return true;
-  else if (num <= 1)
-    return false;
-  else
-    return isEven(num - 2);
+  if (Array.isArray(num)) { return every(num, isEven); }
+  if (isNaN(num) || num % 1 !== 0 || num === 1) { return false; }
+  if (num === 0) { return true; }
+  if (num > 0) { return isEven(num - 2); }
+
+  return isEven(-num);
 }
 
-//
-// console.log(isEven(50));
-// console.log(isEven(0));
-// // → true
-// console.log(isEven(75));
-// console.log(isEven(-1));
-// // → false
+log(isEven(50));
+log(isEven(0));
+log(isEven(-40));
+log(isEven([2, 4, 6]));
+// → true
+log(isEven(75));
+log(isEven(-1));
+log(isEven("potato"));
+log(isEven(0.5));
+log(isEven([2, 4, 5, 6]));
+log(isEven({}))
+// → false
 
-function min(first, second) {
-  if (first <= second)
-    return first;
-  else
-    return second;
+function min() {
+  var smallest = arguments[0];
+  for (var i = 1; i < arguments.length; i++) {
+    current = Array.isArray(arguments[i]) ? min.apply(undefined, arguments[i]) : arguments[i];
+    if (!isNaN(current)) // unless the current argument is a number
+      smallest = current < smallest ? current : smallest;
+  }
+  return smallest;
 }
 
-// console.log(min(0, 10));
+// log(min(0, {}, 10, 40, "potato", 67, 200, 3000));
 // // → 0
-// console.log(min(0, -10));
+// log(min(0, {}, 10, 40, 64, [5, -200, 4], 200, 3000));
+// // → -200
+// log(min(0, 2, 6, 8, -10, -8));
 // // → -10
 
 function chessboard(board_size) {
@@ -251,7 +287,7 @@ function chessboard(board_size) {
       if (column % 2 == 0) { output += first; }
       else { output += second; };
     }
-    console.log(output);
+    log(output);
   }
 }
 
@@ -265,7 +301,7 @@ function fizzbuzz(stop_here) {
     if (i % 3 == 0) { output += three; };
     if (i % 5 == 0) { output += five; };
     if ((i % 3 != 0) && (i % 5 != 0)) { output = i; };
-    console.log(output);
+    log(output);
   }
 }
 
@@ -294,14 +330,14 @@ function triangle(peak_size) {
     output += row + "\n";
   }
 
-  console.log(output);
+  log(output);
 }
 
 // triangle(3);
 // triangle(7);
 // triangle(25);
 
-var factorial = function(n) {
+function factorial(n) {
   if (n == 0)
     return 1;
   else
@@ -315,5 +351,10 @@ function fac(n) {
     return fac(n - 1) * n;
 }
 
-// console.log(factorial(3));
-// console.log(fac(8));
+// log(factorial(3));
+// log(fac(8));
+
+// except for log, which is at the top here for everything else to use.
+function log(objToLog) { // this is an alias for console.log b/c I want to type less
+  console.log(objToLog)
+}
