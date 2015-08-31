@@ -11,7 +11,9 @@ This is the home base for my class notes from my time in [Ada Cohort[2]][c3]. Yo
 
 Projects not in this repository (reverse chronologically):
 
-* week 16 mini projects: [JSDigitalClock](https://github.com/drvonnjerryxlii/js-digital-clock) ([live version](http://drvonnjerryxlii.github.io/js-digital-clock))
+* week 16 mini projects: [JSDigitalClock](https://github.com/drvonnjerryxlii/js-digital-clock) ([live version](http://drvonnjerryxlii.github.io/js-digital-clock)),
+  [JSMusicKeyboard](https://github.com/drvonnjerryxlii/js-music-keyboard) ([live version](http://drvonnjerryxlii.github.io/js-music-keyboard/)),
+  [jQueryJukebox](https://github.com/drvonnjerryxlii/jquery-jukebox) ([live version](https://jerisjukebox.herokuapp.com/))
 * week 15 pair [ShippingApi](https://github.com/acmei/C3Projects--ShippingAPI) ([live on Heroku](http://fedax.herokuapp.com/))
 * weeks 13 & 14 group [SeeMore](https://github.com/????????????????/C3Projects--SeeMore)
 * week 12 pair [AdaCooks](https://github.com/drvonnjerryxlii/C3Projects--AdaCooks)
