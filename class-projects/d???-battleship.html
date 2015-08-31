@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+     <meta charset="utf-8" />
+     <title>Battleship!</title>
+     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+     <script src="d%3F%3F%3F-battleship.js"></script>
+  </head>
+  <body>
+    <h1>Play Battleship</h1>
+    <h4>Ready, aim, fire!</h4>
+
+    <form><!-- using a form here so pressing enter in the text field will also submit the guess-->
+      <legend>Enter a number from 0-9:</legend>
+      <input type="text" id="guess" />
+      <input type="submit" value="Guess"></input>
+    </form>
+
+    <h4 id="guess-result"></h4>
+    <h4 id="board"></h4>
+    <h4 id="guess-count">Num guesses: <span id="count">0</span></h4>
+    <button id="again" href="#">Play Again?</button>
+    <h4 id="end-game"></h4>
+  </body>
+</html>
