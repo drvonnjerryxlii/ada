@@ -13,20 +13,9 @@ function findMatchingFiles(err, list) {
   }
 
   var path = require('path');
-  var matchingFiles = [];
-  var lastItem = list.length - 1;
 
-  list.forEach(function(filePath, index) {
+  list.forEach(function(filePath) {
     if (path.extname(filePath) == extension)
-      matchingFiles.push(filePath);
-
-    if (index == lastItem)
-      return logMatchingFiles(matchingFiles);
-  });
-}
-
-function logMatchingFiles(filesList) {
-  filesList.forEach(function(filePath) {
-    console.log(filePath);
+      console.log(filePath);
   });
 }
