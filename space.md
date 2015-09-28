@@ -1,4 +1,4 @@
-[example query from NASA Star API][exq]
+[example query from Star API][exq]
 * from Isaac Hinman ([this blog post][ihblag])
 * `http://star-api.herokuapp.com/api/v1/stars?max[distly]=20`
    * `max[distly]=20` == max distance in light years: 20
@@ -33,7 +33,3 @@ from Noel Raymond Cower:
 
 [nrcor]: http://spifftastic.net/post/2013/07/ruby-experiments/
 [nrcres]: http://spifftastic.net/resume/
-
-[astrostudio][as]
-
-[as]: http://www.astrostudio.org/
